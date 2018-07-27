@@ -199,11 +199,11 @@
     explore: version
     type: table
     fields:
-    - issue_extended.id
-    - issue_extended.status_name
-    - issue_extended.severity_name
-    - issue_extended.issue_type_name
-    - issue_extended.story_points
+   # - issue_extended.id
+    # - issue_extended.status_name
+    # - issue_extended.severity_name
+    # - issue_extended.issue_type_name
+    # - issue_extended.story_points
     sorts:
     - issue_extended.id
     limit: 500

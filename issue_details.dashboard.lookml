@@ -45,7 +45,7 @@
     totals_color: "#808080"
     series_types: {}
     listen:
-      Issue ID: issue_extended.id
+      # Issue ID: issue_extended.id
     row: 0
     col: 7
     width: 8
@@ -92,7 +92,7 @@
     totals_color: "#808080"
     series_types: {}
     listen:
-      Issue ID: issue_extended.id
+      # Issue ID: issue_extended.id
     title_hidden: true
     row: 0
     col: 15
@@ -128,7 +128,7 @@
     conditional_formatting_include_nulls: false
     series_types: {}
     listen:
-      Issue ID: issue_extended.id
+      # Issue ID: issue_extended.id
     row: 0
     col: 3
     width: 4
@@ -229,7 +229,7 @@
     - issue.project
     - issue.due_date
     - issue.environment
-    - issue.external_issue_id
+    #- issue.external_issue_id
     - issue._original_estimate
     - issue.original_estimate
     limit: 500
@@ -292,7 +292,7 @@
     - version.name
     - version.start_date
     - version.release_date
-    - issue_extended.id
+  #  - issue_extended.id
     sorts:
     - version.start_date desc
     limit: 500
@@ -300,7 +300,7 @@
     hidden_fields:
     - issue.id
     listen:
-      Issue ID: issue_extended.id
+      # Issue ID: issue_extended.id
     row: 5
     col: 10
     width: 14

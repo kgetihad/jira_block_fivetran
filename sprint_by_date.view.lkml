@@ -3,7 +3,7 @@ view: sprint_by_date {
     persist_for: "12 hours"
     # For Redshift only
     #sortkeys: ["sprint_id","issue_id"]
-    #distribution_style: all
+    distribution_style: all
     sql: SELECT "issue_id",
        "time" as start_time,
        (select NVL(min(time), '9999-01-01') as end_time from jira.issue_sprint_history ish2

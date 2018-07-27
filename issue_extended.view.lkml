@@ -19,6 +19,8 @@ explore: issue_extended {}
 view: issue_extended {
   derived_table: {
     datagroup_trigger: fivetran_datagroup
+    distribution_style: all
+
     sql: SELECT issue.*
                -- Include the values associated with foreign keys
                -- in the issue table
@@ -66,7 +68,7 @@ view: issue_extended {
          -- field_option table must have a unique alias
          -- each time it is referenced
          LEFT OUTER JOIN jira.field_option department -- unique alias
-            ON issue.department = department.id
+            ON issue.department_ = department.id
          LEFT OUTER JOIN jira.project
             ON issue.project = project.id
          LEFT OUTER JOIN jira.field_option severity -- unique alias
