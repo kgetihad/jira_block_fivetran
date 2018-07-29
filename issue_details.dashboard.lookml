@@ -260,7 +260,7 @@
     fields:
     - issue_history_all.issue_id
     - issue_history_all.time_date
-    - issue_history_all.value
+    # - issue_history_all.value
     - issue_history_all.changed
     sorts:
     - issue_history_all.time_date desc

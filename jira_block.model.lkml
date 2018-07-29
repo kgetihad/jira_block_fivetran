@@ -27,6 +27,9 @@ explore: sprint {
 
 }
 
+explore: issue_assignee_history {}
+explore: issue_status_history {}
+
 # Update based on how you are associating versions to
 explore: version {
   join: issue_fix_version {
@@ -58,6 +61,32 @@ explore: issue_history_2 {
     sql_on: ${issue.id} = ${issue_history_all.issue_id} ;;
     relationship: many_to_one
   }
+
+  join: issue_status_history {
+    type: left_outer
+    sql_on: ${issue.id}=${issue_status_history.issue_id} ;;
+    relationship: many_to_one
+  }
+
+  join: issue_assignee_history {
+    type: left_outer
+    sql_on: ${issue.id}=${issue_assignee_history.issue_id} ;;
+    relationship: many_to_one
+
+  }
+
+  join:  status {
+    type:  left_outer
+    sql_on: ${issue_status_history.status_id} = ${status.id} ;;
+    relationship: many_to_one
+  }
+
+  join: project {
+    type: left_outer
+    sql_on: ${issue.project}=project.id;;
+    relationship: many_to_one
+  }
+
 }
 
 ### CURRENT OVERVIEW OF STATUS OF PROJECTS, ISSUES, AND ISSUE FACTS (E.G. # OF COMMENTS)
@@ -68,6 +97,21 @@ explore: project {
     sql_on: ${project.id} = ${issue.project} ;;
     relationship: many_to_one
   }
+
+  join: issue_assignee_history {
+    type: left_outer
+    sql_on: ${issue.id}=${issue_assignee_history.issue_id} ;;
+    relationship: one_to_many
+  }
+
+  join: issue_status_history {
+    type: left_outer
+    sql_on: ${issue_status_history.issue_id}=${issue_assignee_history.issue_id} ;;
+    relationship: many_to_many
+  }
+
+
+
   join:  issue_type {
     type:  left_outer
     sql_on: ${issue.issue_type} = ${issue_type.id} ;;
