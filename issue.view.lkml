@@ -31,6 +31,11 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+  dimension: issue_key {
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+
   dimension: _remaining_estimate {
     type: number
     sql: ${TABLE}._remaining_estimate ;;
@@ -44,6 +49,10 @@ view: issue {
   dimension: assignee {
     type: string
     sql: ${TABLE}.assignee ;;
+  }
+  dimension: reporter {
+    type: string
+    sql: ${TABLE}.reporter ;;
   }
 
   dimension_group: created {
