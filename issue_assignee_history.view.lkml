@@ -13,7 +13,7 @@ view: issue_assignee_history {
   }
 
   dimension: time {
-    type: string
+    type: date_time
     sql: ${TABLE}.TIME ;;
   }
 
