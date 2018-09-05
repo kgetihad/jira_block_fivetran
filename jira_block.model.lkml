@@ -261,3 +261,10 @@ explore: sql_issue {
 explore: test_temp {
 
 }
+explore: Temp1_time {
+  join: test_temp  {
+    relationship: one_to_one
+
+    sql_on: ${Temp1_time._fivetran_id} = ${Temp1_time._fivetran_id} ;;
+  }
+}
