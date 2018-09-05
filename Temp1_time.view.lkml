@@ -1,23 +1,24 @@
 view: Temp1_time {
   derived_table: {
-    sql: SELECT *,
-          (DATEDIFF(h,
-                    MIN(time)
-                      OVER (PARTITION BY issue_id
-                         ORDER BY TIME
-                         ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
-                        ),
+    sql:WITH Temp1_time AS (SELECT *,
+          ABS((DATEDIFF(m,  lag(time) over (partition by ISSUE_id order by TIME desc),
                     Time
                    )
-          ) AS hours_diff
+          )) AS hours_diff
       FROM jira.issue_assignee_history
-       ;;
+       )
+SELECT
+  Temp1_time.issue_id  AS "temp1_time.issue_id_1",
+  Temp1_time.user_id  AS "temp1_time.user_id_1",
+  TO_CHAR(CONVERT_TIMEZONE('UTC', 'Asia/Amman', Temp1_time.time ), 'YYYY-MM-DD HH24:MI:SS') AS "temp1_time.time_time_1",
+  Temp1_time.hours_diff  AS "temp1_time.hours_diff_1"
+FROM Temp1_time
+
+GROUP BY 1,2,3,4
+ORDER BY 1 ,3 ,4;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [detail*]
-  }
+
 
   dimension: issue_id {
     type: number
@@ -34,20 +35,13 @@ view: Temp1_time {
     sql: ${TABLE}.user_id ;;
   }
 
-  dimension: _fivetran_id {
-    type: string
-    sql: ${TABLE}._fivetran_id ;;
-  }
-
-  dimension_group: _fivetran_synced {
-    type: time
-    sql: ${TABLE}._fivetran_synced ;;
-  }
-
-  dimension: hours_diff {
+dimension: Hours_differ
+    {
     type: number
     sql: ${TABLE}.hours_diff ;;
-  }
+
+
+}
   measure: Hours_diff  {
     type: number
     sql: ${TABLE}.hours_diff ;;
@@ -59,9 +53,7 @@ view: Temp1_time {
       issue_id,
       time_time,
       user_id,
-      _fivetran_id,
-      _fivetran_synced_time,
-      hours_diff
+
     ]
   }
 }
