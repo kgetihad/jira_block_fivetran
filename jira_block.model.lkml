@@ -110,10 +110,10 @@ explore: project {
     relationship: many_to_many
   }
 
-  join: hours_per_ticket_per_assignee {
+  join: temp2 {
     type: left_outer
     relationship: many_to_many
-    sql_on: ${hours_per_ticket_per_assignee.issue_id}=${issue_assignee_history.issue_id} ;;
+    sql_on: ${temp2.CTE_issue_id_1}=${issue_assignee_history.issue_id} ;;
   }
 
 
