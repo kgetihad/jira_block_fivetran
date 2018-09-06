@@ -267,3 +267,9 @@ explore: sql_issue {
 explore: test_temp {
 
 }
+explore: Temp1_time {
+
+}
+explore: temp2 {
+
+}
