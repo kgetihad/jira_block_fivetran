@@ -11,12 +11,12 @@ view: temp2 {
 SELECT
   CTE.issue_id  AS "CTE.issue_id_1",
   CTE.user_id  AS "CTE.user_id_1",
-   CTE.time  AS "CTE.time_time_1",
+  CTE.time  AS "CTE.time_time_1",
   CTE.hours_diff  AS "CTE.hours_diff_1"
 FROM CTE
 
 ORDER BY 1
-LIMIT 500
+
  ;;
     }
 
@@ -29,7 +29,12 @@ LIMIT 500
       type: number
       sql: ${TABLE}."CTE.issue_id_1" ;;
     }
+  dimension: primary_key {
+    hidden: yes
+    primary_key: yes
+    sql: concat(concat(${TABLE}."CTE.issue_id_1",${TABLE}."CTE.user_id_1"),${TABLE}."CTE.time_time_1" ;;
 
+  }
     dimension: CTE_user_id_1 {
       type: string
       sql: ${TABLE}."CTE.user_id_1" ;;
@@ -40,14 +45,18 @@ LIMIT 500
       sql: ${TABLE}."CTE.time_time_1" ;;
     }
 
-    dimension:Diff_min
+    dimension:Diff_mins
     {
       type: number
       sql: ${TABLE}."CTE.hours_diff_1" ;;
     }
-  measure: Diff_Mins{
+    measure: Diff_hours{
     type: sum
-    sql: ${TABLE}."CTE.hours_diff_1" ;;
+    sql:(${TABLE}."CTE.hours_diff_1")/60 ;;
+  }
+  measure: Diff_mins_m{
+    type: sum
+    sql:${TABLE}."CTE.hours_diff_1" ;;
   }
 
     set: detail {
