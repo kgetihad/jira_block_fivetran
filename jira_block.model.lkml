@@ -98,10 +98,23 @@ explore: project {
     relationship: many_to_one
   }
 
+
   join: issue_assignee_history {
     type: left_outer
     sql_on: ${issue.id}=${issue_assignee_history.issue_id} ;;
     relationship: one_to_many
+  }
+
+  join: team {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${team.username}=${issue_assignee_history.user_id} ;;
+  }
+
+  join: target {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${team.dep} = ${target.team};;
   }
 
   join: issue_status_history {
