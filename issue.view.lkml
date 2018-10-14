@@ -55,6 +55,17 @@ view: issue {
     sql: ${TABLE}.reporter ;;
   }
 
+  dimension: SLAOLA  {
+    type: string
+    case: {
+      when: {
+        sql: ${reporter} in (select username from team) ;;
+        label: "OLA"
+      }
+      # Possibly more when statements
+      else: "SLA"
+    }
+  }
   dimension_group: created {
     group_label: "Dates"
     type: time

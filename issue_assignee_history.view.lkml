@@ -23,6 +23,8 @@ view: issue_assignee_history {
     sql: ${TABLE}.USER_ID ;;
   }
 
+
+
   measure: count {
     type: count
     drill_fields: [issue.id, issue.epic_name, user.id, user.name]
