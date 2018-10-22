@@ -5,7 +5,7 @@ view: temp2 {
           ABS((DATEDIFF(m,  lag(time) over (partition by ISSUE_id order by TIME desc),
                     Time
                    )
-          )) AS hours_diff
+          ))  hours_diff
       FROM jira.issue_assignee_history
        )
 SELECT
@@ -50,9 +50,9 @@ ORDER BY 1
       type: number
       sql: ${TABLE}."CTE.hours_diff_1" ;;
     }
-    measure: Diff_hours{
-    type: sum
-    sql:(${TABLE}."CTE.hours_diff_1")/60 ;;
+    dimension: Difference_in_hours{
+    type: number
+    sql:${Diff_mins}/60 ;;
   }
   measure: Diff_mins_m{
     type: sum
