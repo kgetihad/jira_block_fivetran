@@ -1,10 +1,15 @@
 
 view: time_assigned_per_assignee {
   derived_table: {
-    sql: SELECT s.user_id,issue_id,
+    sql:
+SELECT s.user_id,issue_id,
 
 case
-when sum_time is null then DATEDIFF(s,s.time,i.resolved)
+when sum_time is null then DATEDIFF(s,s.time,
+
+case when i.resolved is null then GETDATE() else  i.resolved end
+
+)
 else sum_time end as sum
 
 FROM
@@ -18,7 +23,7 @@ FROM
 
       FROM jira.issue_assignee_history
 
-     --  where issue_id = 103165
+      -- where issue_id = 103165
 
       ) as k
        group by user_id, issue_id , time
