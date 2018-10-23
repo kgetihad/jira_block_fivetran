@@ -90,7 +90,6 @@ explore: issue_history_2 {
 }
 
 ### CURRENT OVERVIEW OF STATUS OF PROJECTS, ISSUES, AND ISSUE FACTS (E.G. # OF COMMENTS)
-
 explore: project {
   join: issue {
     type:  left_outer
@@ -109,6 +108,7 @@ explore: project {
     relationship: one_to_many
     sql_on: ${issue.id} = ${time_assigned_per_assignee.issue_id} ;;
   }
+
 
   join: team {
     type: left_outer

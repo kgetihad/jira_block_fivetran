@@ -1,24 +1,29 @@
+
 view: time_assigned_per_assignee {
   derived_table: {
-    sql: select
-       sum(m.seconds_diff),user_id, issue_id
+    sql: SELECT s.user_id,issue_id,
+
+case
+when sum_time is null then DATEDIFF(s,s.time,i.resolved)
+else sum_time end as sum
+
+FROM
+     (  select
+       sum(k.seconds_diff) as sum_time,user_id, issue_id,time
       from (SELECT *,ABS((DATEDIFF(s,  lag(time) over (partition by ISSUE_id order by TIME desc),
                           Time
                          )
                 ))  seconds_diff
-      -- (DATEDIFF(seconds,
-      --       MIN(time)
-      --       OVER (PARTITION BY issue_id
-      --         ORDER BY TIME desc
-      --         ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
-      --         ),
-      --       Time
-      --       )
-      -- ) AS days_diff
+
+
       FROM jira.issue_assignee_history
-      --where issue_id = 97547
-      ) as m
-       group by user_id, issue_id
+
+     --  where issue_id = 103165
+
+      ) as k
+       group by user_id, issue_id , time
+       ) as s
+       JOIN jira.issue as i on i.id = s.issue_id
        ;;
   }
 
