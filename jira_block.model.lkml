@@ -106,20 +106,21 @@ explore: project {
 
   join: time_assigned_per_assignee {
     relationship: one_to_many
-    sql_on: ${issue.id} = ${time_assigned_per_assignee.issue_id} ;;
+    sql_on: ${issue.id} = ${time_assigned_per_assignee.issue_id} and  ${issue_assignee_history.user_id} = ${time_assigned_per_assignee.user_id};;
   }
 
 
   join: team {
     type: left_outer
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${team.username}=${issue_assignee_history.user_id} ;;
   }
 
   join: target {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${team.dep} = ${target.team};;
+    sql_on: ${team.dep} = ${target.team} AND ${priority.name} = ${target.priority} and ${issue.SLAOLA} = ${target.issla};;
+#     sql_where:   ${issue.priority} = ${target.priority};;
   }
 
   join: issue_status_history {

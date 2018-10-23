@@ -2,6 +2,9 @@
 view: time_assigned_per_assignee {
   derived_table: {
     sql:
+SELECT user_id,issue_id , sum(sum) as sum , sum(working_hours) as working_hours
+from
+(
 SELECT s.user_id,issue_id,
 
 case
@@ -11,24 +14,47 @@ case when i.resolved is null then GETDATE() else  i.resolved end
 
 )
 else sum_time end as sum
+,
+
+case
+when businesshours is null and i.resolved is null then
+  (DATEDIFF(minute, s.time,  GETDATE())/60.0-
+    DATEDIFF(day,   s.time,  GETDATE())*16 -
+    DATEDIFF(week,s.time,  GETDATE())*16 )
+when  businesshours is null and i.resolved is not null then
+(DATEDIFF(minute, s.time,  i.resolved)/60.0-
+    DATEDIFF(day,   s.time,   i.resolved)*16 -
+    DATEDIFF(week,s.time,  i.resolved)*16 )
+else businesshours * -1 end as working_hours
+
 
 FROM
-     (  select
-       sum(k.seconds_diff) as sum_time,user_id, issue_id,time
-      from (SELECT *,ABS((DATEDIFF(s,  lag(time) over (partition by ISSUE_id order by TIME desc),
+    (
+    select
+      sum(k.seconds_diff) as sum_time, sum(k.businesshours) as businesshours, user_id, issue_id,time
+      from (
+
+      SELECT *,
+      ABS((DATEDIFF(s,  lag(time) over (partition by ISSUE_id order by TIME desc),
                           Time
                          )
-                ))  seconds_diff
+                ))  seconds_diff,
+
+                 DATEDIFF(minute, lag(time) over (partition by ISSUE_id order by TIME desc),  Time) /60.0-
+    DATEDIFF(day,    lag(time) over (partition by ISSUE_id order by TIME desc),  Time)*16 -
+    DATEDIFF(week,   lag(time) over (partition by ISSUE_id order by TIME desc),  Time)*16  AS businesshours
 
 
       FROM jira.issue_assignee_history
 
-      -- where issue_id = 103165
+       where issue_id = 97051
 
       ) as k
-       group by user_id, issue_id , time
-       ) as s
-       JOIN jira.issue as i on i.id = s.issue_id
+      group by user_id, issue_id ,time
+      ) as s
+      JOIN jira.issue as i on i.id = s.issue_id
+      ) as work
+      group by user_id,issue_id
        ;;
   }
 
