@@ -47,7 +47,7 @@ FROM
 
       FROM jira.issue_assignee_history
 
-       where issue_id = 97051
+       -- where issue_id = 97051
 
       ) as k
       group by user_id, issue_id ,time
