@@ -92,6 +92,11 @@ FROM
     sql: ${TABLE}.issue_id ;;
   }
 
+  dimension: working_hours {
+    type: number
+    sql: ${TABLE}.working_hours ;;
+  }
+
   set: detail {
     fields: [sum_in_secs, user_id]
   }
