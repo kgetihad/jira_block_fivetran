@@ -105,6 +105,11 @@ explore: project {
     relationship: one_to_many
   }
 
+  join: time_assigned_per_assignee {
+    relationship: one_to_many
+    sql_on: ${issue.id} = ${time_assigned_per_assignee.issue_id} ;;
+  }
+
   join: team {
     type: left_outer
     relationship: many_to_many
