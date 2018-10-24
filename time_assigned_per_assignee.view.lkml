@@ -63,6 +63,21 @@ FROM
     drill_fields: [detail*]
   }
 
+  measure: avg_spent_on_ticket {
+    type: average
+    sql: ${sum_in_hrs} ;;
+  }
+
+  measure: avg_deviation_from_sla {
+    type: average
+    sql: ${spent_minus_target} ;;
+  }
+
+  dimension: spent_minus_target {
+    type: number
+    sql: ${sum_in_hrs} - ${target.hours} ;;
+  }
+
   dimension: sum_in_secs {
     type: number
     value_format: "#,##0"
@@ -71,6 +86,7 @@ FROM
 
   dimension: user_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 
