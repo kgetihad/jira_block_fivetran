@@ -65,28 +65,102 @@ FROM
 
   measure: avg_spent_on_ticket {
     type: average
-    sql: ${working_hours} ;;
+    sql: ${working_hours}  ;;
   }
 
   measure: avg_deviation_from_sla {
     type: average
-    sql: ${spent_minus_target} ;;
+    sql: ${sla_matching_percentage} ;;
   }
 
-  dimension: spent_minus_target {
+  dimension: sla_matching_percentage {
     type: number
-    sql: ${working_hours} - ${target.hours} ;;
+    value_format: "0.00\%"
+    sql:case when ${working_hours}  is null or ${working_hours} = 0 then null else
+    case when  ${working_hours}  -  ${target.hours}  <= 0 then 0 else
+    (( ${working_hours}  -  ${target.hours} ) / ${target.hours} ) * 100
+    end
+    end ;;
+  }
+
+  dimension: working_minus_target_percentage {
+    type: number
+    value_format: "0"
+    sql:round (( (${working_hours} - ${target.hours}) / ${target.hours} ) * 100,0);;
+  }
+
+  dimension: sla_score {
+    case: {
+      when : {
+        sql:  ${working_minus_target_percentage} < 95  ;;
+        label : "-5"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 90  ;;
+        label : "-4"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 85  ;;
+        label : "-3"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 75  ;;
+        label : "-2"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 65  ;;
+        label : "-1"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 55  ;;
+        label : "0"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 45  ;;
+        label : "1"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 35  ;;
+        label : "2"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 25  ;;
+        label : "3"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 15  ;;
+        label : "4"
+      }
+
+      when : {
+        sql:   ${working_minus_target_percentage} > 0  ;;
+        label : "5"
+      }
+      when: {
+        sql: ${working_minus_target_percentage} <= 0 ;;
+        label : "5"
+      }
+      else : "-5"
+    }
   }
 
   dimension: sum_in_secs {
     type: number
     value_format: "#,##0"
-    sql: ${TABLE}.sum ;;
+    sql: ${TABLE}.working_hours ;;
   }
+
+  dimension: pk_user_issue {
+    type: string
+    sql: CONCAT(${TABLE}.user_id, ${TABLE}.issue_id) ;;
+      primary_key:yes
+  }
+
+
+
 
   dimension: user_id {
     type: string
-    primary_key: yes
     sql: ${TABLE}.user_id ;;
   }
 
@@ -104,7 +178,6 @@ FROM
 
   dimension: issue_id {
     type: number
-
     sql: ${TABLE}.issue_id ;;
   }
 
