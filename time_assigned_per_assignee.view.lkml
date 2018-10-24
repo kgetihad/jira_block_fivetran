@@ -65,7 +65,7 @@ FROM
 
   measure: avg_spent_on_ticket {
     type: average
-    sql: ${sum_in_hrs} ;;
+    sql: ${working_hours} ;;
   }
 
   measure: avg_deviation_from_sla {
@@ -75,7 +75,7 @@ FROM
 
   dimension: spent_minus_target {
     type: number
-    sql: ${sum_in_hrs} - ${target.hours} ;;
+    sql: ${working_hours} - ${target.hours} ;;
   }
 
   dimension: sum_in_secs {
