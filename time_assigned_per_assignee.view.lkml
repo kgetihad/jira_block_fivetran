@@ -92,7 +92,7 @@ FROM
 
   dimension: working_minus_target_percentage {
     type: number
-    sql: ((${working_hours} - ${target.hours}) / ${target.hours} ) * 100;;
+    sql: ((${working_hours} - ${target_assignee_hours}) / ${target_assignee_hours} ) * 100;;
   }
 
   dimension: sla_score {
