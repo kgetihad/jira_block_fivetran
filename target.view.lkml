@@ -8,7 +8,7 @@ view: target {
   }
 
   dimension: hours {
-    type: string
+    type: number
     sql: ${TABLE}.hours ;;
   }
 

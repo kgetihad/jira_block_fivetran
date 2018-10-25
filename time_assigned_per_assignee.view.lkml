@@ -83,53 +83,59 @@ FROM
     end ;;
   }
 
+
+  dimension: target_assignee_hours {
+    type: number
+    sql:${target.hours};;
+  }
+
+
   dimension: working_minus_target_percentage {
     type: number
-    value_format: "0"
-    sql:round (( (${working_hours} - ${target.hours}) / ${target.hours} ) * 100,0);;
+    sql: ((${working_hours} - ${target.hours}) / ${target.hours} ) * 100;;
   }
 
   dimension: sla_score {
     case: {
       when : {
         sql:  ${working_minus_target_percentage} < 95  and ${working_minus_target_percentage} >= 90 ;;
-        label : "-5"
-      }
-      when : {
-        sql:  ${working_minus_target_percentage} < 90   and ${working_minus_target_percentage} >= 85;;
         label : "-4"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 85   and ${working_minus_target_percentage} >= 75;;
+        sql:  ${working_minus_target_percentage} < 90   and ${working_minus_target_percentage} >= 85;;
         label : "-3"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 75   and ${working_minus_target_percentage} >= 65;;
+        sql:  ${working_minus_target_percentage} < 85   and ${working_minus_target_percentage} >= 75;;
         label : "-2"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 65   and ${working_minus_target_percentage} >= 55;;
+        sql:  ${working_minus_target_percentage} < 75   and ${working_minus_target_percentage} >= 65;;
         label : "-1"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 55  and ${working_minus_target_percentage} >= 45 ;;
+        sql:  ${working_minus_target_percentage} < 65   and ${working_minus_target_percentage} >= 55;;
         label : "0"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 45  and ${working_minus_target_percentage} >= 35 ;;
+        sql:  ${working_minus_target_percentage} < 55  and ${working_minus_target_percentage} >= 45 ;;
         label : "1"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 35  and ${working_minus_target_percentage} >= 25 ;;
+        sql:  ${working_minus_target_percentage} < 45  and ${working_minus_target_percentage} >= 35 ;;
         label : "2"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 25   and ${working_minus_target_percentage} >= 15;;
+        sql:  ${working_minus_target_percentage} < 35  and ${working_minus_target_percentage} >= 25 ;;
         label : "3"
       }
       when : {
-        sql:  ${working_minus_target_percentage} < 15   and ${working_minus_target_percentage} > 0;;
+        sql:  ${working_minus_target_percentage} < 25   and ${working_minus_target_percentage} >= 15;;
         label : "4"
+      }
+      when : {
+        sql:  ${working_minus_target_percentage} < 15   and ${working_minus_target_percentage} > 0;;
+        label : "5"
       }
       when: {
         sql: ${working_minus_target_percentage} <= 0 ;;
