@@ -15,6 +15,9 @@ persist_with: fivetran_datagroup
 
 
 explore: siebel_srv {}
+explore: app_srv {}
+
+explore: all_services_app_siebel {}
 explore: sprint {
   join: issue_sprint {
     type:  left_outer
