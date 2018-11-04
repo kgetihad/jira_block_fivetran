@@ -43,8 +43,8 @@ view: siebel_srv {
   }
 
   measure: count {
-    type: count
-#     sql: ${sr_sub_area} ;;
+    type: sum
+    sql: ${count_srv} ;;
     drill_fields: [branch_code,srv_created_week,count]
   }
 }
