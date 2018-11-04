@@ -13,6 +13,8 @@ datagroup: fivetran_datagroup {
 
 persist_with: fivetran_datagroup
 
+
+explore: siebel_srv {}
 explore: sprint {
   join: issue_sprint {
     type:  left_outer
@@ -89,6 +91,23 @@ explore: issue_history_2 {
 
 }
 
+explore: time_assigned_per_assignee {
+  join: team {
+    relationship: one_to_one
+    sql_on: ${time_assigned_per_assignee.user_id}= ${team.username};;
+  }
+
+  join: target {
+    relationship: one_to_one
+    sql_on: ${target.team}=${team.dep} ;;
+  }
+
+  join: issue {
+    relationship: one_to_one
+    sql_on: ${time_assigned_per_assignee.issue_id}=${issue.id} ;;
+  }
+}
+
 ### CURRENT OVERVIEW OF STATUS OF PROJECTS, ISSUES, AND ISSUE FACTS (E.G. # OF COMMENTS)
 explore: project {
   join: issue {
@@ -113,11 +132,10 @@ explore: project {
   join: team {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${team.username}=${issue_assignee_history.user_id} ;;
+    sql_on: ${team.username}=${issue_assignee_history.user_id} and ${team.username}=${time_assigned_per_assignee.user_id} ;;
   }
 
   join: target {
-    type: left_outer
     relationship: one_to_one
     sql_on: ${team.dep} = ${target.team} AND ${priority.name} = ${target.priority} and ${issue.SLAOLA} = ${target.issla};;
 #     sql_where:   ${issue.priority} = ${target.priority};;
