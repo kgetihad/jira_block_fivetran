@@ -36,4 +36,5 @@ view: target {
     type: count
     drill_fields: [id]
   }
+
 }

@@ -63,10 +63,16 @@ FROM
     drill_fields: [detail*]
   }
 
+  measure: sum_ticket {
+    type: sum
+    sql:cast(${sla_score} as integer);;
+  }
   measure: avg_spent_on_ticket {
     type: average
     sql: ${working_hours}  ;;
   }
+
+
 
   measure: avg_deviation_from_sla {
     type: average

@@ -26,4 +26,10 @@ view: team {
     type: count
     drill_fields: [id, name, username]
   }
+
+  measure: count_team_member {
+    type: count_distinct
+    sql: ${username} ;;
+
+  }
 }
