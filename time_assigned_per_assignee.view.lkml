@@ -77,16 +77,32 @@ FROM
     type: number
     value_format: "0.00\%"
     sql:case when ${working_hours}  is null or ${working_hours} = 0 then null else
-    case when  ${working_hours}  -  ${target.hours}  <= 0 then 0 else
+    case when  (${working_hours}  -  ${target.hours})  <= 0 then 0 else
     (( ${working_hours}  -  ${target.hours} ) / ${target.hours} ) * 100
     end
     end ;;
   }
 
+
+  dimension: target_assignee_hours {
+    type: number
+    value_format: "#.00"
+    sql:1.00 * (${target.hours});;
+  }
+
+
   dimension: working_minus_target_percentage {
     type: number
-    value_format: "0"
-    sql:round (( (${working_hours} - ${target.hours}) / ${target.hours} ) * 100,0);;
+    value_format: "#.00"
+    sql:100.00 * ( ${working_hours} - ${target.hours})/${target.hours}  ;;
+
+  }
+
+  dimension: working_minus_target {
+    type: number
+    value_format: "#.00"
+    sql: 1.00 *(${working_hours} - ${target.hours}) ;;
+
   }
 
   dimension: sla_score {
@@ -132,6 +148,7 @@ FROM
         sql:  ${working_minus_target_percentage} < 25   and ${working_minus_target_percentage} >= 15;;
         label : "4"
       }
+
       when : {
         sql:  ${working_minus_target_percentage} < 15  ;;
         label : "5"
@@ -159,6 +176,8 @@ FROM
     sql: ${TABLE}.user_id ;;
   }
 
+
+
   dimension: sum_in_mins {
     type: number
     value_format: "0.00"
@@ -178,6 +197,7 @@ FROM
 
   dimension: working_hours {
     type: number
+    value_format: "0.000"
     sql: ${TABLE}.working_hours ;;
   }
 
