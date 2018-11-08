@@ -63,6 +63,7 @@ FROM
     drill_fields: [detail*]
   }
 
+
   measure: sum_ticket {
     type: sum
     sql:cast(${sla_score} as integer);;
@@ -181,6 +182,7 @@ FROM
     type: string
     sql: ${TABLE}.user_id ;;
   }
+
 
 
 

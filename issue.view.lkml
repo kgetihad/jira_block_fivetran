@@ -166,6 +166,16 @@ view: issue {
     sql: ${resolved_date} IS NOT NULL ;;
   }
 
+  measure: count_of_resolved {
+    type: count
+    filters: {
+      field: is_issue_resolved
+      value: "Yes"
+
+    }
+  }
+
+
   # Custom dimensions for time to resolve issue
   dimension: hours_to_resolve_issue {
     group_label: "Resolution"
