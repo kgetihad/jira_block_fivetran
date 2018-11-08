@@ -181,6 +181,7 @@ FROM
   dimension: user_id {
     type: string
     sql: ${TABLE}.user_id ;;
+    drill_fields: [issue.assignee,issue.reporter,issue.issue_key,issue.project]
   }
 
 
