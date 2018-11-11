@@ -32,6 +32,8 @@ explore: sprint {
 
 }
 
+explore: app_branch_srv_mule_test {}
+explore: app_branch_srv {}
 explore: issue_assignee_history {}
 explore: issue_status_history {}
 

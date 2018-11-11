@@ -60,7 +60,7 @@ FROM
 
   measure: count {
     type: count
-    drill_fields: [detail*]
+    drill_fields: [issue.assignee,issue.reporter,issue.issue_key]
   }
 
 
