@@ -2,59 +2,89 @@
 view: time_assigned_per_assignee {
   derived_table: {
     sql:
-SELECT user_id,issue_id , sum(sum) as sum , sum(working_hours) as working_hours
-from
-(
-SELECT s.user_id,issue_id,
 
-case
-when sum_time is null then DATEDIFF(s,s.time,
+SELECT
+  user_id,
+  issue_id,
+  SUM(sum) AS sum,
+  SUM(working_hours) AS working_hours,
+  slaola_type
 
-case when i.resolved is null then GETDATE() else  i.resolved end
+FROM (SELECT
+  s.slaola_type,
+  s.user_id,
+  issue_id,
 
-)
-else sum_time end as sum
-,
+  CASE
+    WHEN sum_time IS NULL THEN DATEDIFF(s, s.time,
 
-case
-when businesshours is null and i.resolved is null then
-  (DATEDIFF(minute, s.time,  GETDATE())/60.0-
-    DATEDIFF(day,   s.time,  GETDATE())*16 -
-    DATEDIFF(week,s.time,  GETDATE())*16 )
-when  businesshours is null and i.resolved is not null then
-(DATEDIFF(minute, s.time,  i.resolved)/60.0-
-    DATEDIFF(day,   s.time,   i.resolved)*16 -
-    DATEDIFF(week,s.time,  i.resolved)*16 )
-else businesshours * -1 end as working_hours
+      CASE
+        WHEN i.resolved IS NULL THEN GETDATE()
+        ELSE i.resolved
+      END
 
+      )
+    ELSE sum_time
+  END AS sum,
 
-FROM
-    (
-    select
-      sum(k.seconds_diff) as sum_time, sum(k.businesshours) as businesshours, user_id, issue_id,time
-      from (
-
-      SELECT *,
-      ABS((DATEDIFF(s,  lag(time) over (partition by ISSUE_id order by TIME desc),
-                          Time
-                         )
-                ))  seconds_diff,
-
-                 DATEDIFF(minute, lag(time) over (partition by ISSUE_id order by TIME desc),  Time) /60.0-
-    DATEDIFF(day,    lag(time) over (partition by ISSUE_id order by TIME desc),  Time)*16 -
-    DATEDIFF(week,   lag(time) over (partition by ISSUE_id order by TIME desc),  Time)*16  AS businesshours
+  CASE
+    WHEN businesshours IS NULL AND
+      i.resolved IS NULL THEN (DATEDIFF(MINUTE, s.time, GETDATE()) / 60.0 -
+      DATEDIFF(DAY, s.time, GETDATE()) * 16 -
+      DATEDIFF(WEEK, s.time, GETDATE()) * 16)
+    WHEN businesshours IS NULL AND
+      i.resolved IS NOT NULL THEN (DATEDIFF(MINUTE, s.time, i.resolved) / 60.0 -
+      DATEDIFF(DAY, s.time, i.resolved) * 16 -
+      DATEDIFF(WEEK, s.time, i.resolved) * 16)
+    ELSE businesshours * -1
+  END AS working_hours
 
 
-      FROM jira.issue_assignee_history
 
-       -- where issue_id = 97051
+FROM (SELECT
+  SUM(k.seconds_diff) AS sum_time,
+  SUM(k.businesshours) AS businesshours,
+  slaola_type,
+  user_id,
+  issue_id,
+  time
+FROM (SELECT
+  h.*,
+  ABS((DATEDIFF(s, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time))) seconds_diff,
+  DATEDIFF(MINUTE, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) / 60.0 -
+  DATEDIFF(DAY, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 -
+  DATEDIFF(WEEK, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 AS businesshours,
+  CASE
+    WHEN tr.username IS NULL AND
+      ta.username IS NOT NULL THEN 'SLA'
+    WHEN tr.username = ta.username THEN 'None'
+    WHEN tr.dep = ta.dep THEN 'None'
+    WHEN tr.username != ta.username AND
+      tr.dep != ta.dep AND
+      tr.username IS NOT NULL AND
+      ta.username IS NOT NULL THEN 'OLA'
+    ELSE 'None'
+  END AS slaola_type
 
-      ) as k
-      group by user_id, issue_id ,time
-      ) as s
-      JOIN jira.issue as i on i.id = s.issue_id
-      ) as work
-      group by user_id,issue_id
+FROM jira.issue_assignee_history AS h
+JOIN jira.issue AS i
+  ON i.id = h.issue_id
+LEFT JOIN jira.team AS tr
+  ON tr.username = i.reporter
+LEFT JOIN jira.team AS ta
+  ON ta.username = h.user_id
+-- WHERE h.issue_id = 97051
+) AS k
+GROUP BY slaola_type,
+         user_id,
+         issue_id,
+         time) AS s
+JOIN jira.issue AS i
+  ON i.id = s.issue_id) AS work
+GROUP BY slaola_type,
+         user_id,
+         issue_id
+
        ;;
   }
 
@@ -193,6 +223,12 @@ dimension: slaOLA {
     sql: ${TABLE}.user_id ;;
     drill_fields: [issue.assignee,issue.reporter,issue.issue_key,issue.project]
   }
+
+  dimension: SLAOLA  {
+    type: string
+    sql: ${TABLE}.slaola_type ;;
+
+    }
 
 
 

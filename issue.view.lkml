@@ -59,7 +59,7 @@ view: issue {
     type: string
     case: {
       when: {
-        sql: ${reporter} in (select username from team) ;;
+        sql: (${reporter} in (select username from team)) AND ${reporter} != ${assignee} ;;
         label: "OLA"
       }
       # Possibly more when statements
