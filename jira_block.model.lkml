@@ -303,6 +303,8 @@ explore: sprint_burndown {
 
 }
 
+explore: project_score {}
+
 explore: sql_issue {
 
 }
