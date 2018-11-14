@@ -48,6 +48,6 @@ view: app_branch_srv {
 
   measure: count {
     type: count
-    drill_fields: [srv_created_date,channel,sr_sub_area,count]
+    drill_fields: [srv_created_date,branch_code,customer_id,channel,sr_sub_area,count]
   }
 }
