@@ -7,7 +7,7 @@ view: legands {
   }
 
   dimension: score {
-    type: string
+    type: number
     sql: ${TABLE}.score ;;
   }
 

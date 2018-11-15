@@ -315,6 +315,12 @@ explore: project_score {
     sql_on: ${legands.legend} = ${project_score.deviation_in_weeks} AND ${legands.type}='deviation_weeks' ;;
   }
 
+  join: project_score_team {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${project_score_team.project}=${project_score.project} ;;
+  }
+
 }
 explore: legands {}
 
