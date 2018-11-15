@@ -303,10 +303,23 @@ explore: sprint_burndown {
 
 }
 
-explore: project_score {}
+explore: project_score {
+  join: team {
+    type: left_outer
+    sql_on: ${team.name} = ${project_score.team} ;;
+    relationship: one_to_one
+  }
+  join: legands {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${legands.legend} = ${project_score.deviation_in_weeks} AND ${legands.type}='deviation_weeks' ;;
+  }
+
+}
+explore: legands {}
+
 
 explore: sql_issue {
-
 }
 explore: test_temp {
 

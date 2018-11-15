@@ -1,7 +1,7 @@
 view: project_score {
   sql_table_name: jira.project_score ;;
 
-  dimension: actuallaunch {
+  dimension: actual_launch {
     type: date
     sql: ${TABLE}.actuallaunch ;;
   }
@@ -11,7 +11,7 @@ view: project_score {
     sql: ${TABLE}.category ;;
   }
 
-  dimension: plannedlaunch {
+  dimension: planned_launch {
     type: date
     sql: ${TABLE}.plannedlaunch ;;
   }
@@ -21,12 +21,12 @@ view: project_score {
     sql: ${TABLE}.project ;;
   }
 
-  dimension: projectscore {
+  dimension: project_score {
     type: number
     sql: ${TABLE}.projectscore ;;
   }
 
-  dimension: projectweight {
+  dimension: project_weight {
     type: number
     sql: ${TABLE}.projectweight ;;
   }
@@ -40,4 +40,31 @@ view: project_score {
     type: count
     drill_fields: []
   }
+
+
+
+  dimension: deliverd {
+    case: {
+      when: {
+        sql:   ${actual_launch} is null ;;
+        label: "No"
+      }
+      else: "Yes"
+    }
+  }
+
+  dimension: deviation_in_days{
+    type: number
+    sql:  DATEDIFF(days,${planned_launch},${actual_launch});;
+  }
+
+
+  dimension: deviation_in_weeks{
+    type: number
+    sql: ${deviation_in_days} /7;;
+  }
+
+
+
+
 }
