@@ -23,12 +23,12 @@ view: project_score {
 
   dimension: project_score {
     type: number
-    sql: ${TABLE}.projectscore ;;
+    sql: ROUND(${TABLE}.projectscore,2) ;;
   }
 
   dimension: project_weight {
     type: number
-    sql: ${TABLE}.projectweight ;;
+    sql: ROUND(${TABLE}.projectweight,2) ;;
   }
 
   dimension: team {
