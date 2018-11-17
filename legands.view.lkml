@@ -1,9 +1,14 @@
 view: legands {
   sql_table_name: jira.legands ;;
 
+  dimension: id {
+    type: number
+    primary_key: yes
+    sql: ${TABLE}.id ;;
+  }
   dimension: legend {
     type: string
-    sql: ${TABLE}.legend ;;
+    sql: ${TABLE}.legand ;;
   }
 
   dimension: score {

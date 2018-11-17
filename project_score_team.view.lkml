@@ -16,11 +16,12 @@ view: project_score_team {
     sql: ${TABLE}.teammember ;;
   }
 
-   dimension: pk {
-     type: string
-    sql: concat(${project},${username}) ;;
-    primary_key: yes
-   }
+ dimension: id {
+   type: number
+  primary_key: yes
+  sql: ${TABLE}.id ;;
+
+ }
   dimension: username {
     type: string
     sql: ${TABLE}.username ;;
@@ -34,13 +35,17 @@ view: project_score_team {
 
   dimension:  contributor_score{
     type: number
-    sql: case when ${TABLE}.role = 'Primary' then ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight})
-    else ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight}*0.5 )end  ;;
+    sql: case
+            when ${role} = 'Primary'    THEN ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight})
+            when ${role} = 'Secondary' THEN ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight}*0.5 )
+            else 0
+        end  ;;
   }
 
   measure: sum_score {
     type: sum
     sql: ${contributor_score} ;;
+    drill_fields: [username]
 
   }
 

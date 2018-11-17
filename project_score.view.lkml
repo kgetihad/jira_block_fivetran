@@ -6,6 +6,12 @@ view: project_score {
     sql: ${TABLE}.actuallaunch:: TIMESTAMP ;;
   }
 
+  dimension: pk {
+    type: string
+    sql: concat(${project},${team}) ;;
+    primary_key: yes
+  }
+
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;

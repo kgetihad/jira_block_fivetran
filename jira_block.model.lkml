@@ -317,7 +317,7 @@ explore: project_score {
 
   join: project_score_team {
     type: left_outer
-    relationship: many_to_one
+    relationship: one_to_many
     sql_on: ${project_score_team.project}=${project_score.project} ;;
   }
 
