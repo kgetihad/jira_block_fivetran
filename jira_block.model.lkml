@@ -200,6 +200,7 @@ explore: project {
     sql_on: ${issue.id} = ${issue_comment_facts.issue_id} ;;
     relationship: many_to_one
   }
+
 }
 
 

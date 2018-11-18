@@ -120,17 +120,6 @@ GROUP BY slaola_type,
     end ;;
   }
 
-dimension: slaOLA {
-  case: {
-    when : {
-      label: "SLA"
-      sql:  ${team.dep} <> NULL AND ${user_id} in (select username from team);;
-    }
-    else : "None"
-  }
-
-}
-
   dimension: target_assignee_hours {
     type: number
     value_format: "#.00"
