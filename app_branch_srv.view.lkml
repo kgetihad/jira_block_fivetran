@@ -32,6 +32,7 @@ view: app_branch_srv {
       raw,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
