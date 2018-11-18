@@ -32,6 +32,7 @@ view: app_branch_srv {
       raw,
       date,
       week,
+      day_of_week,
       month,
       quarter,
       year
@@ -39,6 +40,12 @@ view: app_branch_srv {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.srv_created_date ;;
+  }
+
+  measure: max_working_day {
+    type: date
+    sql: select max(${TABLE}.srv_created_raw) ;;
+
   }
 
   dimension: srv_sub_status {
