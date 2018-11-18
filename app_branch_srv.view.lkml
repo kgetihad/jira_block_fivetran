@@ -42,6 +42,12 @@ view: app_branch_srv {
     sql: ${TABLE}.srv_created_date ;;
   }
 
+  measure: max_working_day {
+    type: date
+    sql: select max(${TABLE}.srv_created_raw) ;;
+
+  }
+
   dimension: srv_sub_status {
     type: string
     sql: ${TABLE}.srv_sub_status ;;
