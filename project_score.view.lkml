@@ -59,9 +59,30 @@ view: project_score {
     }
   }
 
+  measure: sum_deliverd{
+    type: count
+    filters: {
+      field: deliverd
+      value : "Yes"
+    }
+
+  }
+
+  measure: sum_not_deliverd{
+    type: count
+    filters: {
+      field: deliverd
+      value : "No"
+    }
+  }
+
   dimension: deviation_in_days{
-    type: number
-    sql:  DATEDIFF(days,${planned_launch},${actual_launch});;
+    sql:  case
+    when ${actual_launch} is not null then DATEDIFF(days,${planned_launch},${actual_launch})
+    when (${actual_launch} is null AND   trunc(getdate()) > ${planned_launch}  )   then DATEDIFF(days,${planned_launch},trunc(getdate()))
+    else null
+    end
+    ;;
   }
 
 
