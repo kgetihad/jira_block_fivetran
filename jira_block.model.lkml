@@ -304,6 +304,7 @@ explore: sprint_burndown {
 
 }
 
+explore: team {}
 explore: project_score {
   join: team {
     type: left_outer
