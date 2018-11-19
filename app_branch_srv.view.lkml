@@ -48,6 +48,8 @@ view: app_branch_srv {
 
   }
 
+
+
   dimension: srv_sub_status {
     type: string
     sql: ${TABLE}.srv_sub_status ;;
