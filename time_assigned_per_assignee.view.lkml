@@ -103,6 +103,14 @@ GROUP BY slaola_type,
     sql: ${working_hours}  ;;
   }
 
+  measure:  count_within_target{
+    type: count
+    filters:{
+      field: sla_score
+      value: "5"
+    }
+}
+
 
 
   measure: avg_deviation_from_sla {
