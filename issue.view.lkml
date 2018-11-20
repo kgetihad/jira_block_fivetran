@@ -81,6 +81,7 @@ view: issue {
     sql: ${TABLE}.created ;;
   }
 
+
   dimension: department {
     hidden: yes
     type: number
