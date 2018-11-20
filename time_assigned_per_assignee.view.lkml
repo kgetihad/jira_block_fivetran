@@ -90,7 +90,7 @@ GROUP BY slaola_type,
 
   measure: count {
     type: count
-    drill_fields: [issue.assignee,issue.reporter,issue.issue_key,target.priority,target.issla,target.hours,avg_spent_on_ticket]
+    drill_fields: [issue.assignee,issue.reporter,issue.issue_key,target.priority,target.issla,target.hours,sla_score,avg_spent_on_ticket]
   }
 
 
