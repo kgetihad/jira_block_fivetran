@@ -44,7 +44,7 @@ view: project_score {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
   }
 
 
@@ -52,7 +52,7 @@ view: project_score {
   dimension: deliverd {
     case: {
       when: {
-        sql:   ${actual_launch} is null ;;
+        sql:   ${actual_launch} is null  ;;
         label: "No"
       }
       else: "Yes"
@@ -65,6 +65,7 @@ view: project_score {
       field: deliverd
       value : "Yes"
     }
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
 
   }
 
@@ -79,6 +80,7 @@ view: project_score {
       field: deliverd
       value : "No"
     }
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
   }
 
   dimension: deviation_in_days{
