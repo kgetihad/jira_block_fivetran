@@ -30,7 +30,7 @@ view: project_score_team {
 
   measure: count {
     type: count
-    drill_fields: [username]
+    drill_fields: [username,project,team_member,contributor_score,role,project_score.category,project_score.planned_launch,project_score.actual_launch,project_score.project_weight,project_score.deviation_in_weeks]
   }
 
  dimension: legand_score {
