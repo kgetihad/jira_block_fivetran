@@ -22,6 +22,21 @@ view: project_score {
     sql: ${TABLE}.plannedlaunch:: TIMESTAMP ;;
   }
 
+  dimension: start_date {
+    type: date
+    sql: ${TABLE}.start_date:: TIMESTAMP ;;
+
+  }
+
+  dimension: project_duration_days {
+    type: number
+    sql:  DATEDIFF(days,${start_date},${actual_launch});;
+  }
+
+  dimension: deviation_percantage {
+    type: number
+    sql: ${deviation_in_days}/ ${project_duration_days} ;;
+  }
   dimension: project {
     type: string
     sql: ${TABLE}.project ;;
