@@ -33,13 +33,22 @@ view: project_score_team {
     drill_fields: [username]
   }
 
-  dimension:  contributor_score{
+ dimension: contr_scr {
     type: number
     sql: case
             when ${role} = 'Primary'    THEN ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight})
             when ${role} = 'Secondary' THEN ( cast(${legands.score} as decimal(4,1)) * ${project_score.project_weight}*0.5 )
             else 0
         end  ;;
+
+ }
+  dimension:  contributor_score{
+    type: number
+    sql: case
+            when ${project_score.deliverd} ='Yes' THEN ${contr_scr}
+            when ${project_score.deliverd} ='No' AND ${project_score.deviation_in_days} >= 0 AND ${contr_scr} <0 THEN ${contr_scr}
+            else 0
+        end;;
   }
 
   measure: sum_score {
