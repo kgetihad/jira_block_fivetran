@@ -259,6 +259,13 @@ explore: sprint_by_date {
 }
 
 
+explore: team_incidents {
+  join: team {
+    sql_on: ${team.username} = ${team_incidents.assignee} ;;
+    relationship: one_to_one
+  }
+}
+
 explore: sprint_burndown {
   view_name: looker_calendar
   join: issue {
