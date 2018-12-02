@@ -31,6 +31,11 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+  dimension: issue_type {
+    type: string
+    sql: ${TABLE}.issue_type ;;
+  }
+
   dimension: issue_key {
     type: string
     sql: ${TABLE}.key ;;
@@ -112,11 +117,7 @@ view: issue {
     sql: ${TABLE}.environment ;;
   }
 
-  dimension: issue_type {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.issue_type ;;
-  }
+
 
   dimension: original_estimate {
     type: number
