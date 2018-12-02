@@ -22,6 +22,21 @@ view: project_score {
     sql: ${TABLE}.plannedlaunch:: TIMESTAMP ;;
   }
 
+  dimension: start_date {
+    type: date
+    sql: ${TABLE}.start_date:: TIMESTAMP ;;
+
+  }
+
+  dimension: project_duration_days {
+    type: number
+    sql:  DATEDIFF(days,${start_date},${actual_launch});;
+  }
+
+  dimension: deviation_percantage {
+    type: number
+    sql: ${deviation_in_days}/ ${project_duration_days} ;;
+  }
   dimension: project {
     type: string
     sql: ${TABLE}.project ;;
@@ -44,7 +59,7 @@ view: project_score {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
   }
 
 
@@ -52,7 +67,7 @@ view: project_score {
   dimension: deliverd {
     case: {
       when: {
-        sql:   ${actual_launch} is null ;;
+        sql:   ${actual_launch} is null  ;;
         label: "No"
       }
       else: "Yes"
@@ -65,7 +80,13 @@ view: project_score {
       field: deliverd
       value : "Yes"
     }
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
 
+  }
+
+  dimension: exception_weeks{
+    type: number
+    sql: ${TABLE}.exception_weeks ;;
   }
 
   measure: sum_not_deliverd{
@@ -74,6 +95,7 @@ view: project_score {
       field: deliverd
       value : "No"
     }
+    drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
   }
 
   dimension: deviation_in_days{
@@ -88,7 +110,7 @@ view: project_score {
 
   dimension: deviation_in_weeks{
     type: number
-    sql: ${deviation_in_days} /7;;
+    sql: (${deviation_in_days} /7) - ${exception_weeks};;
   }
 
 

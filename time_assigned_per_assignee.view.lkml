@@ -2,7 +2,6 @@
 view: time_assigned_per_assignee {
   derived_table: {
     sql:
-
 SELECT
   user_id,
   issue_id,
@@ -55,6 +54,7 @@ FROM (SELECT
   DATEDIFF(DAY, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 -
   DATEDIFF(WEEK, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 AS businesshours,
   CASE
+    WHEN u.email not like '%@bankaletihad.com' THEN 'None'
     WHEN tr.username IS NULL AND
       ta.username IS NOT NULL THEN 'SLA'
     WHEN tr.username = ta.username THEN 'None'
@@ -69,11 +69,13 @@ FROM (SELECT
 FROM jira.issue_assignee_history AS h
 JOIN jira.issue AS i
   ON i.id = h.issue_id
+LEFT JOIN jira.user as u on u.username = i.reporter
 LEFT JOIN jira.team AS tr
   ON tr.username = i.reporter
 LEFT JOIN jira.team AS ta
   ON ta.username = h.user_id
 -- WHERE h.issue_id = 97051
+-- WHERE i.key in ('BPM-3146','BPM-2414')
 ) AS k
 GROUP BY slaola_type,
          user_id,
@@ -90,7 +92,7 @@ GROUP BY slaola_type,
 
   measure: count {
     type: count
-    drill_fields: [issue.assignee,issue.reporter,issue.issue_key]
+    drill_fields: [issue.assignee,issue.reporter,issue.issue_key,target.priority,target.issla,target.hours,sla_score,avg_spent_on_ticket]
   }
 
 
@@ -102,6 +104,14 @@ GROUP BY slaola_type,
     type: average
     sql: ${working_hours}  ;;
   }
+
+  measure:  count_within_target{
+    type: count
+    filters:{
+      field: sla_score
+      value: "5"
+    }
+}
 
 
 
