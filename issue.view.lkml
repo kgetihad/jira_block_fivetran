@@ -54,10 +54,16 @@ view: issue {
   dimension: assignee {
     type: string
     sql: ${TABLE}.assignee ;;
+    drill_fields: [issue_key,status,created_date,is_issue_resolved,minutes_to_resolve_issue]
   }
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
+  }
+
+  dimension: summary {
+    type: string
+    sql: ${TABLE}.summary ;;
   }
 
   dimension: SLAOLA  {
