@@ -151,6 +151,11 @@ explore: project {
     sql_on: ${issue_status_history.issue_id}=${issue_assignee_history.issue_id} ;;
     relationship: many_to_many
   }
+  join: issue_labels {
+    type:  left_outer
+    sql_on: ${issue.id}=${issue_labels.issue_id} ;;
+    relationship: one_to_many
+  }
 
   join: temp2 {
     type: left_outer
