@@ -31,6 +31,16 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+dimension: IsInward {
+  type: string
+  case: {
+    when: {
+      sql: $reporter in ("t.allaham","z.asfour", "h.mustafa","t.ayoub");;
+      label: "Inward"
+  }
+  else: "Outward"
+  }}
+
   dimension: issue_type {
     type: string
     sql: ${TABLE}.issue_type ;;
