@@ -35,7 +35,7 @@ dimension: IsInward {
   type: string
   case: {
     when: {
-      sql: $reporter in ("t.allaham","z.asfour", "h.mustafa","t.ayoub");;
+      sql: ${reporter} in ('t.allaham','z.asfour', 'h.mustafa','t.ayoub');;
       label: "Inward"
   }
   else: "Outward"
