@@ -31,6 +31,21 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+dimension: IsInward {
+  type: string
+  case: {
+    when: {
+      sql: ${reporter} in ('t.allaham','z.asfour', 'h.mustafa','t.ayoub');;
+      label: "Inward"
+  }
+  else: "Outward"
+  }}
+
+  dimension: issue_type {
+    type: string
+    sql: ${TABLE}.issue_type ;;
+  }
+
   dimension: issue_key {
     type: string
     sql: ${TABLE}.key ;;
@@ -49,11 +64,17 @@ view: issue {
   dimension: assignee {
     type: string
     sql: ${TABLE}.assignee ;;
+    drill_fields: [issue_key,status,created_date,is_issue_resolved,minutes_to_resolve_issue]
   }
 
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
+  }
+
+  dimension: summary {
+    type: string
+    sql: ${TABLE}.summary ;;
   }
 
   dimension: SLAOLA  {
@@ -114,11 +135,7 @@ view: issue {
     sql: ${TABLE}.environment ;;
   }
 
-  dimension: issue_type {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.issue_type ;;
-  }
+
 
   dimension: original_estimate {
     type: number
