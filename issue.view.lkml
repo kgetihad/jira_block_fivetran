@@ -50,6 +50,7 @@ view: issue {
     type: string
     sql: ${TABLE}.assignee ;;
   }
+
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
@@ -143,6 +144,14 @@ view: issue {
     type: number
     sql: ${TABLE}.resolution ;;
   }
+
+
+  dimension: is_duplicate {
+    group_label: "Resolution"
+    type: yesno
+    sql: ${TABLE}.resolution =10002;;
+  }
+
 
   dimension_group: resolved {
     group_label: "Resolution"
