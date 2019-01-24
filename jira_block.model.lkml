@@ -140,6 +140,12 @@ explore: project {
     sql_on: ${team.username}=${issue_assignee_history.user_id} and ${team.username}=${time_assigned_per_assignee.user_id} ;;
   }
 
+  join: team2 {
+    type: left_outer
+    relationship: many_to_one
+    sql_on:  ${team2.username}=${issue.assignee};;
+  }
+
   join: target {
     relationship: one_to_one
     sql_on: ${team.dep} = ${target.team} AND ${priority.name} = ${target.priority} and ${issue.SLAOLA} = ${target.issla};;

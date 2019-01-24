@@ -66,6 +66,7 @@ dimension: IsInward {
     sql: ${TABLE}.assignee ;;
     drill_fields: [issue_key,status,created_date,is_issue_resolved,minutes_to_resolve_issue]
   }
+
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
@@ -160,6 +161,14 @@ dimension: IsInward {
     type: number
     sql: ${TABLE}.resolution ;;
   }
+
+
+  dimension: is_duplicate {
+    group_label: "Resolution"
+    type: yesno
+    sql: ${TABLE}.resolution =10002;;
+  }
+
 
   dimension_group: resolved {
     group_label: "Resolution"
