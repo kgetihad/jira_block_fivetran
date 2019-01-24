@@ -311,7 +311,7 @@ dimension: IsInward {
   measure: count {
     type: count
 
-    drill_fields: [issue_key, assignee, reporter, resolved_date, created_date,priority.name, recurring ]
+    drill_fields: [issue_key, assignee, reporter, resolved_date, created_date,priority.name, recurring, IsInward, issue_labels.value ]
   }
 
   # ----- Sets of fields for drilling ------
