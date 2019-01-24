@@ -10,7 +10,11 @@ view: team2 {
   dimension: dep {
     type: string
     sql: ${TABLE}.dep ;;
-    drill_fields: [issue.issue_key,issue.summary,issue.created_date]
+    drill_fields: [user_details*]
+  }
+
+  set: user_details {
+    fields: [issue.issue_key,issue.summary,issue.created_date]
   }
 
   dimension: name {
