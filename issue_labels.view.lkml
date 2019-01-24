@@ -9,6 +9,7 @@ view: issue_labels {
   dimension: issue_id {
     type: number
     # hidden: yes
+    primary_key: yes
     sql: ${TABLE}.ISSUE_ID ;;
   }
 
@@ -19,6 +20,6 @@ view: issue_labels {
 
   measure: count {
     type: count
-    drill_fields: [issue.id, issue.epic_name]
+    drill_fields: [issue.issue_key, issue.epic_name]
   }
 }

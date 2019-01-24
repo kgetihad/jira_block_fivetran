@@ -147,6 +147,7 @@ dimension: IsInward {
     type: number
     hidden: yes
     sql: ${TABLE}.priority ;;
+
   }
 
   dimension: project {
@@ -311,8 +312,10 @@ dimension: IsInward {
   measure: count {
     type: count
 
-    drill_fields: [issue_key, assignee, reporter, resolved_date, created_date,priority.name, recurring, IsInward, issue_labels.value ]
-  }
+    drill_fields: [issue_key, assignee, reporter, created_date,priority.name, recurring, IsInward, issue_labels.value ]
+
+
+ }
 
   # ----- Sets of fields for drilling ------
   #set: detail {
