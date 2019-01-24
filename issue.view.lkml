@@ -49,6 +49,7 @@ dimension: IsInward {
   dimension: issue_key {
     type: string
     sql: ${TABLE}.key ;;
+    drill_fields: [issue_key, assignee, created_date]
   }
 
   dimension: _remaining_estimate {
@@ -263,10 +264,16 @@ dimension: IsInward {
     sql: ${TABLE}.story_points ;;
   }
 
+  dimension: recurring {
+    type: number
+    sql: ${TABLE}.recurring_ ;;
+  }
   measure: total_story_points {
     type: sum
     sql: ${story_points} ;;
   }
+
+
 
 # # measure: total_open_story_points {
 #    type: sum
@@ -304,7 +311,7 @@ dimension: IsInward {
   measure: count {
     type: count
 
-    drill_fields: [id, assignee, days_to_resolve_issue, created_date, severity ]
+    drill_fields: [issue_key, assignee, reporter, resolved_date, created_date,priority.name, recurring ]
   }
 
   # ----- Sets of fields for drilling ------
