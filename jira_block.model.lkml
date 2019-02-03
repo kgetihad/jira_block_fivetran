@@ -356,12 +356,3 @@ explore: Temp1_time {
 explore: temp2 {
 
 }
-
-explore: nagios_hosts {
-  join: nagios_hoststatus {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${nagios_hosts.instance_id}=${nagios_hoststatus.instance_id} ;;
-  }
-
-}

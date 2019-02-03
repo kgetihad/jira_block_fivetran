@@ -269,6 +269,12 @@ dimension: IsInward {
     type: number
     sql: ${TABLE}.recurring_ ;;
   }
+
+  dimension: covered_by_nagios {
+    type: number
+    sql: ${TABLE}.covered_by_nagios_ ;;
+  }
+
   measure: total_story_points {
     type: sum
     sql: ${story_points} ;;
@@ -312,7 +318,7 @@ dimension: IsInward {
   measure: count {
     type: count
 
-    drill_fields: [issue_key, assignee, reporter, created_date,priority.name, recurring, IsInward, issue_labels.value ]
+    drill_fields: [issue_key, assignee, reporter, created_date,priority.name, recurring, IsInward, covered_by_nagios, issue_labels.value ]
 
 
  }
