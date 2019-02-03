@@ -271,7 +271,7 @@ dimension: IsInward {
   }
 
   dimension: covered_by_nagios {
-    type: number
+    type: string
     sql: ${TABLE}.covered_by_nagios_ ;;
   }
 
