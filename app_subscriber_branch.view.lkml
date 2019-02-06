@@ -31,5 +31,13 @@ view: app_subscriber_branch {
     drill_fields: []
   }
 
+  measure: count_registered_in_current_quarter {
+    type: count
 
+    filters: {
+      field: registration_quarter
+      value: "this quarter"
+    }
+    drill_fields: []
+  }
 }
