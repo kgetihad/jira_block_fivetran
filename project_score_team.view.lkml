@@ -115,8 +115,8 @@ view: project_score_team {
   dimension: contr_scr {
     type: number
     sql: case
-            when ${role} = 'Primary'    THEN ( cast(${legand_score} as decimal(4,1)) * ${project_score.project_weight})
-            when ${role} = 'Secondary' THEN ( cast(${legand_score} as decimal(4,1)) * ${project_score.project_weight}*0.5 )
+            when ${role} = 'Primary'    THEN ( 1.00 * cast(${legand_score} as decimal(4,1)) * ${project_score.project_weight})
+            when ${role} = 'Secondary' THEN ( 1.00 * cast(${legand_score} as decimal(4,1)) * ${project_score.project_weight}*0.5 )
             else 0
         end  ;;
 
