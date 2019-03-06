@@ -34,82 +34,111 @@ view: project_score_team {
   }
 
  dimension: legand_score {
-  case: {
-
-    when : {
-      sql:   ${project_score.deviation_percantage} > 75;;
-      label : "-10"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <=  75   and ${project_score.deviation_percantage} > 70;;
-      label : "-9"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 70   and ${project_score.deviation_percantage} > 65;;
-      label : "-8"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 65   and ${project_score.deviation_percantage} > 60;;
-      label : "-7"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 60   and ${project_score.deviation_percantage} > 55;;
-      label : "-6"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 55  and ${project_score.deviation_percantage} > 50 ;;
-      label : "-5"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 50  and ${project_score.deviation_percantage} > 45 ;;
-      label : "-4"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 45  and ${project_score.deviation_percantage} > 40 ;;
-      label : "-3"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 40   and ${project_score.deviation_percantage} > 35;;
-      label : "-2"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 35   and ${project_score.deviation_percantage} > 30;;
-      label : "-1"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <=30   and ${project_score.deviation_percantage} >  25;;
-      label : "0"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 25   and ${project_score.deviation_percantage} > 20;;
-      label : "1"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 20   and ${project_score.deviation_percantage} > 15;;
-      label : "2"
-    }
-
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 15   and ${project_score.deviation_percantage} > 10;;
-      label : "3"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 10   and ${project_score.deviation_percantage} > 5;;
-      label : "4"
-    }
-    when : {
-      sql:  ${project_score.deviation_percantage} <= 5;;
-      label : "5"
-    }
-
-
-
+     case :{
+  when : {
+    sql:   ( ${project_score.deviation_percantage} > 75 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} > 75 and ${project_score.deliverd}= 'No' );;
+    label : "-10"
   }
+  when : {
+    sql: ( ${project_score.deviation_percantage} <=  75   and ${project_score.deviation_percantage} > 70 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} <=  75   and ${project_score.deviation_percantage} > 70 and ${project_score.deliverd}= 'No');;
+    label : "-9"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 70   and ${project_score.deviation_percantage} > 65 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} <= 70   and ${project_score.deviation_percantage} > 65 and ${project_score.deliverd}= 'No');;
+    label : "-8"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 65   and ${project_score.deviation_percantage} > 60 and ${project_score.deliverd}= 'Yes' )
+      OR (${project_score.deviation_percantage} <= 65   and ${project_score.deviation_percantage} > 60 and ${project_score.deliverd}= 'No');;
+    label : "-7"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 60   and ${project_score.deviation_percantage} > 55 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} <= 60   and ${project_score.deviation_percantage} > 55 and ${project_score.deliverd}= 'No');;
+    label : "-6"
+  }
+
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 55  and ${project_score.deviation_percantage} > 50 and ${project_score.deliverd}= 'No';;
+    label : "-5.5"
+  }
+
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 55  and ${project_score.deviation_percantage} > 50 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} <= 50  and ${project_score.deviation_percantage} > 45 and ${project_score.deliverd}= 'No');;
+    label : "-5"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 45  and ${project_score.deviation_percantage} > 40 and ${project_score.deliverd}= 'No';;
+    label : "-4.5"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 50  and ${project_score.deviation_percantage} > 45 and ${project_score.deliverd}= 'Yes' )
+      OR (${project_score.deviation_percantage} <= 40   and ${project_score.deviation_percantage} > 35 and ${project_score.deliverd}= 'No');;
+    label : "-4"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 35   and ${project_score.deviation_percantage} > 30 and ${project_score.deliverd}= 'No';;
+    label : "-3.5"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 45  and ${project_score.deviation_percantage} > 40 and ${project_score.deliverd}= 'Yes')
+      OR ( ${project_score.deviation_percantage} <=30   and ${project_score.deviation_percantage} >  25 and ${project_score.deliverd}= 'No');;
+    label : "-3"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 25   and ${project_score.deviation_percantage} > 20 and ${project_score.deliverd}= 'No';;
+    label : "-2.5"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 40   and ${project_score.deviation_percantage} > 35 and ${project_score.deliverd}= 'Yes')
+      OR ((${project_score.deviation_percantage} <= 20   and ${project_score.deviation_percantage} > 15) and (${project_score.deliverd}= 'No'));;
+    label : "-2"
+  }
+
+
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 15   and ${project_score.deviation_percantage} > 10 and ${project_score.deliverd}= 'No';;
+    label : "-1.5"
+  }
+  when : {
+    sql:  (${project_score.deviation_percantage} <= 35   and ${project_score.deviation_percantage} > 30 and ${project_score.deliverd}= 'Yes')
+      OR (${project_score.deviation_percantage} <= 10   and ${project_score.deviation_percantage} > 5 and ${project_score.deliverd}= 'No');;
+    label : "-1"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 5 and ${project_score.deliverd}= 'No';;
+    label : "-0.5"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <=30   and ${project_score.deviation_percantage} >  25 and ${project_score.deliverd}= 'Yes';;
+    label : "0"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 25   and ${project_score.deviation_percantage} > 20 and ${project_score.deliverd}= 'Yes';;
+    label : "1"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 20   and ${project_score.deviation_percantage} > 15 and ${project_score.deliverd}= 'Yes';;
+    label : "2"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 15   and ${project_score.deviation_percantage} > 10 and ${project_score.deliverd}= 'Yes';;
+    label : "3"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 10   and ${project_score.deviation_percantage} > 5 and ${project_score.deliverd}= 'Yes';;
+    label : "4"
+  }
+  when : {
+    sql:  ${project_score.deviation_percantage} <= 5 and ${project_score.deliverd}= 'Yes';;
+    label : "5"
+  }}
+
+
  }
 
   dimension: contr_scr {
@@ -135,7 +164,7 @@ view: project_score_team {
     type: number
     sql: case
             when ${project_score.deliverd} ='Yes' THEN ${contr_scr}
-            when ${project_score.deliverd} ='No' AND ${project_score.deviation_in_days} >= 0 AND ${contr_scr} <0 THEN ${contr_scr}
+            when ${project_score.deliverd} ='No' AND ${project_score.deviation_in_days} >= 0  THEN ${contr_scr}
             else 0
         end;;
   }
