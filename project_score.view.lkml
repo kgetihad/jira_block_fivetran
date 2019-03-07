@@ -100,8 +100,8 @@ view: project_score {
 
   dimension: deviation_in_days{
     sql:  case
-    when ${actual_launch} is not null then DATEDIFF(days,${planned_launch},${actual_launch})
-    when (${actual_launch} is null AND   trunc(DATE('12-31-2018')) > ${planned_launch}  )   then DATEDIFF(days,${planned_launch},trunc(DATE('12-31-2018')))
+    when ${actual_launch} is not null then DATEDIFF(days,${planned_launch},${actual_launch}) -${Exception_in_days}
+    when (${actual_launch} is null AND   trunc(DATE('12-31-2018')) > ${planned_launch}  )   then DATEDIFF(days,${planned_launch},trunc(DATE('12-31-2018')-${Exception_in_days}))
     else null
     end
     ;;
@@ -110,10 +110,13 @@ view: project_score {
 
   dimension: deviation_in_weeks{
     type: number
-    sql: (${deviation_in_days} /7) - ${exception_weeks};;
+    sql: (${deviation_in_days} /7) ;;
   }
 
-
+  dimension: Exception_in_days{
+    type: number
+    sql: (${exception_weeks} *7);;
+  }
 
 
 }
