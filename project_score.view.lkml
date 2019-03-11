@@ -111,7 +111,7 @@ view: project_score {
 
   dimension: deviation_in_weeks{
     type: number
-    sql: (${deviation_in_days} /7) ;;
+    sql: (${deviation_in_days} /7) - ${exception_weeks} ;;
   }
 
   dimension: Exception_in_days{
