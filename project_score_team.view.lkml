@@ -109,12 +109,10 @@ view: project_score_team {
       OR (${project_score.deviation_percantage} <= 10   and ${project_score.deviation_percantage} > 5 and ${project_score.deliverd}= 'No');;
     label : "-1"
   }
+
   when : {
-    sql:  ${project_score.deviation_percantage} <= 5 and ${project_score.deliverd}= 'No';;
-    label : "-0.5"
-  }
-  when : {
-    sql:  ${project_score.deviation_percantage} <=30   and ${project_score.deviation_percantage} >  25 and ${project_score.deliverd}= 'Yes';;
+    sql:  (${project_score.deviation_percantage} <=30   and ${project_score.deviation_percantage} >  25 and ${project_score.deliverd}= 'Yes')
+    OR (${project_score.deviation_percantage} <= 5 and ${project_score.deliverd}= 'No');;
     label : "0"
   }
   when : {
