@@ -2,8 +2,8 @@ view: project_score {
   sql_table_name: jira.project_score ;;
 
   dimension: actual_launch {
-    type: date
-    sql: ${TABLE}.actuallaunch:: TIMESTAMP ;;
+    type: string
+    sql: ${TABLE}.actuallaunch;;
   }
 
   dimension: pk {
@@ -18,19 +18,19 @@ view: project_score {
   }
 
   dimension: planned_launch {
-    type: date
-    sql: ${TABLE}.plannedlaunch:: TIMESTAMP ;;
+    type: string
+    sql: ${TABLE}.plannedlaunch;;
   }
 
   dimension: start_date {
-    type: date
-    sql: ${TABLE}.start_date:: TIMESTAMP ;;
+    type: string
+    sql: ${TABLE}.start_date;;
 
   }
 
   dimension: project_duration_days {
     type: number
-    sql:  DATEDIFF(days,${start_date},${planned_launch});;
+    sql:  DATEDIFF(days,TO_DATE(${start_date}, 'YYYY-MM-DD'),TO_DATE(${planned_launch}, 'YYYY-MM-DD'));;
   }
 
   dimension: deviation_percantage {
@@ -99,9 +99,10 @@ view: project_score {
   }
 
   dimension: deviation_in_days{
+    type: number
     sql:  case
-    when ${actual_launch} is not null then DATEDIFF(days,${planned_launch},${actual_launch})
-    when (${actual_launch} is null AND   trunc(DATE('12-31-2018')) > ${planned_launch}  )   then DATEDIFF(days,${planned_launch},trunc(DATE('12-31-2018')))
+    when ${actual_launch} is not null then DATEDIFF(days,TO_DATE(${planned_launch}, 'YYYY-MM-DD'),TO_DATE(${actual_launch}, 'YYYY-MM-DD'))
+    when (${actual_launch} is null AND trunc(TO_DATE('12-31-2018', 'YYYY-MM-DD')) > trunc(TO_DATE(${planned_launch}, 'YYYY-MM-DD')))   then DATEDIFF(days,TO_DATE(${planned_launch}, 'YYYY-MM-DD'),trunc(TO_DATE('12-31-2018', 'YYYY-MM-DD')))
     else null
     end
     ;;
