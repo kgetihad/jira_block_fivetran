@@ -35,7 +35,7 @@ view: project_score {
 
   dimension: deviation_percantage {
     type: number
-    sql: 100.00 * ${deviation_in_days}/ ${project_duration_days} ;;
+    sql: 100.00 * ( ${deviation_in_days} - ${Exception_in_days}) / ${project_duration_days} ;;
   }
   dimension: project {
     type: string
