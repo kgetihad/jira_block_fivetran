@@ -1,6 +1,11 @@
 view: incidents_table {
   sql_table_name: jira.incidents_table ;;
 
+  dimension:  id{
+    type: number
+    primary_key: yes
+  }
+
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;

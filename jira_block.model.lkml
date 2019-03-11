@@ -332,7 +332,13 @@ explore: sprint_burndown {
 
 }
 
-explore: team {}
+explore: team {
+  join: incidents_table {
+    type: left_outer
+    sql_on: ${team.username} = ${incidents_table.name} ;;
+    relationship: one_to_one
+  }
+}
 explore: project_score {
   join: team {
     type: left_outer
