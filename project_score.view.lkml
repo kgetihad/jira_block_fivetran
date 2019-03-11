@@ -3,7 +3,7 @@ view: project_score {
 
   dimension: actual_launch {
     type: date
-    sql: ${TABLE}.actuallaunch;;
+    sql: ${TABLE}.actuallaunch:: TIMESTAMP;;
   }
 
   dimension: pk {
@@ -19,12 +19,12 @@ view: project_score {
 
   dimension: planned_launch {
     type: date
-    sql: ${TABLE}.plannedlaunch;;
+    sql: ${TABLE}.plannedlaunch:: TIMESTAMP;;
   }
 
   dimension: start_date {
     type: date
-    sql: ${TABLE}.start_date;;
+    sql: ${TABLE}.start_date:: TIMESTAMP;;
 
   }
 
