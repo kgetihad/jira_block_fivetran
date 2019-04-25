@@ -269,7 +269,34 @@ dimension: IsInward {
 
   dimension: recurring {
     type: number
-    sql: ${TABLE}.recurring_ ;;
+    sql: 1.00 * ${TABLE}.recurring_ ;;
+  }
+
+  dimension: recurring_mapped {
+    type: string
+    case: {
+      when: {
+        sql: ${recurring} = 12609 ;;
+        label: "1"
+      }
+      when: {
+        sql: ${recurring} = 12610 ;;
+        label: "2"
+      }
+      when: {
+        sql: ${recurring} = 12611 ;;
+        label: "3"
+      }
+      when: {
+        sql: ${recurring} = 12612 ;;
+        label: "4"
+      }
+      when: {
+        sql: ${recurring} = 12614 ;;
+        label: "5"
+      }
+      else: "0"
+    }
   }
 
   dimension: covered_by_nagios {
