@@ -68,6 +68,8 @@ dimension: IsInward {
     drill_fields: [issue_key,status,created_date,is_issue_resolved,minutes_to_resolve_issue]
   }
 
+
+
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
@@ -248,11 +250,11 @@ dimension: IsInward {
     value_format_name: decimal_0
   }
 
-  dimension: severity {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.severity ;;
-  }
+  # dimension: severity {
+  #   hidden: yes
+  #   type: number
+  #   sql: ${TABLE}.severity ;;
+  # }
 
   dimension: status {
     hidden: yes

@@ -31,6 +31,11 @@
       sql: ${TABLE}.NAME ;;
     }
 
+    dimension: key {
+      type: string
+      sql: ${TABLE}.KEY ;;
+    }
+
     dimension: project_category_id {
       type: number
       sql: ${TABLE}.PROJECT_CATEGORY_ID ;;

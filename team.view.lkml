@@ -22,6 +22,11 @@ view: team {
     sql: ${TABLE}.username ;;
   }
 
+  dimension: accountid {
+    type: string
+    sql: ${TABLE}.accountid ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, name, username]

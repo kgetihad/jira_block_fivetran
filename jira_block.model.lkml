@@ -153,7 +153,7 @@ explore: project {
   join: team2 {
     type: left_outer
     relationship: many_to_one
-    sql_on:  ${team2.username}=${issue.assignee};;
+    sql_on:  ${team2.accountid}=${issue.assignee};;
   }
 
   join: target {
