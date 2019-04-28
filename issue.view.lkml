@@ -276,20 +276,20 @@ dimension: IsInward {
     type: string
     case: {
       when: {
-        sql: ${recurring} = 12609 ;;
+        sql: ${recurring} = 12610 ;;
         label: "1"
       }
       when: {
-        sql: ${recurring} = 12610 ;;
+        sql: ${recurring} = 12613 ;;
         label: "2"
       }
       when: {
-        sql: ${recurring} = 12611 ;;
+        sql: ${recurring} = 12612 ;;
         label: "3"
       }
       when: {
-        sql: ${recurring} = 12612 ;;
-        label: "4"
+        sql: ${recurring} = 12611 ;;
+        label: "2"
       }
       when: {
         sql: ${recurring} = 12614 ;;
