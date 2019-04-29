@@ -173,6 +173,12 @@ dimension: IsInward {
     sql: ${TABLE}.resolution =10002;;
   }
 
+  dimension: is_known_error {
+    group_label: "Resolution"
+    type: yesno
+    sql: ${TABLE}.resolution =10300;;
+  }
+
 
   dimension_group: resolved {
     group_label: "Resolution"
