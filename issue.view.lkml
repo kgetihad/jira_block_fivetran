@@ -292,6 +292,10 @@ dimension: IsInward {
         label: "2"
       }
       when: {
+        sql: ${recurring} = 12613 ;;
+        label: "4"
+      }
+      when: {
         sql: ${recurring} = 12614 ;;
         label: "5"
       }
