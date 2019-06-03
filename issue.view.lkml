@@ -278,7 +278,7 @@ dimension: IsInward {
     sql: 1.00 * ${TABLE}.recurring_ ;;
   }
 
-  dimension: recurring_mapped {
+  dimension: number_of_occurence {
     type: string
     case: {
       when: {
