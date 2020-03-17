@@ -59,7 +59,7 @@ view: project_score {
 
   dimension: year {
     type: string
-    sql: ${TABLE}.year ;;
+    sql: ${TABLE}.project_year ;;
   }
 
   measure: count {
