@@ -2,6 +2,7 @@
 view: time_assigned_per_assignee {
   derived_table: {
     sql:
+
 SELECT
   user_id,
   issue_id,
@@ -55,25 +56,25 @@ FROM (SELECT
   DATEDIFF(WEEK, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 AS businesshours,
   CASE
     WHEN u.email not like '%@bankaletihad.com' THEN 'None'
-    WHEN tr.username IS NULL AND
-      ta.username IS NOT NULL THEN 'SLA'
-    WHEN tr.username = ta.username THEN 'None'
+    WHEN tr.accountid IS NULL AND
+      ta.accountid IS NOT NULL THEN 'SLA'
+    WHEN tr.accountid = ta.accountid THEN 'None'
     WHEN tr.dep = ta.dep THEN 'None'
-    WHEN tr.username != ta.username AND
+    WHEN tr.accountid != ta.accountid AND
       tr.dep != ta.dep AND
-      tr.username IS NOT NULL AND
-      ta.username IS NOT NULL THEN 'OLA'
+      tr.accountid IS NOT NULL AND
+      ta.accountid IS NOT NULL THEN 'OLA'
     ELSE 'None'
   END AS slaola_type
 
 FROM jira.issue_assignee_history AS h
 JOIN jira.issue AS i
   ON i.id = h.issue_id
-LEFT JOIN jira.user as u on u.username = i.reporter
+LEFT JOIN jira.user as u on u.id = i.reporter
 LEFT JOIN jira.team AS tr
-  ON tr.username = i.reporter
+  ON tr.accountid = i.reporter
 LEFT JOIN jira.team AS ta
-  ON ta.username = h.user_id
+  ON ta.accountid = h.user_id
 -- WHERE h.issue_id = 97051
 -- WHERE i.key in ('BPM-3146','BPM-2414')
 ) AS k
