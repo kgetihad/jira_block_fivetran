@@ -57,6 +57,11 @@ view: project_score {
     sql: ${TABLE}.team ;;
   }
 
+  dimension: year {
+    type: string
+    sql: ${TABLE}.project_year ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
