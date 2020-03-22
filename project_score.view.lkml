@@ -62,7 +62,10 @@ view: project_score {
     drill_fields: [project,project_score,project_weight,planned_launch,actual_launch,category,deliverd,deviation_in_weeks,exception_weeks]
   }
 
-
+  dimension: year {
+    type:  string
+        sql:  ${TABLE}.project_year;;
+  }
 
   dimension: deliverd {
     case: {
