@@ -99,7 +99,7 @@ explore: issue_history_2 {
 explore: time_assigned_per_assignee {
   join: team {
     relationship: one_to_one
-    sql_on: ${time_assigned_per_assignee.user_id}= ${team.username};;
+    sql_on: ${time_assigned_per_assignee.user_id}= ${team.accountid};;
   }
 
   join: target {
@@ -137,12 +137,12 @@ explore: project {
   join: team {
     type: left_outer
     relationship: one_to_one
-    sql_on: ${team.username}=${issue_assignee_history.user_id} and ${team.username}=${time_assigned_per_assignee.user_id} ;;
+    sql_on: ${team.accountid}=${issue_assignee_history.user_id} and ${team.accountid}=${time_assigned_per_assignee.user_id} ;;
   }
 
   join: incidents_table {
     relationship: one_to_one
-    sql_on: ${team.username}=${incidents_table.name} ;;
+    sql_on: ${team.accountid}=${incidents_table.name} ;;
   }
 
   join: directors {
