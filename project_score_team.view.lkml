@@ -17,9 +17,9 @@ view: project_score_team {
   }
 
  dimension: id {
-   type: number
+  type: string
+  sql: concat(${project},${username}) ;;
   primary_key: yes
-  sql: ${TABLE}.id ;;
 
  }
   dimension: username {
