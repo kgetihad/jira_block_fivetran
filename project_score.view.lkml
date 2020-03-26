@@ -30,7 +30,11 @@ view: project_score {
 
   dimension: project_duration_days {
     type: number
-    sql:  DATEDIFF(days,${start_date},${planned_launch});;
+    sql:  case
+    when ${actual_launch} is not null Then DATEDIFF(days,${start_date},${actual_launch})
+    when DATEDIFF(days,${start_date},${planned_launch})
+    else null
+    end;;
   }
 
   dimension: deviation_percantage {
