@@ -32,7 +32,7 @@ view: project_score {
     type: number
     sql:  case
     when ${actual_launch} is not null Then DATEDIFF(days,${start_date},${actual_launch})
-    when DATEDIFF(days,${start_date},${planned_launch})
+    when  ${planned_launch} is not null THEN DATEDIFF(days,${start_date},${planned_launch})
     else null
     end;;
   }
