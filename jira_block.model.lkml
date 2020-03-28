@@ -335,7 +335,7 @@ explore: sprint_burndown {
 explore: team {
   join: incidents_table {
     type: left_outer
-    sql_on: ${team.username} = ${incidents_table.name} ;;
+    sql_on: ${team.accountid} = ${incidents_table.name} ;;
     relationship: one_to_one
   }
 }
