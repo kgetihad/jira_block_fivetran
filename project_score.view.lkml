@@ -111,7 +111,7 @@ view: project_score {
     type: number
     sql:  case
     when (${actual_launch} is not null AND  (TO_DATE('2019-12-31', 'YYYY-MM-DD') > ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
-    when (${actual_launch} is not null AND  (TO_DATE('2019-12-31', 'YYYY-MM-DD') < ${actual_launch} ) )  then DATEDIFF(days,${actual_launch},TO_DATE('2019-12-31', 'YYYY-MM-DD'))
+    when (${actual_launch} is not null AND  (TO_DATE('2019-12-31', 'YYYY-MM-DD') < ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
     when ( ${actual_launch} is null  AND (TO_DATE('2019-12-31', 'YYYY-MM-DD') > ${planned_launch} ) )  then DATEDIFF(days,${planned_launch},TO_DATE('2019-12-31', 'YYYY-MM-DD'))
     else null
     end
