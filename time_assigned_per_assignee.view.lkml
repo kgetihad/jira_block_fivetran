@@ -55,9 +55,10 @@ FROM (SELECT
   DATEDIFF(DAY, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 -
   DATEDIFF(WEEK, LAG(h.time) OVER (PARTITION BY h.ISSUE_id ORDER BY h.TIME DESC), h.Time) * 16 AS businesshours,
   CASE
-    WHEN u.email not like '%@bankaletihad.com' THEN 'None'
-    WHEN tr.accountid IS NULL AND
-      ta.accountid IS NOT NULL THEN 'SLA'
+    -- WHEN ( u.email not like '%@bankaletihad.com'  or u.email is null ) THEN 'None'
+  --  WHEN tr.accountid IS NULL AND
+    --  ta.accountid IS NOT NULL THEN 'SLA'
+    WHEN i.key like 'ITP-%' THEN 'SLA'
     WHEN tr.accountid = ta.accountid THEN 'None'
     WHEN tr.dep = ta.dep THEN 'None'
     WHEN tr.accountid != ta.accountid AND
