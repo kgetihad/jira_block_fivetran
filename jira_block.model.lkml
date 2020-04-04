@@ -13,7 +13,34 @@ datagroup: fivetran_datagroup {
 
 persist_with: fivetran_datagroup
 
+explore: technology_team {
+  view_label: "Tech | Team"
+  label: "Tech | Team"
+  from :  team
 
+  join: team_incidents {
+    sql_on: ${technology_team.username} = ${team_incidents.assignee} ;;
+    relationship: one_to_one
+  }
+
+  join: team_tickets {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${team_tickets.user_id}=${technology_team.accountid} ;;
+  }
+
+  join : issue {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue.id}=${team_tickets.issue_id} ;;
+  }
+
+  join: status {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${status.id}=${issue.status} ;;
+  }
+}
 explore: siebel_srv {}
 explore: app_srv {}
 
