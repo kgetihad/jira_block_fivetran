@@ -56,29 +56,98 @@ view: team_tickets {
     sql: ${issue_id};;
 
   }
+  measure:  resolved_assigned_sla{
+    case : {
+      when : {
+        label:"5"
+        sql: ${count_resolved_sla} / ${count_sla} >=85 ;;
+      }
+      when : {
+        label:"4"
+        sql: ${count_resolved_sla} / ${count_sla} >=75 ;;
+      }
+      when : {
+        label:"3"
+        sql: ${count_resolved_sla} / ${count_sla} >=65 ;;
+      }
+      when : {
+        label:"2"
+        sql: ${count_resolved_sla} / ${count_sla} >=55 ;;
+      }
+      when : {
+        label:"1"
+        sql: ${count_resolved_sla} / ${count_sla} >=45 ;;
+      }
+      else: "0"
+    }
+  }
+
+  measure:  resolved_assigned_ola{
+    case : {
+      when : {
+        label:"5"
+        sql: ${count_resolved_ola} / ${count_ola} >=85 ;;
+      }
+      when : {
+        label:"4"
+        sql: ${count_resolved_ola} / ${count_ola} >=75 ;;
+      }
+      when : {
+        label:"3"
+        sql: ${count_resolved_ola} / ${count_ola} >=65 ;;
+      }
+      when : {
+        label:"2"
+        sql: ${count_resolved_ola} / ${count_ola} >=55 ;;
+      }
+      when : {
+        label:"1"
+        sql: ${count_resolved_ola} / ${count_ola} >=45 ;;
+      }
+      else: "0"
+    }
+  }
 
   measure: avg_sla {
+    label : "AVG SLA Score"
     type:  average
     sql: ${sla_score}  ;;
     filters: [ slaola_type: "SLA"]
   }
 
   measure: avg_ola {
+    label : "AVG OLA Score"
     type:  average
     sql: ${sla_score}  ;;
     filters: [ slaola_type: "OLA"]
   }
 
   measure: count_sla {
+    label : "Counnt Distinct SLA"
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "SLA"]
   }
 
   measure: count_ola {
-    type:  average
+    label : "Counnt Distinct OLA"
+    type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "OLA"]
+  }
+
+  measure: count_resolved_sla {
+    label : "Counnt Resolved SLA"
+    type:  count_distinct
+    sql: ${issue_id}  ;;
+    filters: [ slaola_type: "SLA", issue.resolved_date:  "NULL"]
+  }
+
+  measure: count_resolved_ola {
+    label : "Counnt Resolved OLA"
+    type:  count_distinct
+    sql: ${issue_id}  ;;
+    filters: [ slaola_type: "OLA", issue.resolved_date:  "NULL"]
   }
 
 }
