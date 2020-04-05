@@ -60,23 +60,23 @@ view: team_tickets {
     case : {
       when : {
         label:"5"
-        sql: ${count_resolved_sla} / ${count_sla} >=85 ;;
+        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=85 ;;
       }
       when : {
         label:"4"
-        sql: ${count_resolved_sla} / ${count_sla} >=75 ;;
+        sql: ${count_resolved_sla} /NULLIF(${count_sla},0) >=75 ;;
       }
       when : {
         label:"3"
-        sql: ${count_resolved_sla} / ${count_sla} >=65 ;;
+        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=65 ;;
       }
       when : {
         label:"2"
-        sql: ${count_resolved_sla} / ${count_sla} >=55 ;;
+        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=55 ;;
       }
       when : {
         label:"1"
-        sql: ${count_resolved_sla} / ${count_sla} >=45 ;;
+        sql: ${count_resolved_sla} /  NULLIF(${count_sla},0) >=45 ;;
       }
       else: "0"
     }
@@ -86,23 +86,23 @@ view: team_tickets {
     case : {
       when : {
         label:"5"
-        sql: ${count_resolved_ola} / ${count_ola} >=85 ;;
+        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0)  >=85 ;;
       }
       when : {
         label:"4"
-        sql: ${count_resolved_ola} / ${count_ola} >=75 ;;
+        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=75 ;;
       }
       when : {
         label:"3"
-        sql: ${count_resolved_ola} / ${count_ola} >=65 ;;
+        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=65 ;;
       }
       when : {
         label:"2"
-        sql: ${count_resolved_ola} / ${count_ola} >=55 ;;
+        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=55 ;;
       }
       when : {
         label:"1"
-        sql: ${count_resolved_ola} / ${count_ola} >=45 ;;
+        sql: ${count_resolved_ola} / NULLIF(${count_ola},0) >=45 ;;
       }
       else: "0"
     }
