@@ -14,6 +14,7 @@ datagroup: fivetran_datagroup {
 persist_with: fivetran_datagroup
 
 explore: technology_team {
+  persist_for: "24 hour"
   view_label: "Tech | Team"
   label: "Tech | Team"
   from :  team
@@ -27,7 +28,7 @@ explore: technology_team {
   join: team_tickets {
     type: left_outer
     view_label: "Team | Tickets"
-    relationship: one_to_many
+    relationship: many_to_many
     sql_on: ${team_tickets.user_id}=${technology_team.accountid} ;;
   }
 
@@ -44,6 +45,15 @@ explore: technology_team {
     relationship: one_to_one
     sql_on: ${status.id}=${issue.status} ;;
   }
+
+
+  join: team_tickets_calc {
+    view_label: "Team | Department Calcuation"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${team_tickets_calc.department}  = ${technology_team.dep};;
+  }
+
 
 
 

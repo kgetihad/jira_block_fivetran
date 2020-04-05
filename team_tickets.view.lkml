@@ -135,31 +135,34 @@ view: team_tickets {
 
 
   measure: count_sla {
-    label : "Counnt Distinct SLA"
+    label : "Count Distinct SLA"
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "SLA"]
   }
 
   measure: count_ola {
-    label : "Counnt Distinct OLA"
+    label : "Count Distinct OLA"
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "OLA"]
   }
 
   measure: count_resolved_sla {
-    label : "Counnt Resolved SLA"
+    label : "Count Resolved SLA"
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "SLA", issue.resolved_date:  "NOT NULL"]
   }
 
   measure: count_resolved_ola {
-    label : "Counnt Resolved OLA"
+    label : "Count Resolved OLA"
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "OLA", issue.resolved_date:  "NOT NULL"]
   }
+
+
+
 
 }
