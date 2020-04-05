@@ -19,9 +19,9 @@ explore: technology_team {
   label: "Tech | Team"
   from :  team
 
-  join: team_incidents {
+  join: incidents_table {
     view_label: "Team | Incidents"
-    sql_on: ${technology_team.username} = ${team_incidents.assignee} ;;
+    sql_on: ${technology_team.accountid} = ${incidents_table.name} ;;
     relationship: one_to_one
   }
 
