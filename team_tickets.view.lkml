@@ -56,27 +56,32 @@ view: team_tickets {
     sql: ${issue_id};;
 
   }
+
+  measure: count_resolved_sla_count_sla {
+    type: number
+    sql:100 *  ${count_resolved_sla} / NULLIF(${count_sla},0);;
+  }
   measure:  resolved_assigned_sla{
     case : {
       when : {
         label:"5"
-        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=85 ;;
+        sql:(100 *  ${count_resolved_sla} / NULLIF(${count_sla},0) ) >=85 ;;
       }
       when : {
         label:"4"
-        sql: ${count_resolved_sla} /NULLIF(${count_sla},0) >=75 ;;
+        sql:(100 *  ${count_resolved_sla} /NULLIF(${count_sla},0) )>=75 ;;
       }
       when : {
         label:"3"
-        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=65 ;;
+        sql: (100 * ${count_resolved_sla} / NULLIF(${count_sla},0) ) >=65 ;;
       }
       when : {
         label:"2"
-        sql: ${count_resolved_sla} / NULLIF(${count_sla},0)  >=55 ;;
+        sql: (100 * ${count_resolved_sla} / NULLIF(${count_sla},0) ) >=55 ;;
       }
       when : {
         label:"1"
-        sql: ${count_resolved_sla} /  NULLIF(${count_sla},0) >=45 ;;
+        sql:(100 *  ${count_resolved_sla} /  NULLIF(${count_sla},0) )>=45 ;;
       }
       else: "0"
     }
@@ -86,26 +91,31 @@ view: team_tickets {
     case : {
       when : {
         label:"5"
-        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0)  >=85 ;;
+        sql:( 100 * ${count_resolved_ola} /  NULLIF(${count_ola},0) ) >=85 ;;
       }
       when : {
         label:"4"
-        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=75 ;;
+        sql:(100 *   ${count_resolved_ola} /  NULLIF(${count_ola},0)) >=75 ;;
       }
       when : {
         label:"3"
-        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=65 ;;
+        sql:(100 *  ${count_resolved_ola} /  NULLIF(${count_ola},0) )>=65 ;;
       }
       when : {
         label:"2"
-        sql: ${count_resolved_ola} /  NULLIF(${count_ola},0) >=55 ;;
+        sql:(100 *  ${count_resolved_ola} /  NULLIF(${count_ola},0)  )>=55 ;;
       }
       when : {
         label:"1"
-        sql: ${count_resolved_ola} / NULLIF(${count_ola},0) >=45 ;;
+        sql: (100 * ${count_resolved_ola} / NULLIF(${count_ola},0)) >=45 ;;
       }
       else: "0"
     }
+  }
+
+  measure: count_resolved_sla_count_ola {
+    type: number
+    sql:100 *  ${count_resolved_ola} / NULLIF(${count_ola},0);;
   }
 
   measure: avg_sla {
@@ -113,6 +123,7 @@ view: team_tickets {
     type:  average
     sql: ${sla_score}  ;;
     filters: [ slaola_type: "SLA"]
+    drill_fields: [team_tickets.*,issue.key]
   }
 
   measure: avg_ola {
