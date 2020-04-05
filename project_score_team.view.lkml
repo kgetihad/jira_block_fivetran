@@ -167,6 +167,13 @@ view: project_score_team {
         end;;
   }
 
+  measure: sum_contr_score {
+    type: sum
+    sql: ${contr_scr} ;;
+    drill_fields: [username,project,team_member,contributor_score,role,project_score.category,project_score.planned_launch,project_score.actual_launch,project_score.project_weight,project_score.deviation_in_weeks]
+
+  }
+
   measure: sum_score {
     type: sum
     sql: ${contributor_score} ;;
