@@ -55,6 +55,21 @@ explore: technology_team {
   }
 
 
+  join: project_score_team {
+    view_label: "Team | Project Contributors"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${project_score_team.username}  = ${technology_team.accountid};;
+  }
+
+  join: project_score {
+    view_label: "Team | Project"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${project_score.project}  = ${project_score_team.project};;
+  }
+
+
 
 
 }
