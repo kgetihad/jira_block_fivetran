@@ -29,14 +29,14 @@ explore: technology_team {
   join: team_tickets {
     type: left_outer
     view_label: "Team | Tickets"
-    relationship: one_to_many
+    relationship: many_to_many
     sql_on: ${team_tickets.user_id}=${technology_team.accountid} ;;
   }
 
   join : issue {
     view_label: "Jira | Issues"
     type: left_outer
-    relationship: one_to_many
+    relationship: many_to_many
     sql_on: ${issue.id}=${team_tickets.issue_id} ;;
   }
 
