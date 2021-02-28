@@ -110,9 +110,9 @@ view: project_score {
   dimension: deviation_in_days{
     type: number
     sql:  case
-    when (${actual_launch} is not null AND  (TO_DATE('2020-01-01', 'YYYY-MM-DD') > ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
-    when (${actual_launch} is not null AND  (TO_DATE('2020-01-01', 'YYYY-MM-DD') < ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
-    when ( ${actual_launch} is null  AND (TO_DATE('2020-01-01', 'YYYY-MM-DD') > ${planned_launch} ) )  then DATEDIFF(days,${planned_launch},TO_DATE('2020-01-01', 'YYYY-MM-DD'))
+    when (${actual_launch} is not null AND  (TO_DATE('2021-01-01', 'YYYY-MM-DD') > ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
+    when (${actual_launch} is not null AND  (TO_DATE('2021-01-01', 'YYYY-MM-DD') < ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
+    when ( ${actual_launch} is null  AND (TO_DATE('2021-01-01', 'YYYY-MM-DD') > ${planned_launch} ) )  then DATEDIFF(days,${planned_launch},TO_DATE('2020-01-01', 'YYYY-MM-DD'))
     else null
     end
     ;;
