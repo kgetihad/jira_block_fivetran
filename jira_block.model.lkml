@@ -15,6 +15,7 @@ persist_with: fivetran_datagroup
 
 explore: technology_team {
 
+  persist_for:: "24 hours"
   view_label: "Tech | Team"
   label: "Tech | Team"
   from :  team
