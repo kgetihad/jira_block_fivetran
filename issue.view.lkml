@@ -170,7 +170,7 @@ dimension: IsInward {
 
   dimension: resolution {
     group_label: "Resolution"
-    hidden: yes
+    hidden: no
     type: number
     sql: ${TABLE}.resolution ;;
   }

@@ -41,6 +41,8 @@ explore: technology_team {
     sql_on: ${issue.id}=${team_tickets.issue_id} ;;
   }
 
+
+
   join: status {
     view_label: "Team | Issue Status"
     type: left_outer
@@ -148,6 +150,12 @@ explore: issue_history_2 {
     sql_on: ${issue_status_history.status_id} = ${status.id} ;;
     relationship: many_to_one
   }
+
+  join: resolution {
+    relationship: one_to_one
+    sql_on: ${issue.resolution} = ${resolution.id} ;;
+  }
+
 
   join: project {
     type: left_outer
