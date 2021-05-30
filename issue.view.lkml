@@ -31,9 +31,9 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
-  dimension: root_cause {
+  dimension: root_cause_defined {
     type: string
-    sql: ${TABLE}.root_cause ;;
+    sql: ${TABLE}.root_cause_defined_ ;;
   }
 
 dimension: IsInward {
