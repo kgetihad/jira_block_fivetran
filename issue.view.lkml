@@ -32,9 +32,13 @@ view: issue {
   }
 
   dimension: root_cause_defined {
-    type: string
-    sql: ${TABLE}.root_cause_defined_ ;;
-  }
+    type: yesno
+
+    sql: ${TABLE}.root_cause_defined_ =12643;;
+
+    }
+
+
 
 dimension: IsInward {
   type: string
