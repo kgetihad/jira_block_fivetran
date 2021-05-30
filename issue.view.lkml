@@ -31,6 +31,11 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+  dimension: root_cause {
+    type: string
+    sql: ${TABLE}.root_cause ;;
+  }
+
 dimension: IsInward {
   type: string
   case: {
