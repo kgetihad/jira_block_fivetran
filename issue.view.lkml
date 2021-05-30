@@ -367,6 +367,14 @@ dimension: IsInward {
 
  }
 
+  measure: count_distinct {
+    type: count_distinct
+    sql: ${id} ;;
+    drill_fields: [issue_key, assignee, reporter, created_date,priority.name, recurring, IsInward, covered_by_nagios, issue_labels.value ]
+
+
+  }
+
   # ----- Sets of fields for drilling ------
   #set: detail {
   #  fields: [

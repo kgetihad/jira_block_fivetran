@@ -7,8 +7,8 @@ view: project_score {
   }
 
   dimension: pk {
-    type: string
-    sql: concat(${project},${team}) ;;
+    type: number
+    sql: ${TABLE}.id ;;
     primary_key: yes
   }
 
@@ -30,7 +30,11 @@ view: project_score {
 
   dimension: project_duration_days {
     type: number
-    sql:  DATEDIFF(days,${start_date},${planned_launch});;
+    sql:  case
+    when ${actual_launch} is not null Then DATEDIFF(days,${start_date},${actual_launch})
+    when  ${planned_launch} is not null THEN DATEDIFF(days,${start_date},${planned_launch})
+    else null
+    end;;
   }
 
   dimension: deviation_percantage {
@@ -106,8 +110,9 @@ view: project_score {
   dimension: deviation_in_days{
     type: number
     sql:  case
-    when ${actual_launch} is not null then DATEDIFF(days,${planned_launch},${actual_launch})
-    when ( ${actual_launch} is null  AND (TO_DATE('2019-12-31', 'YYYY-MM-DD') > ${planned_launch} ) )  then DATEDIFF(days,${planned_launch},TO_DATE('2019-12-31', 'YYYY-MM-DD'))
+    when (${actual_launch} is not null AND  (TO_DATE('2021-01-01', 'YYYY-MM-DD') > ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
+    when (${actual_launch} is not null AND  (TO_DATE('2021-01-01', 'YYYY-MM-DD') < ${actual_launch} ) )  then DATEDIFF(days,${planned_launch},${actual_launch})
+    when ( ${actual_launch} is null  AND (TO_DATE('2021-01-01', 'YYYY-MM-DD') > ${planned_launch} ) )  then DATEDIFF(days,${planned_launch},TO_DATE('2021-01-01', 'YYYY-MM-DD'))
     else null
     end
     ;;

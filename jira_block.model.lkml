@@ -13,7 +13,68 @@ datagroup: fivetran_datagroup {
 
 persist_with: fivetran_datagroup
 
+explore: technology_team {
 
+  persist_for:: "24 hours"
+  view_label: "Tech | Team"
+  label: "Tech | Team"
+  from :  team
+
+  join: incidents_table {
+    view_label: "Team | Incidents"
+    sql_on: ${technology_team.accountid} = ${incidents_table.name} ;;
+    relationship: one_to_one
+    type: left_outer
+  }
+
+  join: team_tickets {
+    type: left_outer
+    view_label: "Team | Tickets"
+    relationship: many_to_many
+    sql_on: ${team_tickets.user_id}=${technology_team.accountid} ;;
+  }
+
+  join : issue {
+    view_label: "Jira | Issues"
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${issue.id}=${team_tickets.issue_id} ;;
+  }
+
+  join: status {
+    view_label: "Team | Issue Status"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${status.id}=${issue.status} ;;
+  }
+
+
+  join: team_tickets_calc {
+    view_label: "Team | Department Calcuation"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${team_tickets_calc.department}  = ${technology_team.dep};;
+  }
+
+
+  join: project_score_team {
+    view_label: "Team | Project Contributors"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${project_score_team.username}  = ${technology_team.accountid};;
+  }
+
+  join: project_score {
+    view_label: "Team | Project"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${project_score.project}  = ${project_score_team.project};;
+  }
+
+
+
+
+}
 explore: siebel_srv {}
 explore: app_srv {}
 
@@ -335,7 +396,7 @@ explore: sprint_burndown {
 explore: team {
   join: incidents_table {
     type: left_outer
-    sql_on: ${team.username} = ${incidents_table.name} ;;
+    sql_on: ${team.accountid} = ${incidents_table.name} ;;
     relationship: one_to_one
   }
 }

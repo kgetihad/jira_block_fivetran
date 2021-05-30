@@ -17,8 +17,8 @@ view: project_score_team {
   }
 
  dimension: id {
-  type: string
-  sql: concat(${project},${username}) ;;
+  type: number
+  sql: ${TABLE}.id;;
   primary_key: yes
 
  }
@@ -165,6 +165,13 @@ view: project_score_team {
             when ${project_score.deliverd} ='No' AND ${project_score.deviation_in_days} >= 0  THEN ${contr_scr}
             else 0
         end;;
+  }
+
+  measure: sum_contr_score {
+    type: sum
+    sql: ${contr_scr} ;;
+    drill_fields: [username,project,team_member,contributor_score,role,project_score.category,project_score.planned_launch,project_score.actual_launch,project_score.project_weight,project_score.deviation_in_weeks]
+
   }
 
   measure: sum_score {
