@@ -32,10 +32,18 @@ view: issue {
   }
 
   dimension: root_cause_defined {
-    type: yesno
-
-    sql: ${TABLE}.root_cause_defined_ =12643;;
-
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.root_cause_defined_ =12643;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${TABLE}.root_cause_defined_ =12644;;
+        label: "No"
+      }
+      else: "None"
+    }
     }
 
 
