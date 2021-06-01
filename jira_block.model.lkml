@@ -190,6 +190,10 @@ explore: project {
     relationship: many_to_one
   }
 
+  join: resolution {
+    relationship: one_to_one
+    sql_on: ${issue.resolution} = ${resolution.id} ;;
+  }
 
   join: issue_assignee_history {
     type: left_outer
