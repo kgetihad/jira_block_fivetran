@@ -46,8 +46,15 @@ view: issue {
     }
     }
 
+  dimension: product_squad {
+    type: number
+    sql: ${TABLE}.product_squad ;;
+  }
 
 
+dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
+  sql: ${TABLE}.Process_efficiency_i_e_tat_post_implementation_expected_value ;;
+}
 dimension: IsInward {
   type: string
   case: {
