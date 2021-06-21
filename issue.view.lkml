@@ -55,6 +55,91 @@ view: issue {
 dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   sql: ${TABLE}.Process_efficiency_i_e_tat_post_implementation_expected_value ;;
 }
+
+  dimension: process_efficiency_i_e_tat_pre_implementation_value {
+    sql: ${TABLE}.process_efficiency_i_e_tat_pre_implementation_value ;;
+  }
+
+  dimension: process_efficency_i_e_tat_realization_period {
+    sql: ${TABLE}.process_efficency_i_e_tat_realization_period ;;
+  }
+
+  dimension: count_of_departments_affected_post_implementation_expected_value {
+    sql: ${TABLE}.count_of_departments_affected_post_implementation_expected_value ;;
+  }
+
+  dimension: count_of_departments_affected_pre_implementation_expected_value {
+    sql: ${TABLE}.count_of_departments_affected_pre_implementation_expected_value ;;
+  }
+
+  dimension: departments_affected_realization_period {
+    sql: ${TABLE}.departments_affected_realization_period ;;
+  }
+
+  dimension: count_of_segments_affected_post_implementation_expected_value {
+    sql: ${TABLE}.count_of_segments_affected_post_implementation_expected_value ;;
+  }
+
+  dimension:count_of_segments_affected_pre_implementation_expected_value {
+    sql: ${TABLE}.count_of_segments_affected_pre_implementation_expected_value ;;
+  }
+
+  dimension: segments_affected_realization_period {
+    sql: ${TABLE}.segments_affected_realization_period ;;
+  }
+
+  dimension: level_of_implementation_urgency_post_implementation_expected_value{
+    sql: ${TABLE}.level_of_implementation_urgency_post_implementation_expected_value ;;
+  }
+
+  dimension:level_of_implementation_urgency_pre_implementation_value {
+    sql: ${TABLE}.level_of_implementation_urgency_pre_implementation_value ;;
+  }
+
+  dimension:count_of_people_involved_post_implementation_value {
+    sql: ${TABLE}.count_of_people_involved_post_implementation_value ;;
+  }
+
+  dimension:count_of_people_involved_pre_implementation_value {
+    sql: ${TABLE}.count_of_people_involved_pre_implementation_value ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_percentage_post_implementation_value {
+    sql: ${TABLE}.employee_productivity_i_e_rework_percentage_post_implementation_value ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_percentage_pre_implementation_value{
+    sql: ${TABLE}.employee_productivity_i_e_rework_percentage_pre_implementation_value ;;
+  }
+
+  dimension:employee_productivity_i_e_rework_realization_period {
+    sql: ${TABLE}.employee_productivity_i_e_rework_realization_period ;;
+  }
+
+  dimension:customer_satisfaction_rate_percentage_post_implementation_value {
+    sql: ${TABLE}.customer_satisfaction_rate_percentage_post_implementation_value ;;
+  }
+
+  dimension:customer_satisfaction_rate_percentage_pre_implementation_value {
+    sql: ${TABLE}.customer_satisfaction_rate_percentage_pre_implementation_value ;;
+  }
+
+  dimension:customer_satisfaction_rate_realization_period {
+    sql: ${TABLE}.customer_satisfaction_rate_realization_period ;;
+  }
+
+  dimension: customer_waiting_time_minutes_post_implementation_value {
+    sql: ${TABLE}.customer_waiting_time_minutes_post_implementation_value ;;
+  }
+
+  dimension:customer_waiting_time_minutes_pre_implementation_value{
+    sql: ${TABLE}.customer_waiting_time_minutes_pre_implementation_value ;;
+  }
+
+  dimension:customer_waiting_time_realization_period {
+    sql: ${TABLE}.customer_waiting_time_realization_period ;;
+  }
+
 dimension: IsInward {
   type: string
   case: {
