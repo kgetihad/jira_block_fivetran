@@ -140,8 +140,12 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     sql: ${TABLE}.customer_waiting_time_realization_period ;;
   }
 
-  dimension: issue_business_case_title {
-    sql: ${TABLE}.issue_business_case_title ;;
+  dimension: business_case_title {
+    sql: ${TABLE}.business_case_title ;;
+  }
+
+  dimension: category_type {
+    sql: ${TABLE}.category_type ;;
   }
 
 dimension: IsInward {
