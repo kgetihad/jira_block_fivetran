@@ -66,6 +66,29 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     sql: ${TABLE}.process_efficency_i_e_tat_realization_period ;;
   }
 
+  dimension: process_efficency_i_e_tat_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13493;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13494;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13495;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13496;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: count_of_departments_affected_post_implementation_expected_value {
     sql: nvl(${TABLE}.count_of_departments_affected_post_implementation_expected_value,1) ;;
   }
@@ -78,6 +101,28 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     sql: ${TABLE}.departments_affected_realization_period ;;
   }
 
+dimension: departments_affected_realization_period_code {
+  type: string
+  case: {
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13497;;
+      label: "5"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13498;;
+      label: "4"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13499;;
+      label: "3"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13500;;
+      label: "2"
+    }
+    else: "0"
+  }
+}
   dimension: count_of_segments_affected_post_implementation_expected_value {
     sql: nvl(${TABLE}.count_of_segments_affected_post_implementation_expected_value,1) ;;
   }
@@ -116,6 +161,29 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
 
   dimension:employee_productivity_i_e_rework_realization_period {
     sql: ${TABLE}.employee_productivity_i_e_rework_realization_period ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13513;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13514;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13515;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13516;;
+        label: "2"
+      }
+      else: "0"
+    }
   }
 
   dimension:customer_satisfaction_rate_percentage_post_implementation_value {
