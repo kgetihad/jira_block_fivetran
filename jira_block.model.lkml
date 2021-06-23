@@ -201,6 +201,51 @@ explore: project {
     sql_on: ${issue.product_squad} = ${product_squad.id} ;;
   }
 
+
+  join: customer_satisfaction_realization_period {
+    from: field_option
+    view_label: "Field | Customer Satisfaction Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.customer_satisfaction_rate_realization_period} = ${customer_satisfaction_realization_period.id} ;;
+  }
+
+  join: customer_waiting_time_realization_period {
+    from: field_option
+    view_label: "Field | Customer Waiting Time Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.customer_waiting_time_realization_period} = ${customer_waiting_time_realization_period.id} ;;
+  }
+
+  join: departments_affected_realization_period {
+    from: field_option
+    view_label: "Field | Department Affected Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.departments_affected_realization_period} = ${departments_affected_realization_period.id} ;;
+  }
+
+  join: employee_productivity_i_e_rework_realization_period {
+    from: field_option
+    view_label: "Field | Employee Productivity Rework Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.employee_productivity_i_e_rework_realization_period} = ${employee_productivity_i_e_rework_realization_period.id} ;;
+  }
+
+  join: process_efficency_i_e_tat_realization_period {
+    from: field_option
+    view_label: "Field | Process Efficiency TAT Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.process_efficency_i_e_tat_realization_period} = ${process_efficency_i_e_tat_realization_period.id} ;;
+  }
+
+  join: segments_affected_realization_period {
+    from: field_option
+    view_label: "Field | Segments Affected Realization Period"
+    relationship: one_to_one
+    sql_on: ${issue.segments_affected_realization_period} = ${segments_affected_realization_period.id} ;;
+  }
+
+
+
   join: issue_assignee_history {
     type: left_outer
     sql_on: ${issue.id}=${issue_assignee_history.issue_id} ;;
