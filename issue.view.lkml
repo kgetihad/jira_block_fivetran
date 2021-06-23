@@ -54,12 +54,12 @@ view: issue {
 
 dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   type: number
-  sql: nvl(${TABLE}.Process_efficiency_i_e_tat_post_implementation_expected_value,0) ;;
+  sql: nvl(${TABLE}.Process_efficiency_i_e_tat_post_implementation_expected_value,1) ;;
 }
 
   dimension: process_efficiency_i_e_tat_pre_implementation_value {
     type: number
-    sql: nvl(${TABLE}.process_efficiency_i_e_tat_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.process_efficiency_i_e_tat_pre_implementation_value,1) ;;
   }
 
   dimension: process_efficency_i_e_tat_realization_period {
@@ -67,11 +67,11 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   }
 
   dimension: count_of_departments_affected_post_implementation_expected_value {
-    sql: nvl(${TABLE}.count_of_departments_affected_post_implementation_expected_value,0) ;;
+    sql: nvl(${TABLE}.count_of_departments_affected_post_implementation_expected_value,1) ;;
   }
 
   dimension: count_of_departments_affected_pre_implementation_expected_value {
-    sql: nvl(${TABLE}.count_of_departments_affected_pre_implementation_expected_value,0) ;;
+    sql: nvl(${TABLE}.count_of_departments_affected_pre_implementation_expected_value,1) ;;
   }
 
   dimension: departments_affected_realization_period {
@@ -79,11 +79,11 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   }
 
   dimension: count_of_segments_affected_post_implementation_expected_value {
-    sql: nvl(${TABLE}.count_of_segments_affected_post_implementation_expected_value,0) ;;
+    sql: nvl(${TABLE}.count_of_segments_affected_post_implementation_expected_value,1) ;;
   }
 
   dimension:count_of_segments_affected_pre_implementation_expected_value {
-    sql:nvl(${TABLE}.count_of_segments_affected_pre_implementation_expected_value,0) ;;
+    sql:nvl(${TABLE}.count_of_segments_affected_pre_implementation_expected_value,1) ;;
   }
 
   dimension: segments_affected_realization_period {
@@ -91,27 +91,27 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   }
 
   dimension: level_of_implementation_urgency_post_implementation_expected_value{
-    sql: nvl(${TABLE}.level_of_implementation_urgency_post_implementation_expected_value,0) ;;
+    sql: nvl(${TABLE}.level_of_implementation_urgency_post_implementation_expected_value,1) ;;
   }
 
   dimension:level_of_implementation_urgency_pre_implementation_value {
-    sql: nvl(${TABLE}.level_of_implementation_urgency_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.level_of_implementation_urgency_pre_implementation_value,1) ;;
   }
 
   dimension:count_of_people_involved_post_implementation_value {
-    sql: nvl(${TABLE}.count_of_people_involved_post_implementation_value,0) ;;
+    sql: nvl(${TABLE}.count_of_people_involved_post_implementation_value,1) ;;
   }
 
   dimension:count_of_people_involved_pre_implementation_value {
-    sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,1) ;;
   }
 
   dimension: employee_productivity_i_e_rework_percentage_post_implementation_value {
-    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_post_implementation_value,0) ;;
+    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_post_implementation_value,1) ;;
   }
 
   dimension: employee_productivity_i_e_rework_percentage_pre_implementation_value{
-    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_pre_implementation_value,1) ;;
   }
 
   dimension:employee_productivity_i_e_rework_realization_period {
@@ -119,11 +119,11 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   }
 
   dimension:customer_satisfaction_rate_percentage_post_implementation_value {
-    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_post_implementation_value,0) ;;
+    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_post_implementation_value,1) ;;
   }
 
   dimension:customer_satisfaction_rate_percentage_pre_implementation_value {
-    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_pre_implementation_value,1) ;;
   }
 
   dimension:customer_satisfaction_rate_realization_period {
@@ -131,11 +131,11 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   }
 
   dimension: customer_waiting_time_minutes_post_implementation_value {
-    sql: nvl(${TABLE}.customer_waiting_time_minutes_post_implementation_value,0) ;;
+    sql: nvl(${TABLE}.customer_waiting_time_minutes_post_implementation_value,1) ;;
   }
 
   dimension:customer_waiting_time_minutes_pre_implementation_value{
-    sql: nvl(${TABLE}.customer_waiting_time_minutes_pre_implementation_value,0) ;;
+    sql: nvl(${TABLE}.customer_waiting_time_minutes_pre_implementation_value,1) ;;
   }
 
   dimension:customer_waiting_time_realization_period {
