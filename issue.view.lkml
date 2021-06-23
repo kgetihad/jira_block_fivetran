@@ -130,6 +130,29 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     sql: ${TABLE}.customer_satisfaction_rate_realization_period ;;
   }
 
+  dimension: customer_satisfaction_rate_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13521;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13522;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13523;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13524;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: customer_waiting_time_minutes_post_implementation_value {
     sql: nvl(${TABLE}.customer_waiting_time_minutes_post_implementation_value,1) ;;
   }
@@ -138,8 +161,32 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     sql: nvl(${TABLE}.customer_waiting_time_minutes_pre_implementation_value,1) ;;
   }
 
-  dimension:customer_waiting_time_realization_period {
-    sql: ${TABLE}.customer_waiting_time_realization_period ;;
+  dimension: customer_waiting_time_realization_period {
+        sql: ${TABLE}.customer_waiting_time_realization_period ;;
+
+  }
+  dimension:customer_waiting_time_realization_period_code {
+    # sql: ${TABLE}.customer_waiting_time_realization_period ;;
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13525;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13526;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
+        label: "3"
+        }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
+        label: "2"
+        }
+      else: "0"
+    }
   }
 
   dimension: business_case_title {
