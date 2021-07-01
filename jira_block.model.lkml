@@ -2,7 +2,7 @@ connection: "jiradb"
 
 # include all the views
 include: "*.view"
-
+include: "/views/issue_is_the_solution_scalable_.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
@@ -245,6 +245,12 @@ explore: project {
   }
 
 
+  join: issue_is_the_solution_scalable_ {
+    # from: issue_is_the_solution_scalable_
+    view_label: "Field | Is The Solution Scalable"
+    relationship: one_to_one
+    sql_on: ${issue.id} = ${issue_is_the_solution_scalable_.issue_id} ;;
+  }
 
   join: issue_assignee_history {
     type: left_outer
