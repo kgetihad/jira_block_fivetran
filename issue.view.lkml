@@ -163,6 +163,10 @@ dimension: departments_affected_realization_period_code {
     sql: ${TABLE}.employee_productivity_i_e_rework_realization_period ;;
   }
 
+  dimension: issue_is_the_solution_scalable_ {
+    sql: ${TABLE}.issue_is_the_solution_scalable_ ;;
+  }
+
   dimension: employee_productivity_i_e_rework_realization_period_code {
     type: string
     case: {
