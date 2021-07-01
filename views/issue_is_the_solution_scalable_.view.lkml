@@ -25,6 +25,17 @@ view: issue_is_the_solution_scalable_ {
     sql: ${TABLE}.field_option_id ;;
   }
 
+  dimension: is_solution_scalable {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.field_option_id =13595;;
+        label: "1"
+      }
+
+      else: "0"
+    }
+  }
   dimension: issue_id {
     type: number
     sql: ${TABLE}.issue_id ;;
