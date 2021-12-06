@@ -46,7 +46,228 @@ view: issue {
     }
     }
 
+  dimension: product_squad {
+    type: number
+    sql: ${TABLE}.product_squad ;;
+  }
 
+
+dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
+  type: number
+  sql: nvl(${TABLE}.Process_efficiency_i_e_tat_post_implementation_expected_value,1) ;;
+}
+
+  dimension: process_efficiency_i_e_tat_pre_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.process_efficiency_i_e_tat_pre_implementation_value,1) ;;
+  }
+
+  dimension: process_efficency_i_e_tat_realization_period {
+    sql: ${TABLE}.process_efficency_i_e_tat_realization_period ;;
+  }
+
+  dimension: process_efficency_i_e_tat_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13493;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13494;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13495;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13496;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
+  dimension: count_of_departments_affected_post_implementation_expected_value {
+    sql: nvl(${TABLE}.count_of_departments_affected_post_implementation_expected_value,1) ;;
+  }
+
+  dimension: count_of_departments_affected_pre_implementation_expected_value {
+    sql: nvl(${TABLE}.count_of_departments_affected_pre_implementation_expected_value,1) ;;
+  }
+
+  dimension: departments_affected_realization_period {
+    sql: ${TABLE}.departments_affected_realization_period ;;
+  }
+
+dimension: departments_affected_realization_period_code {
+  type: string
+  case: {
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13497;;
+      label: "5"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13498;;
+      label: "4"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13499;;
+      label: "3"
+    }
+    when: {
+      sql: ${TABLE}.departments_affected_realization_period =13500;;
+      label: "2"
+    }
+    else: "0"
+  }
+}
+  dimension: count_of_segments_affected_post_implementation_expected_value {
+    sql: nvl(${TABLE}.count_of_segments_affected_post_implementation_expected_value,1) ;;
+  }
+
+  dimension:count_of_segments_affected_pre_implementation_expected_value {
+    sql:nvl(${TABLE}.count_of_segments_affected_pre_implementation_expected_value,1) ;;
+  }
+
+  dimension: segments_affected_realization_period {
+    sql: ${TABLE}.segments_affected_realization_period ;;
+  }
+
+  dimension: level_of_implementation_urgency_post_implementation_expected_value{
+    sql: nvl(${TABLE}.level_of_implementation_urgency_post_implementation_expected_value,1) ;;
+  }
+
+  dimension:level_of_implementation_urgency_pre_implementation_value {
+    sql: nvl(${TABLE}.level_of_implementation_urgency_pre_implementation_value,1) ;;
+  }
+
+  dimension:count_of_people_involved_post_implementation_value {
+    sql: nvl(${TABLE}.count_of_people_involved_post_implementation_value,1) ;;
+  }
+
+  dimension:count_of_people_involved_pre_implementation_value {
+    sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,1) ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_percentage_post_implementation_value {
+    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_post_implementation_value,1) ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_percentage_pre_implementation_value{
+    sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_pre_implementation_value,1) ;;
+  }
+
+  dimension:employee_productivity_i_e_rework_realization_period {
+    sql: ${TABLE}.employee_productivity_i_e_rework_realization_period ;;
+  }
+
+  dimension: issue_is_the_solution_scalable_ {
+    sql: ${TABLE}.issue_is_the_solution_scalable_ ;;
+  }
+
+  dimension: employee_productivity_i_e_rework_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13513;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13514;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13515;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13516;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
+  dimension:customer_satisfaction_rate_percentage_post_implementation_value {
+    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_post_implementation_value,1) ;;
+  }
+
+  dimension:customer_satisfaction_rate_percentage_pre_implementation_value {
+    sql: nvl(${TABLE}.customer_satisfaction_rate_percentage_pre_implementation_value,1) ;;
+  }
+
+  dimension:customer_satisfaction_rate_realization_period {
+    sql: ${TABLE}.customer_satisfaction_rate_realization_period ;;
+  }
+
+  dimension: customer_satisfaction_rate_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13521;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13522;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13523;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.customer_satisfaction_rate_realization_period =13524;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
+  dimension: customer_waiting_time_minutes_post_implementation_value {
+    sql: nvl(${TABLE}.customer_waiting_time_minutes_post_implementation_value,1) ;;
+  }
+
+  dimension:customer_waiting_time_minutes_pre_implementation_value{
+    sql: nvl(${TABLE}.customer_waiting_time_minutes_pre_implementation_value,1) ;;
+  }
+
+  dimension: customer_waiting_time_realization_period {
+        sql: ${TABLE}.customer_waiting_time_realization_period ;;
+
+  }
+  dimension:customer_waiting_time_realization_period_code {
+    # sql: ${TABLE}.customer_waiting_time_realization_period ;;
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13525;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13526;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
+        label: "3"
+        }
+      when: {
+        sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
+        label: "2"
+        }
+      else: "0"
+    }
+  }
+
+  dimension: business_case_title {
+    sql: ${TABLE}.business_case_title ;;
+  }
+
+  dimension: category_type {
+    sql: ${TABLE}.category_type ;;
+  }
 
 dimension: IsInward {
   type: string
