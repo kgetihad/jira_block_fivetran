@@ -307,12 +307,6 @@ dimension: IsInward {
   }
 
 
-  dimension: product_squad {
-    type: string
-    sql: ${TABLE}.product_squad ;;
-  }
-
-
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
@@ -379,6 +373,11 @@ dimension: IsInward {
   dimension: environment {
     type: string
     sql: ${TABLE}.environment ;;
+  }
+
+  dimension: appian_customer_cif {
+    type: string
+    sql: ${TABLE}.customer_cif_ ;;
   }
 
 
@@ -498,6 +497,9 @@ dimension: IsInward {
     sql: ${days_to_resolve_issue} ;;
     value_format_name: decimal_0
   }
+
+
+
 
   # dimension: severity {
   #   hidden: yes

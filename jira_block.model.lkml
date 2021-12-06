@@ -195,19 +195,10 @@ explore: project {
     relationship: one_to_one
     sql_on: ${issue.product_squad} = ${product_squad.id} ;;
   }
-
-
   join: resolution {
     relationship: one_to_one
     sql_on: ${issue.resolution} = ${resolution.id} ;;
   }
-  join: product_squad {
-    from: field_option
-    view_label: "Field | Product Squad"
-    relationship: one_to_one
-    sql_on: ${issue.product_squad} = ${product_squad.id} ;;
-  }
-
 
   join: customer_satisfaction_realization_period {
     from: field_option
