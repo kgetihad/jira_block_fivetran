@@ -189,6 +189,13 @@ explore: project {
     sql_on: ${project.id} = ${issue.project} ;;
     relationship: many_to_one
   }
+  join: product_squad {
+    from: field_option
+    view_label: "Field | Product Squad"
+    relationship: one_to_one
+    sql_on: ${issue.product_squad} = ${product_squad.id} ;;
+  }
+
 
   join: resolution {
     relationship: one_to_one

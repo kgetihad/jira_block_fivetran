@@ -86,6 +86,11 @@ dimension: IsInward {
   }
 
 
+  dimension: product_squad {
+    type: string
+    sql: ${TABLE}.product_squad ;;
+  }
+
 
   dimension: reporter {
     type: string
