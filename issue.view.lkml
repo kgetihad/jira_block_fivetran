@@ -296,6 +296,11 @@ dimension: IsInward {
     sql: ${TABLE}._time_spent ;;
   }
 
+  dimension: vulnerability_severity {
+    type: string
+    sql: ${TABLE}.vulnerability_severity ;;
+  }
+
   dimension: assignee {
     type: string
     sql: ${TABLE}.assignee ;;
