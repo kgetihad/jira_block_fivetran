@@ -163,6 +163,10 @@ dimension: departments_affected_realization_period_code {
     sql: ${TABLE}.employee_productivity_i_e_rework_realization_period ;;
   }
 
+  dimension: issue_is_the_solution_scalable_ {
+    sql: ${TABLE}.issue_is_the_solution_scalable_ ;;
+  }
+
   dimension: employee_productivity_i_e_rework_realization_period_code {
     type: string
     case: {
@@ -308,7 +312,6 @@ dimension: IsInward {
   }
 
 
-
   dimension: reporter {
     type: string
     sql: ${TABLE}.reporter ;;
@@ -375,6 +378,11 @@ dimension: IsInward {
   dimension: environment {
     type: string
     sql: ${TABLE}.environment ;;
+  }
+
+  dimension: appian_customer_cif {
+    type: string
+    sql: ${TABLE}.customer_cif_ ;;
   }
 
 
@@ -494,6 +502,9 @@ dimension: IsInward {
     sql: ${days_to_resolve_issue} ;;
     value_format_name: decimal_0
   }
+
+
+
 
   # dimension: severity {
   #   hidden: yes
