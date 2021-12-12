@@ -300,12 +300,16 @@ dimension: IsInward {
     sql: ${TABLE}._time_spent ;;
   }
 
+  dimension: vulnerability_severity {
+    type: string
+    sql: ${TABLE}.vulnerability_severity ;;
+  }
+
   dimension: assignee {
     type: string
     sql: ${TABLE}.assignee ;;
     drill_fields: [issue_key,status,created_date,is_issue_resolved,minutes_to_resolve_issue]
   }
-
 
 
   dimension: reporter {
@@ -374,6 +378,11 @@ dimension: IsInward {
   dimension: environment {
     type: string
     sql: ${TABLE}.environment ;;
+  }
+
+  dimension: appian_customer_cif {
+    type: string
+    sql: ${TABLE}.customer_cif_ ;;
   }
 
 
@@ -493,6 +502,9 @@ dimension: IsInward {
     sql: ${days_to_resolve_issue} ;;
     value_format_name: decimal_0
   }
+
+
+
 
   # dimension: severity {
   #   hidden: yes
