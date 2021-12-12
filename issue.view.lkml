@@ -615,4 +615,48 @@ dimension: IsInward {
   #  ]
   #}
 
+ dimension: customer_engagement_and_activity_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.customer_engagement_and_activity_level_of_impact,1) ;;
+  }
+
+  dimension: customer_engagement_and_activity_pre_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.customer_engagement_and_activity_pre_implementation_value,1) ;;
+  }
+
+  dimension: customer_engagement_and_activity_post_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.customer_engagement_and_activity_post_implementation_value,1) ;;
+  }
+
+  dimension: customer_engagement_and_activity_realization_period {
+    sql: ${TABLE}.customer_waiting_time_realization_period ;;
+  }
+
+  dimension: quality_of_the_process_pre_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.quality_of_the_process_pre_implementation_value,1) ;;
+  }
+
+  dimension: quality_of_the_process_post_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.quality_of_the_process_post_implementation_value,1) ;;
+  }
+
+  dimension: quality_of_the_process_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.quality_of_the_process_level_of_impact,1) ;;
+  }
+
+  dimension: quality_of_the_process_realization_period {
+    sql: ${TABLE}.quality_of_the_process_realization_period ;;
+  }
+
+
+
+
+
+
+
 }
