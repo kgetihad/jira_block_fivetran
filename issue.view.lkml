@@ -665,10 +665,125 @@ dimension: IsInward {
     sql: ${TABLE}.quality_of_the_process_realization_period ;;
   }
 
+  dimension: performance_availability_pre_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.performance_availability_pre_implementation_value,1) ;;
+  }
 
+  dimension: performance_availability_post_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.performance_availability_post_implementation_value,1) ;;
+  }
 
+  dimension: performance_availability_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.performance_availability_level_of_impact,1) ;;
+  }
 
+  dimension: performance_availability_realization_period {
+    sql: ${TABLE}.performance_availability_realization_period ;;
+  }
 
+  dimension: percentage_of_employee_satisfaction_pre_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.percentage_of_employee_satisfaction_pre_implementation_value,1) ;;
+  }
 
+  dimension: percentage_of_employee_satisfaction_post_implementation_value {
+    type: number
+    sql: nvl(${TABLE}.percentage_of_employee_satisfaction_post_implementation_value,1) ;;
+  }
 
+  dimension: percentage_of_employee_satisfaction_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.percentage_of_employee_satisfaction_level_of_impact,1) ;;
+  }
+
+  dimension: percentage_of_employee_satisfaction_realization_period {
+    sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period ;;
+  }
+
+  dimension: reduce_operational_risks_percentage_of_reduction {
+    type: number
+    sql: nvl(${TABLE}.reduce_operational_risks_percentage_of_reduction,1) ;;
+  }
+
+  dimension: reduce_operational_risks_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.reduce_operational_risks_level_of_impact,1) ;;
+  }
+
+  dimension: minimize_operational_risks_realization_period {
+    sql: ${TABLE}.minimize_operational_risks_realization_period ;;
+  }
+
+  dimension: increase_revenue_percentage_of_increase {
+    type: number
+    sql: nvl(${TABLE}.increase_revenue_percentage_of_increase,1) ;;
+  }
+
+  dimension: increase_revenue_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.increase_revenue_level_of_impact,1) ;;
+  }
+
+  dimension: increase_revenue_realization_period {
+    sql: ${TABLE}.increase_revenue_realization_period ;;
+  }
+
+  dimension: increase_customer_growth_percentage_of_increase {
+    type: number
+    sql: nvl(${TABLE}.increase_customer_growth_percentage_of_increase,1) ;;
+  }
+
+  dimension: increase_customer_growth_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.increase_customer_growth_level_of_impact,1) ;;
+  }
+
+  dimension: increase_customer_growth_realization_period {
+    sql: ${TABLE}.increase_customer_growth_realization_period ;;
+  }
+
+  dimension: increase_market_share_percentage_of_increase {
+    type: number
+    sql: nvl(${TABLE}.increase_market_share_percentage_of_increase,1) ;;
+  }
+
+  dimension: increase_market_share_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.increase_market_share_level_of_impact,1) ;;
+  }
+
+  dimension: increase_market_share_realization_period {
+    sql: ${TABLE}.increase_market_share_realization_period ;;
+  }
+
+  dimension: reduce_churn_percentage_of_churn_reduction {
+    type: number
+    sql: nvl(${TABLE}.reduce_churn_percentage_of_churn_reduction,1) ;;
+  }
+
+  dimension: reduce_churn_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.reduce_churn_level_of_impact,1) ;;
+  }
+
+  dimension: reduce_churn_realization_period {
+    sql: ${TABLE}.reduce_churn_realization_period ;;
+  }
+
+  dimension: reduce_costs_percentage_of_reduction {
+    type: number
+    sql: nvl(${TABLE}.reduce_costs_percentage_of_reduction,1) ;;
+  }
+
+  dimension: reduce_costs_level_of_impact {
+    type: number
+    sql: nvl(${TABLE}.reduce_costs_level_of_impact,1) ;;
+  }
+
+  dimension: reduce_costs_realization_period {
+    sql: ${TABLE}.reduce_costs_realization_period ;;
+  }
 }
