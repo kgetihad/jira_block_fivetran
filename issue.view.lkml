@@ -646,6 +646,29 @@ dimension: IsInward {
     sql: ${TABLE}.customer_waiting_time_realization_period ;;
   }
 
+  dimension: customer_engagement_and_activity_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.customer_engagement_and_activity_realization_period =14011;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.customer_engagement_and_activity_realization_period =14012;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.customer_engagement_and_activity_realization_period =14013;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.customer_engagement_and_activity_realization_period =1401;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: quality_of_the_process_pre_implementation_value {
     type: number
     sql: nvl(${TABLE}.quality_of_the_process_pre_implementation_value,1) ;;
@@ -663,6 +686,29 @@ dimension: IsInward {
 
   dimension: quality_of_the_process_realization_period {
     sql: ${TABLE}.quality_of_the_process_realization_period ;;
+  }
+
+  dimension: quality_of_the_process_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.quality_of_the_process_realization_period =13928;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.quality_of_the_process_realization_period =13929;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.quality_of_the_process_realization_period =13930;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.quality_of_the_process_realization_period =13931;;
+        label: "2"
+      }
+      else: "0"
+    }
   }
 
   dimension: performance_availability_pre_implementation_value {
@@ -684,6 +730,30 @@ dimension: IsInward {
     sql: ${TABLE}.performance_availability_realization_period ;;
   }
 
+  dimension: performance_availability_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.performance_availability_realization_period =13924;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.performance_availability_realization_period =13925;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.performance_availability_realization_period =13926;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.performance_availability_realization_period =13927;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
+
   dimension: percentage_of_employee_satisfaction_pre_implementation_value {
     type: number
     sql: nvl(${TABLE}.percentage_of_employee_satisfaction_pre_implementation_value,1) ;;
@@ -703,6 +773,29 @@ dimension: IsInward {
     sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period ;;
   }
 
+  dimension: percentage_of_employee_satisfaction_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13942;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13943;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13944;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13945;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: reduce_operational_risks_percentage_of_reduction {
     type: number
     sql: nvl(${TABLE}.reduce_operational_risks_percentage_of_reduction,1) ;;
@@ -715,6 +808,29 @@ dimension: IsInward {
 
   dimension: minimize_operational_risks_realization_period {
     sql: ${TABLE}.minimize_operational_risks_realization_period ;;
+  }
+
+  dimension: minimize_operational_risks_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.minimize_operational_risks_realization_period =13946;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.minimize_operational_risks_realization_period =13947;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.minimize_operational_risks_realization_period =13948;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.minimize_operational_risks_realization_period =13949;;
+        label: "2"
+      }
+      else: "0"
+    }
   }
 
   dimension: increase_revenue_percentage_of_increase {
@@ -731,6 +847,30 @@ dimension: IsInward {
     sql: ${TABLE}.increase_revenue_realization_period ;;
   }
 
+  dimension: increase_revenue_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.increase_revenue_realization_period =13955;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.increase_revenue_realization_period =13956;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.increase_revenue_realization_period =13957;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.increase_revenue_realization_period =13958;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
+
   dimension: increase_customer_growth_percentage_of_increase {
     type: number
     sql: nvl(${TABLE}.increase_customer_growth_percentage_of_increase,1) ;;
@@ -743,6 +883,29 @@ dimension: IsInward {
 
   dimension: increase_customer_growth_realization_period {
     sql: ${TABLE}.increase_customer_growth_realization_period ;;
+  }
+
+  dimension: increase_customer_growth_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.increase_customer_growth_realization_period =13964;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.increase_customer_growth_realization_period =13965;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.increase_customer_growth_realization_period =13967;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.increase_customer_growth_realization_period =13968;;
+        label: "2"
+      }
+      else: "0"
+    }
   }
 
   dimension: increase_market_share_percentage_of_increase {
@@ -759,6 +922,28 @@ dimension: IsInward {
     sql: ${TABLE}.increase_market_share_realization_period ;;
   }
 
+ dimension: increase_market_share_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.increase_market_share_realization_period =13991;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.increase_market_share_realization_period =13992;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.increase_market_share_realization_period =13993;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.increase_market_share_realization_period =13994;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
   dimension: reduce_churn_percentage_of_churn_reduction {
     type: number
     sql: nvl(${TABLE}.reduce_churn_percentage_of_churn_reduction,1) ;;
