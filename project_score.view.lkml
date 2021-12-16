@@ -7,8 +7,8 @@ view: project_score {
   }
 
   dimension: pk {
-    type: string
-    sql: concat(${project},${team}) ;;
+    type: number
+    sql: ${TABLE}.id ;;
     primary_key: yes
   }
 

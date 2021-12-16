@@ -28,7 +28,9 @@
 
     dimension: name {
       type: string
-      sql: ${TABLE}.NAME ;;
+       sql: ${TABLE}.NAME ;;
+
+
     }
 
     measure: count {
