@@ -662,7 +662,7 @@ dimension: IsInward {
         label: "3"
       }
       when: {
-        sql: ${TABLE}.customer_engagement_and_activity_realization_period =1401;;
+        sql: ${TABLE}.customer_engagement_and_activity_realization_period =14014;;
         label: "2"
       }
       else: "0"
