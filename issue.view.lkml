@@ -924,11 +924,11 @@ dimension: IsInward {
         label: "4"
       }
       when: {
-        sql: ${TABLE}.increase_customer_growth_realization_period =13967;;
+        sql: ${TABLE}.increase_customer_growth_realization_period =13966;;
         label: "3"
       }
       when: {
-        sql: ${TABLE}.increase_customer_growth_realization_period =13968;;
+        sql: ${TABLE}.increase_customer_growth_realization_period =13967;;
         label: "2"
       }
       else: "0"
