@@ -806,6 +806,10 @@ dimension: IsInward {
     sql: nvl(${TABLE}.reduce_operational_risks_level_of_impact,1) ;;
   }
 
+  dimension: reduce_operational_risks_realization_period {
+    sql: nvl(${TABLE}.reduce_operational_risks_realization_period,1) ;;
+  }
+
   dimension: minimize_operational_risks_realization_period {
     sql: ${TABLE}.minimize_operational_risks_realization_period ;;
   }
