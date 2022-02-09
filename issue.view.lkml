@@ -989,19 +989,19 @@ dimension: IsInward {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.reduce_churn_realization_period =13991;;
+        sql: ${TABLE}.reduce_churn_realization_period =13973;;
         label: "5"
       }
       when: {
-        sql: ${TABLE}.reduce_churn_realization_period =13992;;
+        sql: ${TABLE}.reduce_churn_realization_period =13974;;
         label: "4"
       }
       when: {
-        sql: ${TABLE}.reduce_churn_realization_period =13993;;
+        sql: ${TABLE}.reduce_churn_realization_period =13975;;
         label: "3"
       }
       when: {
-        sql: ${TABLE}.reduce_churn_realization_period =13994;;
+        sql: ${TABLE}.reduce_churn_realization_period =13976;;
         label: "2"
       }
       else: "0"
@@ -1026,19 +1026,19 @@ dimension: IsInward {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.reduce_costs_realization_period =13991;;
+        sql: ${TABLE}.reduce_costs_realization_period =13982;;
         label: "5"
       }
       when: {
-        sql: ${TABLE}.reduce_costs_realization_period =13992;;
+        sql: ${TABLE}.reduce_costs_realization_period =13983;;
         label: "4"
       }
       when: {
-        sql: ${TABLE}.reduce_costs_realization_period =13993;;
+        sql: ${TABLE}.reduce_costs_realization_period =13984;;
         label: "3"
       }
       when: {
-        sql: ${TABLE}.reduce_costs_realization_period =13994;;
+        sql: ${TABLE}.reduce_costs_realization_period =13985;;
         label: "2"
       }
       else: "0"
