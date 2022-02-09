@@ -985,6 +985,29 @@ dimension: IsInward {
     sql: ${TABLE}.reduce_churn_realization_period ;;
   }
 
+  dimension: reduce_churn_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.reduce_churn_realization_period =13991;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.reduce_churn_realization_period =13992;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.reduce_churn_realization_period =13993;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.reduce_churn_realization_period =13994;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: reduce_costs_percentage_of_reduction {
     type: number
     sql: nvl(${TABLE}.reduce_costs_percentage_of_reduction,1) ;;
@@ -998,4 +1021,28 @@ dimension: IsInward {
   dimension: reduce_costs_realization_period {
     sql: ${TABLE}.reduce_costs_realization_period ;;
   }
+
+  dimension: reduce_costs_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.reduce_costs_realization_period =13991;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.reduce_costs_realization_period =13992;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.reduce_costs_realization_period =13993;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.reduce_costs_realization_period =13994;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
 }
