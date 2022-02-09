@@ -837,6 +837,29 @@ dimension: IsInward {
     }
   }
 
+  dimension: reduce_operational_risks_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.reduce_operational_risks_realization_period =13946;;
+        label: "5"
+      }
+      when: {
+        sql: ${TABLE}.reduce_operational_risks_realization_period =13947;;
+        label: "4"
+      }
+      when: {
+        sql: ${TABLE}.reduce_operational_risks_realization_period =13948;;
+        label: "3"
+      }
+      when: {
+        sql: ${TABLE}.reduce_operational_risks_realization_period =13949;;
+        label: "2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: increase_revenue_percentage_of_increase {
     type: number
     sql: nvl(${TABLE}.increase_revenue_percentage_of_increase,1) ;;
