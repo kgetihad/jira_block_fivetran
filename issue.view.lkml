@@ -71,19 +71,19 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     case: {
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13493;;
-        label: "5"
+        label: "1.5"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13494;;
-        label: "4"
+        label: "1.4"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13495;;
-        label: "3"
+        label: "1.3"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13496;;
-        label: "2"
+        label: "1.2"
       }
       else: "0"
     }
@@ -106,19 +106,19 @@ dimension: departments_affected_realization_period_code {
   case: {
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13497;;
-      label: "5"
+      label: "1.5"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13498;;
-      label: "4"
+      label: "1.4"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13499;;
-      label: "3"
+      label: "1.3"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13500;;
-      label: "2"
+      label: "1.2"
     }
     else: "0"
   }
@@ -172,19 +172,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13513;;
-        label: "5"
+        label: "1.5"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13514;;
-        label: "4"
+        label: "1.4"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13515;;
-        label: "3"
+        label: "1.3"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13516;;
-        label: "2"
+        label: "1.2"
       }
       else: "0"
     }
@@ -207,19 +207,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13521;;
-        label: "5"
+        label: "1.5"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13522;;
-        label: "4"
+        label: "1.4"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13523;;
-        label: "3"
+        label: "1.3"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13524;;
-        label: "2"
+        label: "1.2"
       }
       else: "0"
     }
@@ -243,19 +243,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13525;;
-        label: "5"
+        label: "1.5"
       }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13526;;
-        label: "4"
+        label: "1.4"
       }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
-        label: "3"
+        label: "1.3"
         }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
-        label: "2"
+        label: "1.2"
         }
       else: "0"
     }
