@@ -139,19 +139,19 @@ dimension: departments_affected_realization_period_code {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13501;;
+        sql: ${TABLE}.segments_affected_realization_period =13501;;
         label: "1.5"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13502;;
+        sql: ${TABLE}.segments_affected_realization_period =13502;;
         label: "1.4"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13503;;
+        sql: ${TABLE}.segments_affected_realization_period =13503;;
         label: "1.3"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13504;;
+        sql: ${TABLE}.segments_affected_realization_period =13504;;
         label: "1.2"
       }
       else: "0"
@@ -182,19 +182,19 @@ dimension: departments_affected_realization_period_code {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13509;;
+        sql: ${TABLE}.count_of_people_realization_period =13509;;
         label: "1.5"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13510;;
+        sql: ${TABLE}.count_of_people_realization_period =13510;;
         label: "1.4"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13511;;
+        sql: ${TABLE}.count_of_people_realization_period =13511;;
         label: "1.3"
       }
       when: {
-        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13512;;
+        sql: ${TABLE}.count_of_people_realization_period =13512;;
         label: "1.2"
       }
       else: "0"
