@@ -174,27 +174,27 @@ dimension: departments_affected_realization_period_code {
     sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,1) ;;
   }
 
-  dimension:count_of_people_realization_period {
+  dimension:number_of_people_realization_period {
     sql: ${TABLE}.count_of_people_realization_period ;;
   }
 
-  dimension: count_of_people_realization_period_code {
+  dimension: number_of_people_realization_period_code {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.count_of_people_realization_period =13509;;
+        sql: ${TABLE}.number_of_people_realization_period =13509;;
         label: "1.5"
       }
       when: {
-        sql: ${TABLE}.count_of_people_realization_period =13510;;
+        sql: ${TABLE}.number_of_people_realization_period =13510;;
         label: "1.4"
       }
       when: {
-        sql: ${TABLE}.count_of_people_realization_period =13511;;
+        sql: ${TABLE}.number_of_people_realization_period =13511;;
         label: "1.3"
       }
       when: {
-        sql: ${TABLE}.count_of_people_realization_period =13512;;
+        sql: ${TABLE}.number_of_people_realization_period =13512;;
         label: "1.2"
       }
       else: "0"
