@@ -135,6 +135,29 @@ dimension: departments_affected_realization_period_code {
     sql: ${TABLE}.segments_affected_realization_period ;;
   }
 
+  dimension: segments_affected_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13501;;
+        label: "1.5"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13502;;
+        label: "1.4"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13503;;
+        label: "1.3"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13504;;
+        label: "1.2"
+      }
+      else: "0"
+    }
+  }
+
   dimension: level_of_implementation_urgency_post_implementation_expected_value{
     sql: nvl(${TABLE}.level_of_implementation_urgency_post_implementation_expected_value,1) ;;
   }
@@ -150,6 +173,35 @@ dimension: departments_affected_realization_period_code {
   dimension:count_of_people_involved_pre_implementation_value {
     sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,1) ;;
   }
+
+  dimension:count_of_people_realization_period {
+    sql: ${TABLE}.count_of_people_realization_period ;;
+  }
+
+  dimension: count_of_people_realization_period_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13509;;
+        label: "1.5"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13510;;
+        label: "1.4"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13511;;
+        label: "1.3"
+      }
+      when: {
+        sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13512;;
+        label: "1.2"
+      }
+      else: "0"
+    }
+  }
+
+
 
   dimension: employee_productivity_i_e_rework_percentage_post_implementation_value {
     sql: nvl(${TABLE}.employee_productivity_i_e_rework_percentage_post_implementation_value,1) ;;
