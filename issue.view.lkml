@@ -71,19 +71,19 @@ dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
     case: {
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13493;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13494;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13495;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.process_efficency_i_e_tat_realization_period =13496;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -106,19 +106,19 @@ dimension: departments_affected_realization_period_code {
   case: {
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13497;;
-      label: "1.5"
+      label: "1.8"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13498;;
-      label: "1.4"
+      label: "1.7"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13499;;
-      label: "1.3"
+      label: "1.6"
     }
     when: {
       sql: ${TABLE}.departments_affected_realization_period =13500;;
-      label: "1.2"
+      label: "1.5"
     }
     else: "0"
   }
@@ -140,19 +140,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.segments_affected_realization_period =13501;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.segments_affected_realization_period =13502;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.segments_affected_realization_period =13503;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.segments_affected_realization_period =13504;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -174,28 +174,28 @@ dimension: departments_affected_realization_period_code {
     sql: nvl(${TABLE}.count_of_people_involved_pre_implementation_value,1) ;;
   }
 
-  dimension:number_of_people_realization_period {
+  dimension:number_of_people_involved_realization_period {
     sql: ${TABLE}.count_of_people_realization_period ;;
   }
 
-  dimension: number_of_people_realization_period_code {
+  dimension: number_of_people_involved_realization_period_code {
     type: string
     case: {
       when: {
-        sql: ${TABLE}.number_of_people_realization_period =13509;;
+        sql: ${TABLE}.number_of_people_involved_realization_period =13509;;
+        label: "1.8"
+      }
+      when: {
+        sql: ${TABLE}.number_of_people_involved_realization_period =13510;;
+        label: "1.7"
+      }
+      when: {
+        sql: ${TABLE}.number_of_people_involved_realization_period =13511;;
+        label: "1.6"
+      }
+      when: {
+        sql: ${TABLE}.number_of_people_involved_realization_period =13512;;
         label: "1.5"
-      }
-      when: {
-        sql: ${TABLE}.number_of_people_realization_period =13510;;
-        label: "1.4"
-      }
-      when: {
-        sql: ${TABLE}.number_of_people_realization_period =13511;;
-        label: "1.3"
-      }
-      when: {
-        sql: ${TABLE}.number_of_people_realization_period =13512;;
-        label: "1.2"
       }
       else: "0"
     }
@@ -224,19 +224,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13513;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13514;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13515;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.employee_productivity_i_e_rework_realization_period =13516;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -259,19 +259,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13521;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13522;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13523;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.customer_satisfaction_rate_realization_period =13524;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -295,19 +295,19 @@ dimension: departments_affected_realization_period_code {
     case: {
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13525;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13526;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
-        label: "1.3"
+        label: "1.6"
         }
       when: {
         sql: ${TABLE}.customer_waiting_time_realization_period =13527;;
-        label: "1.2"
+        label: "1.5"
         }
       else: "0"
     }
@@ -315,6 +315,18 @@ dimension: departments_affected_realization_period_code {
 
   dimension: business_case_title {
     sql: ${TABLE}.business_case_title ;;
+  }
+
+  dimension: Tribe_department_name {
+    sql: ${TABLE}.Tribe_department_name ;;
+  }
+
+  dimension: department_name {
+    sql: ${TABLE}.department_name ;;
+  }
+
+  dimension: services_squad {
+    sql: ${TABLE}.services_squad ;;
   }
 
   dimension: category_type {
@@ -703,19 +715,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.customer_engagement_and_activity_realization_period =14011;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.customer_engagement_and_activity_realization_period =14012;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.customer_engagement_and_activity_realization_period =14013;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.customer_engagement_and_activity_realization_period =14014;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -745,19 +757,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.quality_of_the_process_realization_period =13928;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.quality_of_the_process_realization_period =13929;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.quality_of_the_process_realization_period =13930;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.quality_of_the_process_realization_period =13931;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -787,19 +799,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.performance_availability_realization_period =13924;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.performance_availability_realization_period =13925;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.performance_availability_realization_period =13926;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.performance_availability_realization_period =13927;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -830,19 +842,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13942;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13943;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13944;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.percentage_of_employee_satisfaction_realization_period =13945;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -871,19 +883,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.minimize_operational_risks_realization_period =13946;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.minimize_operational_risks_realization_period =13947;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.minimize_operational_risks_realization_period =13948;;
-        label: "1.3"
+        label: "1.4"
       }
       when: {
         sql: ${TABLE}.minimize_operational_risks_realization_period =13949;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -894,19 +906,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.reduce_operational_risks_realization_period =13946;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.reduce_operational_risks_realization_period =13947;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.reduce_operational_risks_realization_period =13948;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.reduce_operational_risks_realization_period =13949;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -931,19 +943,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.increase_revenue_realization_period =13955;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.increase_revenue_realization_period =13956;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.increase_revenue_realization_period =13957;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.increase_revenue_realization_period =13958;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -969,19 +981,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.increase_customer_growth_realization_period =13964;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.increase_customer_growth_realization_period =13965;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.increase_customer_growth_realization_period =13966;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.increase_customer_growth_realization_period =13967;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -1006,19 +1018,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.increase_market_share_realization_period =13991;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.increase_market_share_realization_period =13992;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.increase_market_share_realization_period =13993;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.increase_market_share_realization_period =13994;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -1042,19 +1054,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.reduce_churn_realization_period =13973;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.reduce_churn_realization_period =13974;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.reduce_churn_realization_period =13975;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.reduce_churn_realization_period =13976;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
@@ -1079,19 +1091,19 @@ dimension: IsInward {
     case: {
       when: {
         sql: ${TABLE}.reduce_costs_realization_period =13982;;
-        label: "1.5"
+        label: "1.8"
       }
       when: {
         sql: ${TABLE}.reduce_costs_realization_period =13983;;
-        label: "1.4"
+        label: "1.7"
       }
       when: {
         sql: ${TABLE}.reduce_costs_realization_period =13984;;
-        label: "1.3"
+        label: "1.6"
       }
       when: {
         sql: ${TABLE}.reduce_costs_realization_period =13985;;
-        label: "1.2"
+        label: "1.5"
       }
       else: "0"
     }
