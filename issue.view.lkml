@@ -51,6 +51,45 @@ view: issue {
     sql: ${TABLE}.product_squad ;;
   }
 
+  dimension: product_squad_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.product_squad =13382;;
+        label: "Daily Banking"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13383;;
+        label: "CVM"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13617;;
+        label: "Cards"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13618;;
+        label: "Churn Management"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13619;;
+        label: "Omni-channel"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13620;;
+        label: "Online Acquisition"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13621;;
+        label: "Segments and Loyalty"
+      }
+      when: {
+        sql: ${TABLE}.product_squad =13622;;
+        label: "Transactional Banking"
+      }
+      else: "null"
+    }
+  }
+
 
 dimension: Process_efficiency_i_e_tat_post_implementation_expected_value {
   type: number
@@ -321,13 +360,69 @@ dimension: departments_affected_realization_period_code {
     sql: ${TABLE}.Tribe_department_name ;;
   }
 
+  dimension: Tribe_department_name_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.Tribe_department_name =13373;;
+        label: "Digital Services"
+      }
+      when: {
+        sql: ${TABLE}.Tribe_department_name =13374;;
+        label: "Digital Products"
+      }
+      when: {
+        sql: ${TABLE}.Tribe_department_name =13384;;
+        label: "Department"
+      }
+      else: "null"
+    }
+  }
+
+
   dimension: department_name {
     sql: ${TABLE}.department_name ;;
   }
 
+
   dimension: services_squad {
     sql: ${TABLE}.services_squad ;;
   }
+
+  dimension: services_squad_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.services_squad =13375;;
+        label: "Process Transformation"
+      }
+      when: {
+        sql: ${TABLE}.services_squad =13376;;
+        label: "Payment"
+      }
+      when: {
+        sql: ${TABLE}.services_squad =13377;;
+        label: "Business Lending"
+      }
+      when: {
+        sql: ${TABLE}.services_squad =13378;;
+        label: "Retail Lending"
+      }
+      when: {
+        sql: ${TABLE}.services_squad =13379;;
+        label: "CRM"
+      }
+      when: {
+        sql: ${TABLE}.services_squad =13380;;
+        label: "In-Person Acquisition"
+      }
+      else: "null"
+    }
+  }
+
+
+
+
 
   dimension: category_type {
     sql: ${TABLE}.category_type ;;
