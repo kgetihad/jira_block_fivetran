@@ -384,6 +384,16 @@ dimension: departments_affected_realization_period_code {
     sql: ${TABLE}.department_name ;;
   }
 
+  dimension: department_name_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.department_name =12915;;
+        label: "Technology"
+      }
+      else: "Other Departments"
+    }
+  }
 
   dimension: services_squad {
     sql: ${TABLE}.services_squad ;;
