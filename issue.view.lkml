@@ -391,6 +391,38 @@ dimension: departments_affected_realization_period_code {
         sql: ${TABLE}.department_name =12915;;
         label: "Technology"
       }
+      when: {
+        sql: ${TABLE}.department_name =12916;;
+        label: "Technology | Technology Department Management"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12917;;
+        label: "Technology | Digital Channels"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12918;;
+        label: "Technology | Enterprise Operations"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12919;;
+        label: "Technology | DevOps"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12920;;
+        label: "Technology | Data Science"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12921;;
+        label: "Technology | Integrations"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12922;;
+        label: "Technology | Enterprise Solutions"
+      }
+      when: {
+        sql: ${TABLE}.department_name =12923;;
+        label: "Technology | Core Systems"
+      }
       else: "Other Departments"
     }
   }
