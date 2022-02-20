@@ -427,6 +427,25 @@ dimension: departments_affected_realization_period_code {
     }
   }
 
+  dimension: category_type {
+    sql: ${TABLE}.category_type ;;
+  }
+
+  dimension: category_type_code {
+    type: string
+    case: {
+      when: {
+        sql: ${TABLE}.category_type =13386;;
+        label: "Product"
+      }
+      when: {
+        sql: ${TABLE}.category_type =13385;;
+        label: "Process"
+      }
+      else: "null"
+    }
+  }
+
   dimension: services_squad {
     sql: ${TABLE}.services_squad ;;
   }
@@ -462,13 +481,6 @@ dimension: departments_affected_realization_period_code {
     }
   }
 
-
-
-
-
-  dimension: category_type {
-    sql: ${TABLE}.category_type ;;
-  }
 
 dimension: IsInward {
   type: string
