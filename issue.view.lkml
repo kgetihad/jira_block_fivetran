@@ -31,6 +31,26 @@ view: issue {
     sql: ${TABLE}._original_estimate ;;
   }
 
+  dimension: actual {
+    type: string
+    sql: ${TABLE}.actual ;;
+  }
+
+  dimension: expected {
+    type: string
+    sql: ${TABLE}.expected ;;
+  }
+
+  dimension: baseline {
+    type: string
+    sql: ${TABLE}.baseline ;;
+  }
+
+  dimension: change_percentage {
+    type: number
+    sql: ${TABLE}.change_ ;;
+  }
+
   dimension: root_cause_defined {
     type: string
     case: {
