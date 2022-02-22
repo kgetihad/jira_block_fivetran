@@ -12,11 +12,6 @@ view: team {
     sql: ${TABLE}.dep ;;
   }
 
-  dimension: team {
-    type: string
-    sql: ${TABLE}.sub_dep ;;
-  }
-
   dimension: name {
     type: string
     sql: ${TABLE}.name ;;
