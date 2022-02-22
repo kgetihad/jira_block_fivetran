@@ -51,6 +51,10 @@ view: issue {
     sql: ${TABLE}.change_ ;;
   }
 
+  dimension: fix_version {
+    type: string
+    sql: ${TABLE}.fix_version ;;
+  }
   dimension: root_cause_defined {
     type: string
     case: {

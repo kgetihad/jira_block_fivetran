@@ -341,6 +341,19 @@ explore: project {
     relationship: many_to_one
   }
 
+  join: issue_link {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_link.issue_id} = ${issue.id};;
+  }
+
+  join: linked_issue_details {
+    from: issue
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${issue_link.related_issue_id} = ${linked_issue_details.id} ;;
+  }
+
   ### AS OF NOW, FACT TABLE ONLY INCLUDES COMMENT INFORMATION - SHOULD MAKE THIS A GIANT DERIVED TABLE
   ### WITH FACTS FROM ALL ISSUE-RELATED TABLES SUCH AS PRIORITY, TYPE, ETC.
 
