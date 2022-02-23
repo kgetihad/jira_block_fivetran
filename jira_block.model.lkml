@@ -200,6 +200,30 @@ explore: project {
     sql_on: ${issue.resolution} = ${resolution.id} ;;
   }
 
+  join: issue_fix_versions {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_fix_versions.issue_id} = ${issue.id} ;;
+  }
+
+  join: version {
+
+    relationship: one_to_one
+    sql_on: ${issue_fix_versions.version_id}= ${version.id};;
+  }
+
+join: issue_primary_assignees {
+  type: left_outer
+  relationship: many_to_one
+  sql_on: ${issue_primary_assignees.issue_id}=${issue.id} ;;
+}
+
+  join: issue_secondary_assignee {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${issue_secondary_assignee.issue_id}=${issue.id} ;;
+  }
+
   join: customer_satisfaction_realization_period {
     from: field_option
     view_label: "Field | Customer Satisfaction Realization Period"
