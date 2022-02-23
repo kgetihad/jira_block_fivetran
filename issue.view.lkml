@@ -40,6 +40,11 @@ view: issue {
     type: string
     sql: ${TABLE}.expected ;;
   }
+  dimension: epic_link {
+    type: string
+    sql: ${TABLE}.epic_link ;;
+  }
+
 
   dimension: baseline {
     type: string

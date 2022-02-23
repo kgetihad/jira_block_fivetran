@@ -224,6 +224,12 @@ join: issue_primary_assignees {
     sql_on: ${issue_secondary_assignee.issue_id}=${issue.id} ;;
   }
 
+  join: epic {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${epic.id}=${issue.epic_link} ;;
+  }
+
   join: customer_satisfaction_realization_period {
     from: field_option
     view_label: "Field | Customer Satisfaction Realization Period"
