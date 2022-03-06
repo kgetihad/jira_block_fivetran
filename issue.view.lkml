@@ -36,10 +36,22 @@ view: issue {
     sql: ${TABLE}.actual ;;
   }
 
+  dimension: Actual_Clean {
+    type: number
+    sql: regexp_replace(${actual},'[^0-9.]', '')  ;;
+  }
+
   dimension: expected {
     type: string
     sql: ${TABLE}.expected ;;
   }
+
+  dimension: Expected_Clean {
+    type: number
+    sql: regexp_replace(${expected},'[^0-9.]', '')  ;;
+  }
+
+
   dimension: epic_link {
     type: string
     sql: ${TABLE}.epic_link ;;
@@ -49,6 +61,11 @@ view: issue {
   dimension: baseline {
     type: string
     sql: ${TABLE}.baseline ;;
+  }
+
+  dimension: Baseline_Clean {
+    type: number
+    sql: regexp_replace(${baseline},'[^0-9.]', '')  ;;
   }
 
   dimension: change_percentage {
