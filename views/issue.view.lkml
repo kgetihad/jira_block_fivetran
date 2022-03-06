@@ -92,6 +92,11 @@ view: issue {
     sql: ${TABLE}.actual ;;
   }
 
+  dimension: Actual_Clean {
+    type: number
+    sql: regexp_replace(${TABLE}.actual,'[^0-9]', '')  ;;
+  }
+
   dimension: actual_1 {
     type: string
     sql: ${TABLE}.actual_1 ;;
@@ -374,6 +379,11 @@ view: issue {
   dimension: baseline {
     type: string
     sql: ${TABLE}.baseline ;;
+  }
+
+  dimension: Baseline_clean {
+    type: number
+    sql: regexp_replace(${TABLE}.baseline,'[^0-9]', '')  ;;
   }
 
   dimension: baseline_1 {
@@ -1227,6 +1237,11 @@ view: issue {
   dimension: expected {
     type: string
     sql: ${TABLE}.expected ;;
+  }
+
+  dimension: Expected_Clean {
+    type: number
+    sql: regexp_replace(${TABLE}.expected,'[^0-9]', '')  ;;
   }
 
   dimension: expected_1 {
