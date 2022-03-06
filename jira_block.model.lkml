@@ -189,18 +189,46 @@ explore: project {
     sql_on: ${project.id} = ${issue.project} ;;
     relationship: many_to_one
   }
-
-  join: resolution {
-    relationship: one_to_one
-    sql_on: ${issue.resolution} = ${resolution.id} ;;
-  }
   join: product_squad {
     from: field_option
     view_label: "Field | Product Squad"
     relationship: one_to_one
     sql_on: ${issue.product_squad} = ${product_squad.id} ;;
   }
+  join: resolution {
+    relationship: one_to_one
+    sql_on: ${issue.resolution} = ${resolution.id} ;;
+  }
 
+  join: issue_fix_versions {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_fix_versions.issue_id} = ${issue.id} ;;
+  }
+
+  join: version {
+
+    relationship: one_to_one
+    sql_on: ${issue_fix_versions.version_id}= ${version.id};;
+  }
+
+join: issue_primary_assignees {
+  type: left_outer
+  relationship: many_to_one
+  sql_on: ${issue_primary_assignees.issue_id}=${issue.id} ;;
+}
+
+  join: issue_secondary_assignee {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${issue_secondary_assignee.issue_id}=${issue.id} ;;
+  }
+
+  join: epic {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${epic.id}=${issue.epic_link} ;;
+  }
 
   join: customer_satisfaction_realization_period {
     from: field_option
@@ -341,6 +369,19 @@ explore: project {
     type:  left_outer
     sql_on: ${status.status_category_id} = ${status_category.id} ;;
     relationship: many_to_one
+  }
+
+  join: issue_link {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_link.issue_id} = ${issue.id};;
+  }
+
+  join: linked_issue_details {
+    from: issue
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${issue_link.related_issue_id} = ${linked_issue_details.id} ;;
   }
 
   ### AS OF NOW, FACT TABLE ONLY INCLUDES COMMENT INFORMATION - SHOULD MAKE THIS A GIANT DERIVED TABLE
