@@ -527,6 +527,43 @@ dimension: departments_affected_realization_period_code {
     }
   }
 
+# dimension: branch_name {
+#   type: string
+#   sql: ${branch_name}.name ;;
+
+# }
+
+  dimension: branch {
+    type: number
+    sql: ${TABLE}.branch ;;
+
+  }
+
+  dimension: call_purpose {
+    type: number
+    sql: ${TABLE}.call_purpose ;;
+
+  }
+
+  dimension: follow_up_type {
+    type: number
+    sql: ${TABLE}.follow_up_type_ ;;
+
+  }
+
+  dimension: customer_cif {
+    type: string
+
+    sql: ${TABLE}.customer_cif_ ;;
+
+  }
+
+  dimension: time_to_first_response {
+    type: string
+    sql: ${TABLE}.time_to_first_response ;;
+
+  }
+
 
 dimension: IsInward {
   type: string

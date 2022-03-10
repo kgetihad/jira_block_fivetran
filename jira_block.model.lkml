@@ -99,6 +99,7 @@ explore: app_branch_srv_mule_test {}
 explore: app_branch_srv {}
 explore: issue_assignee_history {}
 explore: issue_status_history {}
+# explore: field_option {}
 
 # Update based on how you are associating versions to
 explore: version {
@@ -205,6 +206,29 @@ explore: project {
     relationship: one_to_many
     sql_on: ${issue_fix_versions.issue_id} = ${issue.id} ;;
   }
+
+  join: branch_name {
+    from: field_option
+    view_label: "Issue Branch name"
+    relationship: one_to_one
+    sql_on: ${issue.branch}= ${branch_name.id};;
+  }
+
+  join: call_purpose {
+    from: field_option
+    view_label: "Issue Call Purpose"
+    relationship: one_to_one
+    sql_on: ${issue.call_purpose}= ${call_purpose.id};;
+  }
+
+  join: follow_up_type {
+    from: field_option
+    view_label: "Issue Follow Up Type"
+    relationship: one_to_one
+    sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
+  }
+
+
 
   join: version {
 
