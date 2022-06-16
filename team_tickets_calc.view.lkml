@@ -14,7 +14,7 @@ FROM jira.team as u
 LEFT JOIN jira.team_tickets as t on t.user_id = u.accountid
 LEFT JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='SLA'
-AND trunc(i.created) BETWEEN '2021-01-01' AND  '2021-12-31'
+AND trunc(i.created) BETWEEN '2021-01-01' AND  '20226-12-31'
 group by u.dep) as m
 JOIN
 (SELECT count(DISTINCT t.issue_id) c,count(DISTINCT u.accountid) a,u.dep,slaola_type
@@ -22,7 +22,7 @@ FROM jira.team as u
 LEFT JOIN jira.team_tickets as t on t.user_id = u.accountid
 LEFT JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='OLA'
-AND trunc(i.created) BETWEEN '2021-01-01' AND  '2021-12-31'
+AND trunc(i.created) BETWEEN '2021-01-01' AND  '2026-12-31'
 group by u.dep,slaola_type) as k on k.dep = m.dep;;
     }
 

@@ -201,6 +201,26 @@ explore: project {
     sql_on: ${issue.resolution} = ${resolution.id} ;;
   }
 
+
+  join: issue_expected_1_history {
+    relationship: one_to_one
+    sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
+  }
+
+  join: parent_issue {
+    from: issue
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${parent_issue.id} = ${issue.parent_id};;
+  }
+
+  join: parent_issue_details {
+    from: issue
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${parent_issue.id} = ${parent_issue_details.id} ;;
+  }
+
   join: issue_fix_versions {
     type: left_outer
     relationship: one_to_many

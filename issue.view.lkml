@@ -73,6 +73,16 @@ view: issue {
     sql: ${TABLE}.change_ ;;
   }
 
+  dimension: parent_id {
+    type: number
+    sql: ${TABLE}.parent_id ;;
+  }
+
+  dimension: parent_key {
+    type: string
+    sql: (select key from jira.issue where ${TABLE}.id = ${parent_id}) ;;
+  }
+
   dimension: fix_version {
     type: string
     sql: ${TABLE}.fix_version ;;
