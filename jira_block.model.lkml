@@ -99,6 +99,7 @@ explore: app_branch_srv_mule_test {}
 explore: app_branch_srv {}
 explore: issue_assignee_history {}
 explore: issue_status_history {}
+# explore: field_option {}
 
 # Update based on how you are associating versions to
 explore: version {
@@ -189,18 +190,89 @@ explore: project {
     sql_on: ${project.id} = ${issue.project} ;;
     relationship: many_to_one
   }
-
-  join: resolution {
-    relationship: one_to_one
-    sql_on: ${issue.resolution} = ${resolution.id} ;;
-  }
   join: product_squad {
     from: field_option
     view_label: "Field | Product Squad"
     relationship: one_to_one
     sql_on: ${issue.product_squad} = ${product_squad.id} ;;
   }
+  join: resolution {
+    relationship: one_to_one
+    sql_on: ${issue.resolution} = ${resolution.id} ;;
+  }
 
+
+  join: issue_expected_1_history {
+    relationship: one_to_one
+    sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
+  }
+
+  join: parent_issue {
+    from: issue
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${parent_issue.id} = ${issue.parent_id};;
+  }
+
+  join: parent_issue_details {
+    from: issue
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${parent_issue.id} = ${parent_issue_details.id} ;;
+  }
+
+  join: issue_fix_versions {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_fix_versions.issue_id} = ${issue.id} ;;
+  }
+
+  join: branch_name {
+    from: field_option
+    view_label: "Issue Branch name"
+    relationship: one_to_one
+    sql_on: ${issue.branch}= ${branch_name.id};;
+  }
+
+  join: call_purpose {
+    from: field_option
+    view_label: "Issue Call Purpose"
+    relationship: one_to_one
+    sql_on: ${issue.call_purpose}= ${call_purpose.id};;
+  }
+
+  join: follow_up_type {
+    from: field_option
+    view_label: "Issue Follow Up Type"
+    relationship: one_to_one
+    sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
+  }
+
+
+
+  join: version {
+
+    relationship: one_to_one
+    sql_on: ${issue_fix_versions.version_id}= ${version.id};;
+  }
+
+join: issue_primary_assignees {
+  type: left_outer
+  relationship: many_to_one
+  sql_on: ${issue_primary_assignees.issue_id}=${issue.id} ;;
+}
+
+  join: issue_secondary_assignee {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${issue_secondary_assignee.issue_id}=${issue.id} ;;
+  }
+
+  join: epic {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${epic.id}=${issue.epic_link} ;;
+  }
 
   join: customer_satisfaction_realization_period {
     from: field_option
@@ -341,6 +413,19 @@ explore: project {
     type:  left_outer
     sql_on: ${status.status_category_id} = ${status_category.id} ;;
     relationship: many_to_one
+  }
+
+  join: issue_link {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_link.issue_id} = ${issue.id};;
+  }
+
+  join: linked_issue_details {
+    from: issue
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${issue_link.related_issue_id} = ${linked_issue_details.id} ;;
   }
 
   ### AS OF NOW, FACT TABLE ONLY INCLUDES COMMENT INFORMATION - SHOULD MAKE THIS A GIANT DERIVED TABLE
