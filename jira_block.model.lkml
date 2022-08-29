@@ -5,6 +5,7 @@ include: "*.view"
 include: "/views/issue_is_the_solution_scalable_.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
+include: "/views/team_tickets_test.view.lkml"
 
 datagroup: fivetran_datagroup {
   sql_trigger: SELECT max(date_trunc('minute', done)) FROM jira.fivetran_audit ;;
@@ -73,10 +74,9 @@ explore: technology_team {
     sql_on: ${project_score.project}  = ${project_score_team.project};;
   }
 
-
-
-
 }
+
+
 explore: siebel_srv {}
 explore: app_srv {}
 
