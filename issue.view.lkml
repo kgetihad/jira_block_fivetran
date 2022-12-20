@@ -109,7 +109,7 @@ view: issue {
 
   dimension: date_q {
     type: date
-    sql: date_trunc('Quarter',${created_date});;
+    sql: date_trunc('Year',${created_date});;
   }
 
   dimension: product_squad_code {
