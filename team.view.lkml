@@ -26,6 +26,10 @@ view: team {
     type: string
     sql: ${TABLE}.accountid ;;
   }
+  dimension: sub_dep {
+    type: string
+    sql: ${TABLE}.sub_dep ;;
+  }
 
   measure: count {
     type: count

@@ -107,6 +107,11 @@ view: issue {
     sql: ${TABLE}.product_squad ;;
   }
 
+  dimension: date_q {
+    type: date
+    sql: date_trunc('Quarter',${created_date});;
+  }
+
   dimension: product_squad_code {
     type: string
     case: {

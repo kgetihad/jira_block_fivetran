@@ -1,7 +1,9 @@
 view: team_tickets_calc {
 
   derived_table : {
-    sql: SELECT m.dep ,
+    sql:  SELECT s_date,
+      o_date,
+      m.sub_dep ,
        m.c as sla_count,
        m.c/m.a as sla_avg,
        m.a as team_count_sla,
@@ -9,33 +11,37 @@ view: team_tickets_calc {
        k.c/k.a as ola_avg,
        k.a as team_count_ola
 
-FROM (SELECT count( DISTINCT t.issue_id) c ,count(DISTINCT u.accountid)a ,u.dep
+FROM (SELECT count( DISTINCT t.issue_id) c ,count(DISTINCT u.accountid)a ,u.sub_dep,date_trunc('Quarter',i.created) s_date
 FROM jira.team as u
 LEFT JOIN jira.team_tickets as t on t.user_id = u.accountid
 LEFT JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='SLA'
 AND trunc(i.created) BETWEEN '2022-01-01' AND  '2022-12-31'
-AND trunc(i.created) BETWEEN '2021-01-01' AND  '20226-12-31'
-group by u.dep) as m
+group by u.sub_dep,date_trunc('Quarter',i.created)) as m
 JOIN
-(SELECT count(DISTINCT t.issue_id) c,count(DISTINCT u.accountid) a,u.dep,slaola_type
+(SELECT count(DISTINCT t.issue_id) c,count(DISTINCT u.accountid) a,u.sub_dep,date_trunc('Quarter',i.created) o_date
 FROM jira.team as u
 LEFT JOIN jira.team_tickets as t on t.user_id = u.accountid
 LEFT JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='OLA'
 AND trunc(i.created) BETWEEN '2022-01-01' AND  '2022-12-31'
-AND trunc(i.created) BETWEEN '2021-01-01' AND  '2026-12-31'
-group by u.dep,slaola_type) as k on k.dep = m.dep;;
+group by u.sub_dep,date_trunc('Quarter',i.created)) as k on k.sub_dep = m.sub_dep;;
     }
 
-  dimension: department {
-    type: string
-    sql: ${TABLE}.dep ;;
-  }
 
   dimension: sla_count {
     type: number
     sql: ${TABLE}.sla_count ;;
+  }
+
+  dimension: o_date {
+    type: date
+    sql: ${TABLE}.o_date ;;
+  }
+
+  dimension: s_date {
+    type: date
+    sql: ${TABLE}.s_date ;;
   }
 
   dimension: sla_avg {
@@ -51,6 +57,11 @@ group by u.dep,slaola_type) as k on k.dep = m.dep;;
   dimension: ola_avg {
     type: number
     sql: ${TABLE}.ola_avg ;;
+  }
+
+  dimension: sub_dep {
+    type: string
+    sql: ${TABLE}.sub_dep ;;
   }
 
 

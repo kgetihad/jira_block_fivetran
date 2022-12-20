@@ -56,7 +56,9 @@ explore: technology_team {
     view_label: "Team | Department Calcuation"
     type: left_outer
     relationship: one_to_one
-    sql_on: ${team_tickets_calc.department}  = ${technology_team.dep};;
+    sql_on: ${team_tickets_calc.sub_dep}  = ${technology_team.sub_dep}
+    and ${issue.date_q}=${team_tickets_calc.o_date} and  ${issue.date_q}=${team_tickets_calc.s_date}
+    ;;
   }
 
 
