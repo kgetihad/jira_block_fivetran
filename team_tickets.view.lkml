@@ -21,10 +21,6 @@ view: team_tickets {
     sql: ${TABLE}.slaola_type ;;
   }
 
-  dimension: sum {
-    type: number
-    sql: ${TABLE}.sum ;;
-  }
 
   dimension: user_id {
     type: string
@@ -36,15 +32,6 @@ view: team_tickets {
     sql: ${TABLE}.working_hours ;;
   }
 
-  dimension: working_minus_target {
-    type: number
-    sql: ${TABLE}.working_minus_target ;;
-  }
-
-  dimension: working_minus_target_percentage {
-    type: number
-    sql: ${TABLE}.working_minus_target_percentage ;;
-  }
 
   measure: count {
     type: count
@@ -116,7 +103,7 @@ view: team_tickets {
   measure: count_resolved_sla_count_ola {
     type: number
     sql:100 *  ${count_resolved_ola} / NULLIF(${count_ola},0);;
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
   measure: avg_sla {
@@ -134,7 +121,7 @@ view: team_tickets {
     sql: ${sla_score}  ;;
     filters: [ slaola_type: "OLA"]
     value_format: "0.000"
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
 
@@ -143,7 +130,7 @@ view: team_tickets {
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "SLA"]
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
   measure: count_ola {
@@ -151,7 +138,7 @@ view: team_tickets {
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "OLA"]
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
   measure: count_resolved_sla {
@@ -159,7 +146,7 @@ view: team_tickets {
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "SLA", issue.resolved_date:  "NOT NULL"]
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
   measure: count_resolved_ola {
@@ -167,7 +154,7 @@ view: team_tickets {
     type:  count_distinct
     sql: ${issue_id}  ;;
     filters: [ slaola_type: "OLA", issue.resolved_date:  "NOT NULL"]
-    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
 
