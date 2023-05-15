@@ -112,7 +112,7 @@ view: team_tickets {
     sql: ${sla_score}  ;;
     filters: [ slaola_type: "SLA"]
     value_format: "0.000"
-   ## drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,sum,user_id]
+    drill_fields: [issue.issue_key,issue.reporter,status.name,issue_id,sla_score,slaola_type,user_id]
   }
 
   measure: avg_ola {
