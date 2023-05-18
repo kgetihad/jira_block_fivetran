@@ -1,15 +1,15 @@
 view: team_tickets_calc {
 
   derived_table : {
-    sql:   SELECT s_date,
+    sql:    SELECT s_date,
       o_date,
       m.sub_dep ,
-       m.c as sla_count,
-       m.c/m.a as sla_avg,
-       m.a as team_count_sla,
-       k.c as ola_count,
-       k.c/k.a as ola_avg,
-       k.a as team_count_ola
+      coalesce(m.c) as sla_count,
+      coalesce( m.c/CASE WHEN M.A=0 THEN 1 ELSE M.A END,1) as sla_avg,
+      coalesce(m.a,0) as team_count_sla,
+      coalesce(k.c,0) as ola_count,
+      coalesce(k.c/CASE WHEN K.A=0 THEN 1 ELSE K.A END,1) as ola_avg,
+      coalesce(k.a,0) as team_count_ola
 
 FROM (SELECT distinct count(t.issue_id) over (partition by sub_dep) c ,
 (select count(distinct u2.accountid) from jira.team u2 where u.sub_dep=u2.sub_dep) a  ,
@@ -20,7 +20,7 @@ INNER JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='SLA'
 AND trunc(i.created) BETWEEN '2023-01-01' AND  '2023-12-31'
 ) as m
-JOIN
+left JOIN
 (SELECT distinct count(t.issue_id) over (partition by sub_dep) c ,
 (select count(distinct u2.accountid) from jira.team u2 where u.sub_dep=u2.sub_dep) a  ,
 u.sub_dep,slaola_type,date_trunc('YEAR',i.created) o_date
