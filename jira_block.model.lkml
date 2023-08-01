@@ -98,6 +98,7 @@ explore: sprint {
 
 }
 explore: app_subscriber_branch {}
+explore: project_raw_data {}
 explore: app_branch_srv_mule_test {}
 explore: app_branch_srv {}
 explore: issue_assignee_history {}
