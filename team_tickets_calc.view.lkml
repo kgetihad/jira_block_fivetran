@@ -18,7 +18,7 @@ FROM jira.team as u
 INNER JOIN jira.team_tickets as t on t.user_id = u.accountid
 INNER JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='SLA'
-AND trunc(i.created) BETWEEN '2023-01-01' AND  '2023-12-31'
+AND trunc(i.created) BETWEEN '2024-01-01' AND  '2024-12-31'
 ) as m
 left JOIN
 (SELECT distinct count(t.issue_id) over (partition by sub_dep) c ,
@@ -28,7 +28,7 @@ FROM jira.team as u
 INNER JOIN jira.team_tickets as t on t.user_id = u.accountid
 INNER JOIN jira.issue as i on i.id = t.issue_id
 WHERE slaola_type ='OLA'
-AND trunc(i.created) BETWEEN '2023-01-01' AND  '2023-12-31'
+AND trunc(i.created) BETWEEN '2024-01-01' AND  '2024-12-31'
 ) as k on k.sub_dep = m.sub_dep;;
     }
 
