@@ -227,7 +227,6 @@
     - issue.assignee
     - issue.created_date
     - issue.project
-    - issue.due_date
     - issue.environment
     #- issue.external_issue_id
     - issue._original_estimate

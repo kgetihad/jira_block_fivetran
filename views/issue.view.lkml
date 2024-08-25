@@ -1517,7 +1517,7 @@ view: issue_new {
     sql: ${TABLE}.down_time_required ;;
   }
 
-  dimension_group: due_date {
+ dimension_group: due_date {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
