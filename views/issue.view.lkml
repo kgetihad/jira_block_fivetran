@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Issue"
-view: issue_new {
+view: issue {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: jira.issue ;;
@@ -4884,6 +4884,25 @@ view: issue_new {
       }
       else: "0"
     }
+  }
+
+  dimension: SLAOLA  {
+    type: string
+    case: {
+      when: {
+        sql: (${reporter} in (select username from team)) AND ${reporter} != ${assignee} ;;
+        label: "OLA"
+      }
+      # Possibly more when statements
+      else: "SLA"
+    }
+  }
+
+
+  dimension: is_issue_resolved {
+    group_label: "Resolution"
+    type: yesno
+    sql: ${resolved_date} IS NOT NULL ;;
   }
 
 

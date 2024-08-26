@@ -6,6 +6,7 @@ include: "/views/issue_is_the_solution_scalable_.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 include: "/views/team_tickets_test.view.lkml"
+include: "/views/issue.view.lkml"
 
 datagroup: fivetran_datagroup {
   sql_trigger: SELECT max(date_trunc('minute', done)) FROM jira.fivetran_audit ;;
@@ -57,8 +58,7 @@ explore: technology_team {
     type: left_outer
     relationship: one_to_one
     sql_on: ${team_tickets_calc.sub_dep}  = ${technology_team.sub_dep}
-    --and ${issue.date_q}=${team_tickets_calc.o_date}
-    --and  ${issue.date_q}=${team_tickets_calc.s_date}
+
     ;;
   }
 
@@ -245,12 +245,12 @@ explore: project {
     sql_on: ${issue.call_purpose}= ${call_purpose.id};;
   }
 
-  join: follow_up_type {
-    from: field_option
-    view_label: "Issue Follow Up Type"
-    relationship: one_to_one
-    sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
-  }
+  # join: follow_up_type {
+  #   from: field_option
+  #   view_label: "Issue Follow Up Type"
+  #   relationship: one_to_one
+  #   sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
+  # }
 
 
 
