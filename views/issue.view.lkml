@@ -3071,7 +3071,7 @@ view: issue_new {
   }
 
   dimension: q_progress_reason {
-    type: number
+    type: string
     sql: ${TABLE}.q_progress_reason ;;
   }
 
