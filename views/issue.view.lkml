@@ -3070,6 +3070,11 @@ view: issue_new {
     sql: ${TABLE}.q_progress ;;
   }
 
+  dimension: q_progress_reason {
+    type: number
+    sql: ${TABLE}.q_progress_reason ;;
+  }
+
   dimension_group: qa_end {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
@@ -4549,6 +4554,7 @@ view: issue_new {
     sql: ${days_to_resolve_issue} ;;
     value_format_name: decimal_0
   }
+
 
 
 
