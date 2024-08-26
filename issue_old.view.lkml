@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Issue"
-view: issue_new {
+view: issue {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: jira.issue ;;
@@ -13,9 +13,9 @@ view: issue_new {
     type: number
     sql: ${TABLE}.external_issue_id ;;
   }
-    # Here's what a typical dimension looks like in LookML.
-    # A dimension is a groupable field that can be used to filter query results.
-    # This dimension will be called " " in Explore.
+  # Here's what a typical dimension looks like in LookML.
+  # A dimension is a groupable field that can be used to filter query results.
+  # This dimension will be called " " in Explore.
 
   dimension: _ {
     type: string
@@ -39,6 +39,37 @@ view: issue_new {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}._fivetran_synced ;;
   }
+
+  dimension: date_q {
+    type: date
+    sql: date_trunc('Year',${created_date});;
+  }
+
+
+  dimension: follow_up_type {
+    type: number
+    sql: ${TABLE}.follow_up_type_ ;;
+
+  }
+
+  dimension: is_issue_resolved {
+    group_label: "Resolution"
+    type: yesno
+    sql: ${resolved_date} IS NOT NULL ;;
+  }
+
+  dimension: SLAOLA  {
+    type: string
+    case: {
+      when: {
+        sql: (${reporter} in (select username from team)) AND ${reporter} != ${assignee} ;;
+        label: "OLA"
+      }
+      # Possibly more when statements
+      else: "SLA"
+    }
+  }
+
 
   dimension: _of_amendment {
     type: string
@@ -1517,7 +1548,7 @@ view: issue_new {
     sql: ${TABLE}.down_time_required ;;
   }
 
- dimension_group: due_date {
+  dimension_group: due_date {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
@@ -4475,24 +4506,24 @@ view: issue_new {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-  external_issue_id,
-  _tribes_tech_department_name,
-  tribe_department_name,
-  product_name,
-  department_name,
-  vendor_name,
-  voucher_name,
-  device_dns_name,
-  tenable_plugin_name,
-  device_net_bios_name,
-  vulnerability_repository_name,
-  project_name,
-  party_name,
-  company_name,
-  vendor_company_name,
-  epic_name,
-  first_name
-  ]
+      external_issue_id,
+      _tribes_tech_department_name,
+      tribe_department_name,
+      product_name,
+      department_name,
+      vendor_name,
+      voucher_name,
+      device_dns_name,
+      tenable_plugin_name,
+      device_net_bios_name,
+      vulnerability_repository_name,
+      project_name,
+      party_name,
+      company_name,
+      vendor_company_name,
+      epic_name,
+      first_name
+    ]
   }
   dimension: is_duplicate {
     group_label: "Resolution"
