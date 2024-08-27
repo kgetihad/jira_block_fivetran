@@ -198,16 +198,19 @@ explore: project {
     from: field_option
     view_label: "Field | Product Squad"
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.product_squad} = ${product_squad.id} ;;
   }
   join: resolution {
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.resolution} = ${resolution.id} ;;
   }
 
 
   join: issue_expected_1_history {
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
   }
 
@@ -235,6 +238,7 @@ explore: project {
     from: field_option
     view_label: "Issue Branch name"
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.branch}= ${branch_name.id};;
   }
 
@@ -242,6 +246,7 @@ explore: project {
     from: field_option
     view_label: "Issue Call Purpose"
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.call_purpose}= ${call_purpose.id};;
   }
 
@@ -257,6 +262,7 @@ explore: project {
   join: version {
 
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue_fix_versions.version_id}= ${version.id};;
   }
 
@@ -280,6 +286,7 @@ join: issue_primary_assignees {
 
   join: customer_satisfaction_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Customer Satisfaction Realization Period"
     relationship: one_to_one
     sql_on: ${issue.customer_satisfaction_rate_realization_period} = ${customer_satisfaction_realization_period.id} ;;
@@ -287,6 +294,7 @@ join: issue_primary_assignees {
 
   join: customer_waiting_time_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Customer Waiting Time Realization Period"
     relationship: one_to_one
     sql_on: ${issue.customer_waiting_time_realization_period} = ${customer_waiting_time_realization_period.id} ;;
@@ -294,6 +302,7 @@ join: issue_primary_assignees {
 
   join: departments_affected_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Department Affected Realization Period"
     relationship: one_to_one
     sql_on: ${issue.departments_affected_realization_period} = ${departments_affected_realization_period.id} ;;
@@ -301,6 +310,7 @@ join: issue_primary_assignees {
 
   join: employee_productivity_i_e_rework_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Employee Productivity Rework Realization Period"
     relationship: one_to_one
     sql_on: ${issue.employee_productivity_i_e_rework_realization_period} = ${employee_productivity_i_e_rework_realization_period.id} ;;
@@ -308,6 +318,7 @@ join: issue_primary_assignees {
 
   join: process_efficency_i_e_tat_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Process Efficiency TAT Realization Period"
     relationship: one_to_one
     sql_on: ${issue.process_efficency_i_e_tat_realization_period} = ${process_efficency_i_e_tat_realization_period.id} ;;
@@ -315,6 +326,7 @@ join: issue_primary_assignees {
 
   join: segments_affected_realization_period {
     from: field_option
+    type:  left_outer
     view_label: "Field | Segments Affected Realization Period"
     relationship: one_to_one
     sql_on: ${issue.segments_affected_realization_period} = ${segments_affected_realization_period.id} ;;
@@ -325,6 +337,7 @@ join: issue_primary_assignees {
     # from: issue_is_the_solution_scalable_
     view_label: "Field | Is The Solution Scalable"
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${issue.id} = ${issue_is_the_solution_scalable_.issue_id} ;;
   }
 
@@ -336,6 +349,7 @@ join: issue_primary_assignees {
 
   join: time_assigned_per_assignee {
     relationship: one_to_many
+    type:  left_outer
     sql_on: ${issue.id} = ${time_assigned_per_assignee.issue_id} and  ${issue_assignee_history.user_id} = ${time_assigned_per_assignee.user_id};;
   }
 
@@ -348,11 +362,13 @@ join: issue_primary_assignees {
 
   join: incidents_table {
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${team.accountid}=${incidents_table.name} ;;
   }
 
   join: directors {
     relationship: one_to_many
+    type:  left_outer
     sql_on: ${directors.dept}=${team.dep} ;;
   }
 
@@ -364,6 +380,7 @@ join: issue_primary_assignees {
 
   join: target {
     relationship: one_to_one
+    type:  left_outer
     sql_on: ${team.dep} = ${target.team} AND ${priority.name} = ${target.priority} and ${issue.SLAOLA} = ${target.issla};;
 #     sql_where:   ${issue.priority} = ${target.priority};;
   }
