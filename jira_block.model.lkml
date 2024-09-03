@@ -257,6 +257,12 @@ explore: project {
   #   sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
   # }
 
+  join: q_progress_temp_lookup {
+    relationship: one_to_many
+    type: left_outer
+    sql: ${issue.q_progress}=${q_progress_temp_lookup.q_progress_id} ;;
+  }
+
 
 
   join: version {

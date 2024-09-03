@@ -4905,10 +4905,7 @@ view: issue {
     sql: ${resolved_date} IS NOT NULL ;;
   }
 
-  dimension:ddate {
-    type: date
-    sql: CASE WHEN count(${key})>0THEN ${planned_delivery_date} END;;
-  }
+
 
 
 }
