@@ -215,6 +215,12 @@ explore: project {
     sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
   }
 
+  join: component {
+    relationship: many_to_one
+    type: left_outer
+    sql_on: ${issue.project}=${component.project_id} ;;
+  }
+
   join: parent_issue {
     from: issue
     type: left_outer
