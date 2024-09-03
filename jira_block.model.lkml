@@ -7,6 +7,7 @@ include: "/views/issue_is_the_solution_scalable_.view.lkml"
 include: "*.dashboard"
 include: "/views/team_tickets_test.view.lkml"
 include: "/views/issue.view.lkml"
+include: "/q_progress_temp_lookup.view.lkml"
 
 datagroup: fivetran_datagroup {
   sql_trigger: SELECT max(date_trunc('minute', done)) FROM jira.fivetran_audit ;;
@@ -250,19 +251,6 @@ explore: project {
     sql_on: ${issue.call_purpose}= ${call_purpose.id};;
   }
 
-  # join: follow_up_type {
-  #   from: field_option
-  #   view_label: "Issue Follow Up Type"
-  #   relationship: one_to_one
-  #   sql_on: ${issue.follow_up_type}= ${follow_up_type.id};;
-  # }
-
-  join: q_progress_temp_lookup {
-    relationship: one_to_many
-    type: left_outer
-    sql: ${issue.q_progress}=${q_progress_temp_lookup.q_progress_id} ;;
-  }
-
 
 
   join: version {
@@ -448,6 +436,12 @@ join: issue_primary_assignees {
     sql_on: ${issue_link.issue_id} = ${issue.id};;
   }
 
+  join: q_progress_temp_lookup {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue.q_progress} = ${q_progress_temp_lookup.q_progress_id} ;;
+  }
+
   join: linked_issue_details {
     from: issue
     type: left_outer
@@ -463,6 +457,11 @@ join: issue_primary_assignees {
     sql_on: ${issue.id} = ${issue_comment_facts.issue_id} ;;
     relationship: many_to_one
   }
+
+
+
+
+
 
 }
 
