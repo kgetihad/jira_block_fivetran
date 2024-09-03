@@ -216,7 +216,7 @@ explore: project {
   }
 
   join: component {
-    relationship: many_to_one
+    relationship: many_to_many
     type: left_outer
     sql_on: ${issue.project}=${component.project_id} ;;
   }
