@@ -8,6 +8,7 @@ include: "*.dashboard"
 include: "/views/team_tickets_test.view.lkml"
 include: "/views/issue.view.lkml"
 include: "/q_progress_temp_lookup.view.lkml"
+include: "/views/issue_components.view.lkml"
 
 datagroup: fivetran_datagroup {
   sql_trigger: SELECT max(date_trunc('minute', done)) FROM jira.fivetran_audit ;;
@@ -215,10 +216,10 @@ explore: project {
     sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
   }
 
-  join: component {
-    relationship: many_to_many
+  join: issue_components {
+    relationship: one_to_many
     type: left_outer
-    sql_on: ${issue.project}=${component.project_id} ;;
+    sql_on: ${issue.id}=${issue_components.issue_id} ;;
   }
 
   join: parent_issue {
