@@ -4905,9 +4905,9 @@ view: issue {
     sql: ${resolved_date} IS NOT NULL ;;
   }
 
-  measure: Count_Distinct_ID {
-    type: count_distinct
-    sql: CASE WHEN ${planned_delivery_date} IS NOT NULL THEN ${key} END;;
+  dimension:ddate {
+    type: date
+    sql: CASE WHEN count(${key})>0THEN ${planned_delivery_date} END;;
   }
 
 
