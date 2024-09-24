@@ -48,13 +48,17 @@
   i.created,
   i.updated,
   i.actual_delivery_date,
+  i.planned_delivery_date,
+  i.severity,
   p2.name as priority,
   i.parent_link,
   s.name,
   i.description,
   i.summary,
   case when e.name is null then i.epic_name else e.name end as epic_name,
-  s2.name as epic_status
+  s2.name as epic_status,
+  qpl.description as qpl_description,
+  v.release_date as version_release_date
 
 from jira.issue  i
 
@@ -90,6 +94,15 @@ left join jira.priority p2
 
 left join jira.resolution r2
   on r2.id = i.resolution
+
+left join jira.q_progress_lookup qpl
+  on qpl.q_progress_id = i.q_progress
+
+left join jira.issue_fix_versions ifv
+  on ifv.issue_id = i.id
+
+left join jira.version v
+  on v.id = ifv.version_id
 
 where i.created >= '2022-01-01'
        ;;
@@ -187,6 +200,28 @@ where i.created >= '2022-01-01'
     type: time
     timeframes: [time, date, week, month, raw]
     sql: ${TABLE}.actual_delivery_date ;;
+  }
+
+  dimension_group: planned_delivery_date {
+    type: time
+    timeframes: [time, date, week, month, raw]
+    sql: ${TABLE}.planned_delivery_date ;;
+  }
+
+  dimension_group: version_release_date {
+    type: time
+    timeframes: [time, date, week, month, raw]
+    sql: ${TABLE}.version_release_date ;;
+  }
+
+  dimension:  severity{
+    type: string
+    sql: ${TABLE}.severity ;;
+  }
+
+  dimension:  qpl_description{
+    type: string
+    sql: ${TABLE}.qpl_description ;;
   }
 
   dimension:  priority{
