@@ -4905,6 +4905,17 @@ view: issue {
     sql: ${resolved_date} IS NOT NULL ;;
   }
 
+  dimension: Highlight {
+    type: string
+    sql: ${TABLE}.HIGHLIGHT ;;
+  }
+
+  dimension: Estimated_Effort_Sprints {
+    type: string
+    sql: ${TABLE}.ESTIMATED_EFFORT_SPRINTS_ ;;
+
+  }
+
 
 
 
