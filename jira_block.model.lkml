@@ -465,6 +465,40 @@ join: issue_primary_assignees {
     relationship: many_to_one
   }
 
+  join: issue_n {
+    from: issue
+    type: left_outer
+    sql: ${issue.id} =  ${issue_n.epic_link};;
+    relationship: many_to_many
+  }
+
+  join:  issue_type_n {
+    from: issue_type
+    type:  left_outer
+    sql_on: ${issue_n.issue_type} = ${issue_type_n.id} ;;
+    relationship: many_to_one
+  }
+
+  join:  priority_n {
+    from: priority
+    type:  left_outer
+    sql_on: ${issue_n.priority} = ${priority_n.id} ;;
+    relationship: many_to_one
+  }
+  join:  status_n {
+    from: status
+    type:  left_outer
+    sql_on: ${issue_n.status} = ${status_n.id} ;;
+    relationship: many_to_one
+  }
+
+  join: q_progress_temp_lookup_n {
+    from: q_progress_temp_lookup
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${issue_n.q_progress} = ${q_progress_temp_lookup_n.q_progress_id} ;;
+  }
+
 
 
 

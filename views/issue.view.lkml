@@ -4916,6 +4916,44 @@ view: issue {
 
   }
 
+  dimension: tribe {
+    type: string
+    sql:
+    CASE
+        WHEN ${TABLE}.project IN (15152,10700,15161,10500,14106,14133,10800,10811,12700,14052,12800,13600,14089,11301,15138,11400) THEN 'Tech'
+        WHEN ${TABLE}.project IN (14100,14101,14099,14095,14098,14102,14097) THEN 'Service'
+        WHEN ${TABLE}.project IN (14093,14094,15159,14091,14092,15160) THEN 'Product'
+        ELSE 'Unknown'
+  END  ;;
+  }
+
+  dimension: SQUAD {
+    type: string
+    sql:
+   CASE
+        WHEN ${TABLE}.project in (15152,10700,15161) THEN 'Mule'
+        WHEN ${TABLE}.project in (10500,14106,14133,10800,10811,12700,14052,12800) THEN 'Core'
+        WHEN ${TABLE}.project = 13600 THEN 'Devops & DBA'
+        WHEN ${TABLE}.project = 14089 THEN 'Cards'
+        WHEN ${TABLE}.project = 11301 THEN 'Data Science'
+        WHEN ${TABLE}.project in (15138,11400) THEN 'Infra'
+        WHEN ${TABLE}.project = 14100 THEN 'Payments'
+        WHEN ${TABLE}.project = 14101 THEN 'Business Lending'
+        WHEN ${TABLE}.project = 14099 THEN 'CRM'
+        WHEN ${TABLE}.project = 14095 THEN 'Churn'
+        WHEN ${TABLE}.project = 14098 THEN 'IPO'
+        WHEN ${TABLE}.project = 14102 THEN 'Process Transformations'
+        WHEN ${TABLE}.project = 14097 THEN 'Retail Lending'
+        WHEN ${TABLE}.project = 14093 THEN 'Business Banking'
+        WHEN ${TABLE}.project = 14094 THEN 'Daily Banking'
+        WHEN ${TABLE}.project = 15159 THEN 'Lending & lifestyle'
+        WHEN ${TABLE}.project = 14091 THEN 'Loyalty'
+        WHEN ${TABLE}.project = 14092 THEN 'OmniChannel'
+        WHEN ${TABLE}.project = 15160 THEN 'Transfers'
+        ELSE 'Unknown'
+  END ;;
+  }
+
 
 
 
