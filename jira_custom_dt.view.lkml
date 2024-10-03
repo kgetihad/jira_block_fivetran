@@ -58,7 +58,7 @@
   case when e.name is null then i.epic_name else e.name end as epic_name,
   s2.name as epic_status,
   qpl.description as qpl_description,
-  v.release_date as version_release_date
+  max(v.release_date) over (partition by case when i.epic_link is null then i.id else i.epic_link end) as version_release_date
 
 from jira.issue  i
 
