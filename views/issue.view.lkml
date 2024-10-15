@@ -4488,6 +4488,7 @@ view: issue {
   vendor_name,
   voucher_name,
   device_dns_name,
+  key,
   tenable_plugin_name,
   device_net_bios_name,
   vulnerability_repository_name,
