@@ -102,6 +102,10 @@ view: issue {
     }
     }
 
+dimension: customer_request_type {
+  type: string
+  sql: ${TABLE}.customer_request_type ;;
+}
   dimension: product_squad {
     type: number
     sql: ${TABLE}.product_squad ;;

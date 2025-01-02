@@ -1,16 +1,16 @@
-view: issue_expected_1_history {
+view: issue_expected_hist {
   derived_table: {
     sql: --select * from jira.issue_expected_history where issue_id = 400631
       --limit 10 jira.issue_salary_offer_history
 
       select distinct issue_id,
-      first_value(value ignore nulls)
+      first_value(value)
       over(partition by issue_id
-      order by value desc
+    --  order by value desc
       rows between unbounded preceding and unbounded following)
       from (select * from jira.issue_expected_history)
 
-      order by value
+     -- order by value
       ;;
   }
 
@@ -20,14 +20,20 @@ view: issue_expected_1_history {
   }
 
   dimension: issue_id {
+   primary_key: yes
     type: number
     sql: ${TABLE}.issue_id ;;
   }
 
   dimension: first_value {
     type: string
-    sql: ${TABLE}.first_value ;;
+    sql: ${TABLE}.first_value;;
   }
+
+  # measure: sum_expected {
+  #   type: sum
+  #   sql: ${first_value} ;;
+  # }
 
   set: detail {
     fields: [issue_id, first_value]

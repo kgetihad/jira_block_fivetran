@@ -3,6 +3,7 @@ connection: "jiradb"
 # include all the views
 include: "*.view"
 include: "/views/issue_is_the_solution_scalable_.view.lkml"
+include: "/views/issue_expected_hist.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
@@ -202,9 +203,9 @@ explore: project {
   }
 
 
-  join: issue_expected_1_history {
+  join: issue_expected_hist {
     relationship: one_to_one
-    sql_on: ${issue.id} = ${issue_expected_1_history.issue_id} ;;
+    sql_on: ${issue.id} = ${issue_expected_hist.issue_id} ;;
   }
 
   join: parent_issue {

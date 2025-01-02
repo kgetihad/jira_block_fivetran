@@ -54,7 +54,7 @@ view: issue_extended {
                -- supported_browsers is used as an example of a multi value
                -- select field.  Use it as a template for your multi-value
                -- select fields
-               ,LISTAGG(issue_supported_browsers.value, ', ') as browser_list
+           --    ,LISTAGG(issue_supported_browsers.value, ', ') as browser_list
 
                ,LISTAGG(component.name, ', ') as component_list
                ,LISTAGG(version.name, ', ') as fix_version_list
@@ -79,8 +79,8 @@ view: issue_extended {
             ON issue.issue_type = issue_type.id
 
          -- Multi-value fields
-         LEFT OUTER JOIN jira.issue_supported_browsers
-            ON issue.id = issue_supported_browsers.issue_id
+        -- LEFT OUTER JOIN jira.issue_supported_browsers
+        --    ON issue.id = issue_supported_browsers.issue_id
 
          -- Multi vlaue field that stores ids.  In this example
          -- the issue_component table stores component_id's
@@ -388,10 +388,10 @@ view: issue_extended {
   ## Additional dimensions for the LISTAGGS defined
   ## in the query
 
-  dimension: browser_list {
-    type: string
-    sql: ${TABLE}.browser_list ;;
-  }
+  # dimension: browser_list {
+  #   type: string
+  #   sql: ${TABLE}.browser_list ;;
+  # }
 
   dimension: component_list {
     type: string
