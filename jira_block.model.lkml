@@ -79,6 +79,12 @@ explore: technology_team {
     sql_on: ${project_score.project}  = ${project_score_team.project};;
   }
 
+  join: user_email {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${issue.assignee}=${user_email.account_id} ;;
+  }
+
 }
 
 
