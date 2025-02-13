@@ -661,3 +661,5 @@ explore: temp2 {
 
 }
 explore: jira_custom_dt {}
+
+explore: team_projects_score {}

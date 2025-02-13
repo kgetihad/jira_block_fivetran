@@ -4838,8 +4838,6 @@ view: issue {
   }
 
 
-
-
   dimension: reduce_churn_realization_period_code {
     type: string
     case: {
