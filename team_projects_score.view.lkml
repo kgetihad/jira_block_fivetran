@@ -5,8 +5,9 @@ view: team_projects_score {
   }
 
   measure: count {
-    type: count
-    drill_fields: [detail*]
+    type: count_distinct
+    sql: ${TABLE}.key ;;
+    drill_fields: [key,epic_key,epic_name,original_score,sub_dep,created_date,planned_delivery_date_date,actual_delivery_date_date,status,score,assignee_type,name]
   }
 
   dimension: id {
@@ -59,6 +60,12 @@ view: team_projects_score {
     sql: ${TABLE}.created ;;
   }
 
+  dimension_group: fixed_version_date {
+    type: time
+    sql: ${TABLE}.fixed_version_date ;;
+  }
+
+
   dimension_group: planned_delivery_date {
     type: time
     sql: ${TABLE}.planned_delivery_date ;;
@@ -108,6 +115,8 @@ view: team_projects_score {
     type: string
     sql: ${TABLE}.project_size ;;
   }
+
+
 
   set: detail {
     fields: [
