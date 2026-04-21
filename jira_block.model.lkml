@@ -665,3 +665,5 @@ explore: temp2 {
 explore: jira_custom_dt {}
 
 explore: team_projects_score {}
+
+explore: jira_business_case {}
