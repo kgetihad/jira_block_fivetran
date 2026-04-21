@@ -17,6 +17,8 @@ datagroup: fivetran_datagroup {
 
 persist_with: fivetran_datagroup
 
+explore: individual_final_score {}
+
 explore: technology_team {
 
   persist_for:: "24 hours"
